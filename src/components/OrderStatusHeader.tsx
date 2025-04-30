@@ -3,7 +3,7 @@ import { Progress } from "./ui/progress";
 import { ORDER_STATUS } from "@/config/order-status-config";
 type Props = {
   order:Orders
-}
+} 
 const OrderStatusHeader = ({order}: Props) => {
     const getExpectedDelivery=()=>{
         const create=new Date(order.createdAt);

@@ -58,16 +58,16 @@ const SearchBar = ({ searchQuery, onSubmit, placeholder, onReset }: Props) => {
             </div>
 
             <div className="flex items-center gap-2 w-full sm:w-auto">
-                <Button 
-                    type="button" 
-                    variant="outline" 
+                <Button
+                    type="button"
+                    variant="outline"
                     className="rounded-full text-xs sm:text-sm md:text-base px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 flex-1 sm:flex-none h-8 sm:h-10 md:h-12 touch-manipulation"
                     onClick={handleReset}
                 >
                     Reset
                 </Button>
-                <Button 
-                    type="submit" 
+                <Button
+                    type="submit"
                     className="rounded-full bg-orange-500 hover:bg-orange-600 text-xs sm:text-sm md:text-base px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 flex-1 sm:flex-none transition-all duration-300 hover:scale-105 h-8 sm:h-10 md:h-12 touch-manipulation"
                 >
                     Search

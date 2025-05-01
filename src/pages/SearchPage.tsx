@@ -1,7 +1,3 @@
-
-
-
-
 import { useSearchRestaurant } from "@/api/RestaurantApi";
 import CuisineFilter from "@/components/CuisineFilter";
 import PaginationSelector from "@/components/PaginationSelector";
@@ -20,7 +16,6 @@ import { useParams } from "react-router-dom";
 import ErrorDisplay from "@/components/ErrorDisplay";
 import SearchResultSkeleton from "@/components/SearchResultSkeleton";
 import NoResultsFound from "@/components/NoResultsFound";
-
 
 export type SearchState = {
   searchQuery: string;
@@ -48,19 +43,19 @@ const SearchPage = () => {
   const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
   const [compareList, setGitCompareList] = useState<string[]>([]);
   const [showFilters, setShowFilters] = useState(false);
-  
+
   // Load search history and favorites from localStorage on component mount
   useEffect(() => {
     const savedHistory = localStorage.getItem('searchHistory');
     if (savedHistory) {
       setSearchHistory(JSON.parse(savedHistory));
     }
-    
+
     const savedFavorites = localStorage.getItem('favorites');
     if (savedFavorites) {
       setFavorites(JSON.parse(savedFavorites));
     }
-    
+
     const savedGitCompareList = localStorage.getItem('compareList');
     if (savedGitCompareList) {
       setGitCompareList(JSON.parse(savedGitCompareList));
@@ -99,7 +94,7 @@ const SearchPage = () => {
   };
 
   const { results, isLoading, error } = useSearchRestaurant(searchState, city);
-  
+
   // Add search to history
   const addToSearchHistory = (query: string) => {
     if (query.trim()) {
@@ -216,7 +211,7 @@ const SearchPage = () => {
         </div>
         <div id="main content" className="flex flex-col gap-3 sm:gap-4 md:gap-5 order-1 lg:order-2">
           <SearchBar searchQuery={searchState.searchQuery} onSubmit={setSearchQuery} placeholder="search by cuisine or restaurant name" onReset={resetSearch}></SearchBar>
-          
+
           {/* Loading Skeletons */}
           <div className="space-y-3 sm:space-y-4">
             {[...Array(6)].map((_, index) => (
@@ -232,10 +227,10 @@ const SearchPage = () => {
   if (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     return (
-      <ErrorDisplay 
-        error={errorMessage} 
-        title="Search Error" 
-        message="We couldn't search for restaurants. Please try again." 
+      <ErrorDisplay
+        error={errorMessage}
+        title="Search Error"
+        message="We couldn't search for restaurants. Please try again."
         showRetry={true}
         onRetry={() => window.location.reload()}
       />
@@ -245,10 +240,10 @@ const SearchPage = () => {
   // Show error if no city is provided
   if (!city) {
     return (
-      <ErrorDisplay 
-        error={null} 
-        title="Invalid Search" 
-        message="Please provide a valid city to search for restaurants." 
+      <ErrorDisplay
+        error={null}
+        title="Invalid Search"
+        message="Please provide a valid city to search for restaurants."
         showHome={true}
       />
     );
@@ -257,7 +252,7 @@ const SearchPage = () => {
   // Show no results found if no restaurants are found
   if (!results?.data || results.data.length === 0) {
     return (
-      <NoResultsFound 
+      <NoResultsFound
         searchQuery={searchState.searchQuery}
         city={city}
         onClearFilters={() => {
@@ -299,7 +294,7 @@ const SearchPage = () => {
       </div>
       <div id="main content" className="flex flex-col gap-3 sm:gap-4 md:gap-5 order-1 lg:order-2">
         <SearchBar searchQuery={searchState.searchQuery} onSubmit={setSearchQuery} placeholder="search by cuisine or restaurant name" onReset={resetSearch}></SearchBar>
-        
+
         {/* View Mode and Filter Toggle */}
         <div className="flex items-center justify-between bg-white rounded-lg p-3 sm:p-4 border border-gray-200 shadow-sm">
           <div className="flex items-center gap-2 sm:gap-3">
@@ -307,27 +302,25 @@ const SearchPage = () => {
             <div className="flex bg-gray-100 rounded-lg p-1">
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-1.5 sm:p-2 rounded-md transition-all duration-200 ${
-                  viewMode === 'list' 
-                    ? 'bg-white text-orange-600 shadow-sm' 
+                className={`p-1.5 sm:p-2 rounded-md transition-all duration-200 ${viewMode === 'list'
+                    ? 'bg-white text-orange-600 shadow-sm'
                     : 'text-gray-600 hover:text-gray-800'
-                }`}
+                  }`}
               >
                 <List className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-1.5 sm:p-2 rounded-md transition-all duration-200 ${
-                  viewMode === 'grid' 
-                    ? 'bg-white text-orange-600 shadow-sm' 
+                className={`p-1.5 sm:p-2 rounded-md transition-all duration-200 ${viewMode === 'grid'
+                    ? 'bg-white text-orange-600 shadow-sm'
                     : 'text-gray-600 hover:text-gray-800'
-                }`}
+                  }`}
               >
                 <Grid3X3 className="w-4 h-4" />
               </button>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-2 sm:gap-3">
             {/* GitCompare List Indicator */}
             {compareList.length > 0 && (
@@ -336,7 +329,7 @@ const SearchPage = () => {
                 {compareList.length}/3
               </div>
             )}
-            
+
             {/* Favorites Count */}
             {favorites.length > 0 && (
               <div className="flex items-center gap-1 bg-red-100 text-red-800 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium">
@@ -344,7 +337,7 @@ const SearchPage = () => {
                 {favorites.length}
               </div>
             )}
-            
+
             {/* Advanced Filters Toggle */}
             <Button
               variant="outline"
@@ -357,7 +350,7 @@ const SearchPage = () => {
             </Button>
           </div>
         </div>
-        
+
         {/* Advanced Filters Panel */}
         {showFilters && (
           <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200 shadow-sm animate-fade-in">
@@ -370,18 +363,17 @@ const SearchPage = () => {
                     <button
                       key={price}
                       onClick={() => setPriceRange(searchState.priceRange === price ? '' : price)}
-                      className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
-                        searchState.priceRange === price
+                      className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${searchState.priceRange === price
                           ? 'bg-orange-500 text-white shadow-md hover:bg-orange-600'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
-                      }`}
+                        }`}
                     >
                       {price}
                     </button>
                   ))}
                 </div>
               </div>
-              
+
               {/* Delivery Time Filter */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Delivery Time</label>
@@ -390,11 +382,10 @@ const SearchPage = () => {
                     <button
                       key={time}
                       onClick={() => setDeliveryTime(searchState.deliveryTime === time ? '' : time)}
-                      className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
-                        searchState.deliveryTime === time
+                      className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${searchState.deliveryTime === time
                           ? 'bg-orange-500 text-white shadow-md hover:bg-orange-600'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
-                      }`}
+                        }`}
                     >
                       {time}
                     </button>
@@ -404,7 +395,7 @@ const SearchPage = () => {
             </div>
           </div>
         )}
-        
+
         {/* Search History Section */}
         {searchHistory.length > 0 && (
           <div className="bg-gray-50 rounded-lg p-3 sm:p-4 border border-gray-200">
@@ -452,10 +443,10 @@ const SearchPage = () => {
             </div>
           </div>
         )}
-        
+
         {/* Special Offers Section - Top of search results */}
         <SpecialOffersSection />
-        
+
         {/* Quick Filter Bar */}
         <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200 shadow-sm">
           <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
@@ -473,23 +464,22 @@ const SearchPage = () => {
                     SetSelectedCuisines([...searchState.selectedCuisines, cuisine]);
                   }
                 }}
-                className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
-                  searchState.selectedCuisines.includes(cuisine)
+                className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${searchState.selectedCuisines.includes(cuisine)
                     ? 'bg-orange-500 text-white shadow-md hover:bg-orange-600'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
-                }`}
+                  }`}
               >
                 {cuisine}
               </button>
             ))}
           </div>
         </div>
-        
+
         <div className="flex justify-between flex-col gap-2 sm:gap-3 lg:flex-row">
           <SearchResultsInfo total={results.pagination.total} city={city}></SearchResultsInfo>
           <SortOptionsDropdown onChange={(value) => setSortOptions(value)} sortOption={searchState.sortOption}></SortOptionsDropdown>
         </div>
-        
+
         {/* Active Filters Summary */}
         {(searchState.searchQuery || searchState.selectedCuisines.length > 0 || searchState.priceRange || searchState.deliveryTime) && (
           <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 sm:p-4">
@@ -558,7 +548,7 @@ const SearchPage = () => {
             </div>
           </div>
         )}
-        
+
         {/* Restaurant Results */}
         <div className={viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4' : 'space-y-3 sm:space-y-4'}>
           {results.data.map((restaurant, index) => (
@@ -568,48 +558,46 @@ const SearchPage = () => {
                 {/* Favorite Button */}
                 <button
                   onClick={() => toggleFavorite(restaurant._id)}
-                  className={`p-1.5 sm:p-2 rounded-full shadow-md transition-all duration-200 ${
-                    favorites.includes(restaurant._id)
+                  className={`p-1.5 sm:p-2 rounded-full shadow-md transition-all duration-200 ${favorites.includes(restaurant._id)
                       ? 'bg-red-500 text-white hover:bg-red-600'
                       : 'bg-white text-gray-600 hover:bg-red-50 hover:text-red-500'
-                  }`}
+                    }`}
                   aria-label={favorites.includes(restaurant._id) ? 'Remove from favorites' : 'Add to favorites'}
                 >
                   <Heart className={`w-3 h-3 sm:w-4 sm:h-4 ${favorites.includes(restaurant._id) ? 'fill-current' : ''}`} />
                 </button>
-                
+
                 {/* GitCompare Button */}
                 <button
                   onClick={() => toggleGitCompare(restaurant._id)}
                   disabled={!compareList.includes(restaurant._id) && compareList.length >= 3}
-                  className={`p-1.5 sm:p-2 rounded-full shadow-md transition-all duration-200 ${
-                    compareList.includes(restaurant._id)
+                  className={`p-1.5 sm:p-2 rounded-full shadow-md transition-all duration-200 ${compareList.includes(restaurant._id)
                       ? 'bg-orange-500 text-white hover:bg-orange-600'
                       : compareList.length >= 3
-                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                      : 'bg-white text-gray-600 hover:bg-orange-50 hover:text-orange-500'
-                  }`}
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                        : 'bg-white text-gray-600 hover:bg-orange-50 hover:text-orange-500'
+                    }`}
                   aria-label={compareList.includes(restaurant._id) ? 'Remove from comparison' : 'Add to comparison'}
                 >
                   <GitCompare className="w-3 h-3 sm:w-4 sm:h-4" />
                 </button>
               </div>
-              
+
               <SearchResultCard restaurant={restaurant} />
-              
+
               {/* Restaurant-specific advertisements after every 3rd restaurant */}
               {(index + 1) % 3 === 0 && (
                 <div className="my-4 sm:my-6 col-span-full">
-                  <RestaurantAdvertisement 
-                    restaurant={restaurant} 
-                    index={index} 
+                  <RestaurantAdvertisement
+                    restaurant={restaurant}
+                    index={index}
                   />
                 </div>
               )}
             </div>
           ))}
         </div>
-        
+
         {/* Comparison Panel */}
         {compareList.length > 0 && (
           <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40 animate-slide-in-up">
@@ -669,7 +657,7 @@ const SearchPage = () => {
             </div>
           </div>
         )}
-        
+
         {/* Bottom advertisement before pagination */}
         <div className="my-4 sm:my-6">
           <AdvertisementBanner
@@ -682,10 +670,10 @@ const SearchPage = () => {
             delay={100}
           />
         </div>
-        
+
         <PaginationSelector page={results.pagination.page} pages={results.pagination.pages} onPageChange={setPage}></PaginationSelector>
       </div>
-      
+
       {/* Back to Top Button */}
       {showBackToTop && (
         <button

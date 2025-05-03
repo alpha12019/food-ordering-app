@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  Star, 
-  Gift, 
-  Zap, 
-  ArrowRight, 
-  Sparkles, 
-  Heart, 
+import {
+  Star,
+  Gift,
+  Zap,
+  ArrowRight,
+  Sparkles,
+  Heart,
   Award,
   Share2,
   Eye,
@@ -27,15 +27,15 @@ interface AdvertisementBannerProps {
   delay?: number;
 }
 
-const AdvertisementBanner = ({ 
-  type, 
-  title, 
-  description, 
-  ctaText, 
-  icon, 
-  badgeText, 
+const AdvertisementBanner = ({
+  type,
+  title,
+  description,
+  ctaText,
+  icon,
+  badgeText,
   gradient = "from-orange-500 to-red-500",
-  delay = 0 
+  delay = 0
 }: AdvertisementBannerProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [showSparkles, setShowSparkles] = useState(false);
@@ -59,7 +59,7 @@ const AdvertisementBanner = ({
 
   const getIcon = () => {
     if (icon) return icon;
-    
+
     switch (type) {
       case 'promo':
         return <Gift className="w-6 h-6" />;
@@ -113,16 +113,15 @@ const AdvertisementBanner = ({
   };
 
   return (
-    <Card 
-      className={`relative overflow-hidden transition-all duration-1000 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-      } hover:scale-105 hover:shadow-2xl group animate-advertisement-pulse cursor-pointer`}
+    <Card
+      className={`relative overflow-hidden transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        } hover:scale-105 hover:shadow-2xl group animate-advertisement-pulse cursor-pointer`}
       style={{ animationDelay: `${delay}ms` }}
       onClick={() => setClickCount(prev => prev + 1)}
     >
       {/* Background gradient */}
       <div className={`absolute inset-0 bg-gradient-to-r ${gradient} opacity-10 group-hover:opacity-20 transition-opacity duration-300`} />
-      
+
       {/* Floating sparkles effect */}
       {showSparkles && (
         <div className="absolute inset-0 pointer-events-none">
@@ -140,11 +139,11 @@ const AdvertisementBanner = ({
           ))}
         </div>
       )}
-      
+
       <CardContent className="p-6 relative z-10">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div 
+            <div
               className={`p-2 rounded-full bg-gradient-to-r ${gradient} text-white group-hover:scale-110 transition-transform duration-300 cursor-pointer`}
               onClick={(e) => {
                 e.stopPropagation();
@@ -164,7 +163,7 @@ const AdvertisementBanner = ({
               )}
             </div>
           </div>
-          
+
           {/* Interactive action buttons */}
           <div className="flex items-center gap-2">
             <button
@@ -182,16 +181,15 @@ const AdvertisementBanner = ({
                 e.stopPropagation();
                 handleLike();
               }}
-              className={`p-1 rounded-full transition-all duration-200 ${
-                isLiked ? 'bg-red-100' : 'hover:bg-gray-100'
-              }`}
+              className={`p-1 rounded-full transition-all duration-200 ${isLiked ? 'bg-red-100' : 'hover:bg-gray-100'
+                }`}
               title={isLiked ? "Remove from favorites" : "Add to favorites"}
             >
               <Heart className={`w-4 h-4 ${isLiked ? 'text-red-500 fill-red-500' : 'text-gray-400 hover:text-red-500'}`} />
             </button>
           </div>
         </div>
-        
+
         <p className="text-gray-600 mb-4 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
           {description}
         </p>
@@ -206,9 +204,9 @@ const AdvertisementBanner = ({
             </div>
           </div>
         )}
-        
+
         <div className="flex gap-2">
-          <Button 
+          <Button
             className={`bg-gradient-to-r ${gradient} hover:shadow-lg text-white group-hover:scale-105 transition-all duration-300`}
             onClick={(e) => {
               e.stopPropagation();
@@ -221,7 +219,7 @@ const AdvertisementBanner = ({
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </Button>
-          
+
           <Button
             variant="outline"
             size="sm"

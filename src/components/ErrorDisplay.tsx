@@ -24,7 +24,7 @@ const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
   className = ''
 }) => {
   const navigate = useNavigate();
-  
+
   const errorMessage = error instanceof Error ? error.message : error || message;
 
   return (
@@ -42,11 +42,11 @@ const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
           <p className="text-gray-600">
             {errorMessage}
           </p>
-          
+
           <div className="flex gap-2 justify-center">
             {showRetry && (
-              <Button 
-                onClick={onRetry || (() => window.location.reload())} 
+              <Button
+                onClick={onRetry || (() => window.location.reload())}
                 variant="outline"
                 size="sm"
               >
@@ -54,10 +54,10 @@ const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
                 Try Again
               </Button>
             )}
-            
+
             {showHome && (
-              <Button 
-                onClick={() => navigate('/')} 
+              <Button
+                onClick={() => navigate('/')}
                 size="sm"
               >
                 <Home className="w-4 h-4 mr-2" />

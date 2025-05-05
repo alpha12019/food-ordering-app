@@ -105,14 +105,14 @@ const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
   if (!items.length) return null;
 
   return (
-    <div 
+    <div
       ref={carouselRef}
       className={`relative w-full overflow-hidden rounded-xl ${className}`}
     >
       {/* Carousel Container */}
       <div className="relative w-full h-full">
         {/* Slides */}
-        <div 
+        <div
           className="flex transition-transform duration-300 ease-in-out h-full"
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
@@ -141,43 +141,43 @@ const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
                         target.src = `https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=500&fit=crop&q=80`;
                       }}
                     />
-                    
+
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    
+
                     {/* Content */}
                     <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-10 text-white">
                       {/* Badge */}
                       {item.badge && (
                         <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3 animate-bounce-in`}
-                             style={{ animationDelay: '0.2s' }}>
+                          style={{ animationDelay: '0.2s' }}>
                           <span className={`bg-gradient-to-r ${item.gradient || 'from-orange-500 to-red-500'} bg-clip-text text-transparent`}>
                             {item.badge}
                           </span>
                         </div>
                       )}
-                      
+
                       {/* Title */}
                       <h3 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-tight animate-slide-in-up`}
-                           style={{ animationDelay: '0.4s' }}>
+                        style={{ animationDelay: '0.4s' }}>
                         {item.title}
                       </h3>
-                      
+
                       {/* Description */}
                       <p className={`text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 mb-4 max-w-2xl animate-slide-in-up`}
-                         style={{ animationDelay: '0.6s' }}>
+                        style={{ animationDelay: '0.6s' }}>
                         {item.description}
                       </p>
-                      
+
                       {/* Action Button */}
-                      <Button 
+                      <Button
                         className={`bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white animate-bounce-in hover:scale-105 transition-all duration-300`}
                         style={{ animationDelay: '0.8s' }}
                       >
                         Learn More
                       </Button>
                     </div>
-                    
+
                     {/* Floating Elements */}
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden sm:block">
                       <div className="w-3 h-3 bg-orange-400 rounded-full animate-ping"></div>
@@ -240,11 +240,10 @@ const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
               key={index}
               onClick={() => goToSlide(index)}
               disabled={isTransitioning}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentIndex
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
                   ? 'bg-white scale-125'
                   : 'bg-white/50 hover:bg-white/75 hover:scale-110'
-              }`}
+                }`}
             />
           ))}
         </div>
@@ -253,7 +252,7 @@ const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
       {/* Progress Bar */}
       {autoPlay && isPlaying && (
         <div className="absolute bottom-0 left-0 w-full h-1 bg-black/20 z-10">
-          <div 
+          <div
             className="h-full bg-gradient-to-r from-orange-500 to-red-500 transition-all duration-100 ease-linear"
             style={{ width: `${((currentIndex + 1) / items.length) * 100}%` }}
           />

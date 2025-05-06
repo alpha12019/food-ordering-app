@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  Truck, 
-  Shield, 
-  Star, 
-  Users, 
-  Zap, 
+import {
+  Truck,
+  Shield,
+  Star,
+  Users,
+  Zap,
   ArrowRight,
   Sparkles,
   Heart,
@@ -94,27 +94,26 @@ const FeaturesShowcase = () => {
           Experience the best food delivery service with these amazing features
         </p>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {features.map((feature, index) => (
-          <Card 
+          <Card
             key={feature.id}
-            className={`relative overflow-hidden hover:scale-105 transition-all duration-300 group animate-bounce-in animate-advertisement-bounce cursor-pointer ${
-              hoveredFeature === feature.id ? 'ring-2 ring-orange-400 shadow-xl' : ''
-            }`}
+            className={`relative overflow-hidden hover:scale-105 transition-all duration-300 group animate-bounce-in animate-advertisement-bounce cursor-pointer ${hoveredFeature === feature.id ? 'ring-2 ring-orange-400 shadow-xl' : ''
+              }`}
             style={{ animationDelay: `${index * 0.1}s` }}
             onMouseEnter={() => setHoveredFeature(feature.id)}
             onMouseLeave={() => setHoveredFeature(null)}
           >
             {/* Background gradient */}
             <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-5 group-hover:opacity-20 transition-opacity duration-300`} />
-            
+
             {/* Floating sparkles effect */}
             <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <Sparkles className="absolute top-4 right-4 text-yellow-400 animate-ping" />
               <Sparkles className="absolute bottom-4 left-4 text-yellow-400 animate-ping" style={{ animationDelay: '0.5s' }} />
             </div>
-            
+
             <CardContent className="p-6 relative z-10">
               <div className="flex items-start justify-between mb-4">
                 <div className={`p-3 rounded-full bg-gradient-to-r ${feature.gradient} text-white group-hover:scale-110 transition-transform duration-300`}>
@@ -126,15 +125,15 @@ const FeaturesShowcase = () => {
                   </Badge>
                 )}
               </div>
-              
+
               <h3 className="font-bold text-lg text-gray-800 mb-2 group-hover:text-orange-600 transition-colors duration-300">
                 {feature.title}
               </h3>
-              
+
               <p className="text-gray-600 text-sm leading-relaxed mb-4 group-hover:text-gray-700 transition-colors duration-300">
                 {feature.description}
               </p>
-              
+
               {feature.stats && (
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-gray-500 font-medium">
@@ -147,7 +146,7 @@ const FeaturesShowcase = () => {
           </Card>
         ))}
       </div>
-      
+
       {/* Bottom CTA section */}
       <div className="mt-8 text-center">
         <Card className="bg-gradient-to-r from-orange-50 to-red-50 p-6 animate-fade-in">

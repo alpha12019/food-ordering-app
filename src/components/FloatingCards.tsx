@@ -62,21 +62,19 @@ const FloatingCards: React.FC<FloatingCardsProps> = ({
           return (
             <div
               key={item.id}
-              className={`relative transition-all duration-700 ease-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-              }`}
-              style={{ 
+              className={`relative transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+                }`}
+              style={{
                 animationDelay: `${animationDelay}s`,
                 transform: `translateY(${isHovered ? -20 : 0}px)`
               }}
               onMouseEnter={() => setHoveredCard(item.id)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              <Card className={`h-full overflow-hidden transition-all duration-500 group cursor-pointer ${
-                isHovered 
-                  ? 'shadow-2xl ring-2 ring-orange-400 scale-105' 
+              <Card className={`h-full overflow-hidden transition-all duration-500 group cursor-pointer ${isHovered
+                  ? 'shadow-2xl ring-2 ring-orange-400 scale-105'
                   : 'shadow-lg hover:shadow-xl'
-              }`}>
+                }`}>
                 <div className="relative h-full">
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden">
@@ -89,14 +87,14 @@ const FloatingCards: React.FC<FloatingCardsProps> = ({
                         target.src = `https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop&q=80`;
                       }}
                     />
-                    
+
                     {/* Badge */}
                     {item.badge && (
                       <Badge className={`absolute top-3 left-3 bg-gradient-to-r ${item.gradient || 'from-orange-500 to-red-500'} text-white text-xs animate-bounce-in`}>
                         {item.badge}
                       </Badge>
                     )}
-                    
+
                     {/* Rating */}
                     {item.rating && (
                       <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm rounded-lg p-2">
@@ -105,10 +103,10 @@ const FloatingCards: React.FC<FloatingCardsProps> = ({
                         </div>
                       </div>
                     )}
-                    
+
                     {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
+
                     {/* Floating heart icon */}
                     <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100">
                       <Heart className="w-5 h-5 text-white hover:text-red-500 transition-colors duration-300 cursor-pointer" />
@@ -143,7 +141,7 @@ const FloatingCards: React.FC<FloatingCardsProps> = ({
                       <div className="absolute top-2 right-2 w-2 h-2 bg-orange-400 rounded-full animate-ping"></div>
                       <div className="absolute top-2 left-2 w-2 h-2 bg-red-400 rounded-full animate-ping" style={{ animationDelay: '0.2s' }}></div>
                       <div className="absolute bottom-2 right-2 w-2 h-2 bg-yellow-400 rounded-full animate-ping" style={{ animationDelay: '0.4s' }}></div>
-                      
+
                       {/* Glow effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 to-red-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
                     </>
@@ -152,7 +150,7 @@ const FloatingCards: React.FC<FloatingCardsProps> = ({
               </Card>
 
               {/* Floating animation wrapper */}
-              <div 
+              <div
                 className="absolute inset-0 pointer-events-none animate-float"
                 style={{ animationDelay: `${floatDelay}s` }}
               >

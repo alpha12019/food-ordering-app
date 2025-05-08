@@ -5,6 +5,7 @@ import { Star, Heart, ArrowRight } from 'lucide-react';
 
 interface FloatingCardItem {
   id: number;
+  
   title: string;
   subtitle: string;
   description: string;

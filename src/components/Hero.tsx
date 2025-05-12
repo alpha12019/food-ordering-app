@@ -8,11 +8,11 @@ const Hero = () => {
   );
   const [isLoaded, setIsLoaded] = useState(false);
   const [showSparkles, setShowSparkles] = useState(false);
-  const [floatingElements, setFloatingElements] = useState<Array<{id: number, x: number, y: number, type: string, delay: number}>>([]);
+  const [floatingElements, setFloatingElements] = useState<Array<{ id: number, x: number, y: number, type: string, delay: number }>>([]);
 
   useEffect(() => {
     setIsLoaded(true);
-    
+
     // Create floating elements
     const elements = [
       { id: 1, x: 10, y: 20, type: 'star', delay: 0 },
@@ -33,7 +33,7 @@ const Hero = () => {
     return () => clearInterval(sparkleTimer);
   }, []);
 
-  const renderFloatingElement = (element: {id: number, x: number, y: number, type: string, delay: number}) => {
+  const renderFloatingElement = (element: { id: number, x: number, y: number, type: string, delay: number }) => {
     const baseClasses = "absolute text-orange-300 animate-float opacity-60";
     const style = {
       left: `${element.x}%`,
@@ -62,23 +62,22 @@ const Hero = () => {
         onError={() => setImgSrc(hero)} // fallback to local image
         loading="lazy"
         decoding="async"
-        className={`w-full h-[150px] xs:h-[200px] sm:h-[250px] md:h-[350px] lg:h-[450px] xl:h-[550px] 2xl:h-[600px] object-cover transition-all duration-1000 ${
-          isLoaded ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
-        }`}
+        className={`w-full h-[150px] xs:h-[200px] sm:h-[250px] md:h-[350px] lg:h-[450px] xl:h-[550px] 2xl:h-[600px] object-cover transition-all duration-1000 ${isLoaded ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
+          }`}
         onLoad={() => setIsLoaded(true)}
       />
-      
+
       {/* Enhanced animated overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-orange-500/30 via-transparent to-orange-500/30 animate-pulse"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
-      
+
       {/* Floating particles effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 bg-orange-300 rounded-full animate-float opacity-60"></div>
         <div className="absolute top-1/3 right-1/3 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-orange-200 rounded-full animate-float opacity-40" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-1/3 left-1/3 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-orange-400 rounded-full animate-float opacity-50" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 right-1/4 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-orange-300 rounded-full animate-float opacity-30" style={{ animationDelay: '0.5s' }}></div>
-        
+
         {/* Additional floating elements */}
         <div className="absolute top-1/6 left-1/6 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-yellow-300 rounded-full animate-float opacity-40" style={{ animationDelay: '1.5s' }}></div>
         <div className="absolute bottom-1/4 right-1/6 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-red-300 rounded-full animate-float opacity-40" style={{ animationDelay: '2.5s' }}></div>

@@ -24,7 +24,7 @@ const MovingBanner: React.FC<MovingBannerProps> = ({
   useEffect(() => {
     const banner = bannerRef.current;
     const container = containerRef.current;
-    
+
     if (!banner || !container) return;
 
     let animationId: number;
@@ -74,7 +74,7 @@ const MovingBanner: React.FC<MovingBannerProps> = ({
         <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full animate-morph" style={{ animationDelay: '1s' }}></div>
       </div>
 
-      <div 
+      <div
         ref={containerRef}
         className="relative w-full"
       >
@@ -89,7 +89,7 @@ const MovingBanner: React.FC<MovingBannerProps> = ({
               className="flex items-center space-x-4 group hover:scale-105 transition-transform duration-300"
             >
               {showBadges && (
-                <Badge 
+                <Badge
                   className={`bg-gradient-to-r ${badgeColors[index % badgeColors.length]} text-white border-0 animate-pulse-glow group-hover:animate-bounce transition-all duration-300 hidden xs:inline-flex`}
                 >
                   {index % 2 === 0 ? '🔥' : '⭐'}

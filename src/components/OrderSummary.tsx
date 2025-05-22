@@ -10,7 +10,6 @@ type Props = {
   cartItems: CartItem[];
   deleteFromCart: (item: CartItem) => void;
 }
-
 const OrderSummary = ({ restaurant, cartItems, deleteFromCart }: Props) => {
   const getTotalCost = () => {
     const rupees = cartItems.reduce((total, cartItem) => total + cartItem.price * cartItem.quantity, 0);

@@ -9,7 +9,7 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
   const logPerformanceMetrics = useCallback(() => {
     if ('performance' in window) {
       const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-      
+
       if (navigation) {
         console.log('Performance Metrics:', {
           pageLoadTime: navigation.loadEventEnd - navigation.loadEventStart,
@@ -46,7 +46,7 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
       if (!img.hasAttribute('loading')) {
         img.loading = 'lazy';
       }
-      
+
       // Add error handling
       img.onerror = () => {
         img.style.display = 'none';
@@ -61,7 +61,7 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
       const memory = (performance as Performance & { memory: { usedJSHeapSize: number; totalJSHeapSize: number } }).memory;
       const usedMB = Math.round(memory.usedJSHeapSize / 1048576);
       const totalMB = Math.round(memory.totalJSHeapSize / 1048576);
-      
+
       if (usedMB > totalMB * 0.8) {
         console.warn('High memory usage detected:', { usedMB, totalMB });
       }

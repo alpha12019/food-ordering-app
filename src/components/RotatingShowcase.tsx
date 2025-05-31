@@ -77,7 +77,7 @@ const RotatingShowcase: React.FC<RotatingShowcaseProps> = ({
   const angleStep = (2 * Math.PI) / itemCount;
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={`relative w-full h-[500px] flex items-center justify-center ${className}`}
       onMouseEnter={handleMouseEnter}
@@ -107,11 +107,10 @@ const RotatingShowcase: React.FC<RotatingShowcaseProps> = ({
             onMouseEnter={() => setHoveredItem(item.id)}
             onMouseLeave={() => setHoveredItem(null)}
           >
-            <Card className={`w-48 h-64 overflow-hidden transition-all duration-500 ${
-              isHovered 
-                ? 'shadow-2xl ring-2 ring-orange-400 scale-110' 
+            <Card className={`w-48 h-64 overflow-hidden transition-all duration-500 ${isHovered
+                ? 'shadow-2xl ring-2 ring-orange-400 scale-110'
                 : 'shadow-lg hover:shadow-xl'
-            }`}>
+              }`}>
               <div className="relative h-full">
                 {/* Image */}
                 <div className="relative h-32 overflow-hidden">
@@ -124,14 +123,14 @@ const RotatingShowcase: React.FC<RotatingShowcaseProps> = ({
                       target.src = `https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop&q=80`;
                     }}
                   />
-                  
+
                   {/* Badge */}
                   {item.badge && (
                     <Badge className="absolute top-2 left-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs animate-bounce-in">
                       {item.badge}
                     </Badge>
                   )}
-                  
+
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                 </div>
@@ -166,7 +165,7 @@ const RotatingShowcase: React.FC<RotatingShowcaseProps> = ({
                     {/* Floating particles */}
                     <div className="absolute top-2 right-2 w-2 h-2 bg-orange-400 rounded-full animate-ping"></div>
                     <div className="absolute bottom-2 left-2 w-2 h-2 bg-red-400 rounded-full animate-ping" style={{ animationDelay: '0.2s' }}></div>
-                    
+
                     {/* Glow effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 to-red-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
                   </>
@@ -181,7 +180,7 @@ const RotatingShowcase: React.FC<RotatingShowcaseProps> = ({
       <div className="absolute z-20 text-center bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg animate-fade-in">
         <h3 className="text-lg font-bold text-orange-600 mb-2">Featured Restaurants</h3>
         <p className="text-sm text-gray-600">Hover to explore</p>
-        
+
         {/* Control indicator */}
         <div className="mt-3 flex items-center justify-center gap-2">
           <div className={`w-2 h-2 rounded-full ${isPaused ? 'bg-red-400' : 'bg-green-400'} animate-pulse`}></div>

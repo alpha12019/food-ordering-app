@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  Clock, 
-  ArrowRight, 
-  Sparkles, 
+import {
+  Clock,
+  ArrowRight,
+  Sparkles,
   Flame,
   Star,
   Truck,
@@ -79,11 +79,11 @@ const SpecialOffersSection = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       const newTimeLeft: { [key: number]: { hours: number; minutes: number; seconds: number } } = {};
-      
+
       offers.forEach(offer => {
         const now = new Date().getTime();
         const distance = offer.endTime.getTime() - now;
-        
+
         if (distance > 0) {
           newTimeLeft[offer.id] = {
             hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
@@ -94,7 +94,7 @@ const SpecialOffersSection = () => {
           newTimeLeft[offer.id] = { hours: 0, minutes: 0, seconds: 0 };
         }
       });
-      
+
       setTimeLeft(newTimeLeft);
     }, 1000);
 
@@ -169,10 +169,10 @@ const SpecialOffersSection = () => {
           Don't miss out on these amazing deals!
         </p>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {offers.map((offer, index) => (
-          <Card 
+          <Card
             key={offer.id}
             className="relative overflow-hidden hover:scale-105 transition-all duration-300 group animate-bounce-in animate-advertisement-glow cursor-pointer"
             style={{ animationDelay: `${index * 0.2}s` }}
@@ -180,12 +180,12 @@ const SpecialOffersSection = () => {
           >
             {/* Background gradient */}
             <div className={`absolute inset-0 bg-gradient-to-r ${offer.gradient} opacity-10 group-hover:opacity-20 transition-opacity duration-300`} />
-            
+
             {/* Floating fire icon for hot deals */}
             <div className="absolute top-4 right-4 z-10">
               <Flame className="w-6 h-6 text-red-500 animate-pulse" />
             </div>
-            
+
             <CardContent className="p-6 relative z-10">
               {/* Image section */}
               <div className="relative mb-4 rounded-lg overflow-hidden">
@@ -195,12 +195,12 @@ const SpecialOffersSection = () => {
                   className="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-opacity duration-300" />
-                
+
                 {/* Discount badge */}
                 <Badge className="absolute top-2 left-2 bg-red-500 text-white font-bold">
                   {offer.discount}
                 </Badge>
-                
+
                 {/* Time remaining badge */}
                 <Badge className="absolute top-2 right-2 bg-orange-500 text-white font-bold">
                   <Clock className="w-3 h-3 mr-1" />
@@ -224,16 +224,15 @@ const SpecialOffersSection = () => {
                       e.stopPropagation();
                       handleLike(offer.id);
                     }}
-                    className={`p-1 rounded-full transition-all duration-200 ${
-                      likedOffers.has(offer.id) ? 'bg-red-100' : 'bg-white bg-opacity-80 hover:bg-opacity-100'
-                    }`}
+                    className={`p-1 rounded-full transition-all duration-200 ${likedOffers.has(offer.id) ? 'bg-red-100' : 'bg-white bg-opacity-80 hover:bg-opacity-100'
+                      }`}
                     title={likedOffers.has(offer.id) ? "Remove from favorites" : "Add to favorites"}
                   >
                     <Heart className={`w-3 h-3 ${likedOffers.has(offer.id) ? 'text-red-500 fill-red-500' : 'text-gray-600'}`} />
                   </button>
                 </div>
               </div>
-              
+
               {/* Content section */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -244,7 +243,7 @@ const SpecialOffersSection = () => {
                     {offer.badgeText}
                   </Badge>
                 </div>
-                
+
                 <p className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                   {offer.description}
                 </p>
@@ -268,7 +267,7 @@ const SpecialOffersSection = () => {
                     </div>
                   </div>
                 )}
-                
+
                 {/* Price comparison */}
                 <div className="flex items-center gap-2">
                   <span className="text-lg font-bold text-green-600">
@@ -278,7 +277,7 @@ const SpecialOffersSection = () => {
                     {offer.originalPrice}
                   </span>
                 </div>
-                
+
                 {/* Features */}
                 <div className="flex items-center gap-4 text-xs text-gray-500">
                   <div className="flex items-center gap-1">
@@ -290,10 +289,10 @@ const SpecialOffersSection = () => {
                     <span>4.5+ Rating</span>
                   </div>
                 </div>
-                
+
                 {/* CTA Buttons */}
                 <div className="flex gap-2">
-                  <Button 
+                  <Button
                     className={`w-full bg-gradient-to-r ${offer.gradient} hover:shadow-lg text-white group-hover:scale-105 transition-all duration-300`}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -306,7 +305,7 @@ const SpecialOffersSection = () => {
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </span>
                   </Button>
-                  
+
                   <Button
                     variant="outline"
                     size="sm"
@@ -321,7 +320,7 @@ const SpecialOffersSection = () => {
                 </div>
               </div>
             </CardContent>
-            
+
             {/* Sparkle effect on hover */}
             <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <Sparkles className="absolute top-4 left-4 text-yellow-400 animate-ping" />

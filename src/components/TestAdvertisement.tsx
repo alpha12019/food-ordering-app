@@ -9,7 +9,7 @@ const TestAdvertisement = () => {
           🎉 Test Advertisement
         </h3>
         <p className="text-gray-700 mb-4">
-           This is a test advertisement to verify that components are rendering properly.
+      This is a test advertisement to verify that components are rendering properly.
         </p>
         <Button className="bg-orange-500 hover:bg-orange-600 text-white">
           Test Button

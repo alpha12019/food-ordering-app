@@ -191,6 +191,10 @@
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
+@keyframes banner-scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
 
 @keyframes rotate-3d {
   0% { transform: rotateY(0deg) rotateX(0deg); }

@@ -11,9 +11,6 @@ const UserProfilePage=()=>{
     if(!currentUser){
         return <h1>unable to load user profile</h1>
     }
-    if(!currentUser){
-        return <h1>unable to load user profile</h1>
-    }
     return(
          <div className="max-w-xl mx-auto mt-6 sm:mt-10 px-2 sm:px-4">
             <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center sm:text-left">My Profile</h1>

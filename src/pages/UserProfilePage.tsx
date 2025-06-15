@@ -6,7 +6,7 @@ const UserProfilePage=()=>{
     const {currentUser, isLoading: isGetLoading} = useGetMyUser();
     const {updateuser, isLoading: isUpdateLoading} = useUpdateMyUser();
     if(isGetLoading){
-         return <div>loading</div>
+          return <div>loading</div>
      }
     if(!currentUser){
         return <h1>unable to load user profile</h1>

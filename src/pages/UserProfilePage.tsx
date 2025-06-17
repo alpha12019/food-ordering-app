@@ -21,4 +21,4 @@ const UserProfilePage=()=>{
         </div>
     )
 }
-export default UserProfilePage;
+ export default UserProfilePage;

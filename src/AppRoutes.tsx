@@ -8,6 +8,7 @@ import ManageRestaurantPage from "./pages/ManageRestaurantPage";
 import SearchPage from "./pages/SearchPage";
 import DetailsPage from "./pages/DetailsPage";
 import OrderStatusPage from "./pages/OrderStatusPage";
+ 
 
 const AppRoutes=()=>{
     return(

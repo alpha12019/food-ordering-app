@@ -24,7 +24,7 @@ const AppRoutes=()=>{
             <Route path="*" element={<Navigate to="/"></Navigate>}></Route>
         </Routes>
     )
-}
+} 
 
 export default AppRoutes;
 

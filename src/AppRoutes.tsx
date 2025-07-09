@@ -1,4 +1,4 @@
-import { Route,Routes,Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import HomePage from "./pages/HomePage";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
@@ -8,9 +8,9 @@ import ManageRestaurantPage from "./pages/ManageRestaurantPage";
 import SearchPage from "./pages/SearchPage";
 import DetailsPage from "./pages/DetailsPage";
 import OrderStatusPage from "./pages/OrderStatusPage";
- 
-const AppRoutes=()=>{
-    return(
+
+const AppRoutes = () => {
+    return (
         <Routes>
             <Route path="/" element={<Layout showHero><HomePage></HomePage></Layout>}></Route>
             <Route path="/auth-callback" element={<AuthCallbackPage></AuthCallbackPage>}></Route>
@@ -24,5 +24,5 @@ const AppRoutes=()=>{
             <Route path="*" element={<Navigate to="/"></Navigate>}></Route>
         </Routes>
     )
-} 
+}
 export default AppRoutes;

@@ -20,8 +20,6 @@ export type CartItem = {
     price: number;
     quantity: number
 }
-
-
 const DetailsPage = () => {
     const { createCheckoutSession, isLoading: isCheckoutLoading } = useCreateCheckoutSession();
     const { restaurantId } = useParams();
@@ -61,13 +59,11 @@ const DetailsPage = () => {
 
         })
     }
-
-    const onCheckout = async (userFormData: UserFormData) => {
+   const onCheckout = async (userFormData: UserFormData) => {
         if (!restaurant) {
             return;
         }
-
-        const checkoutData = {
+       const checkoutData = {
             cartItems: cartItems.map((cartItem) => ({
                 menuItemId: cartItem._id,
                 name: cartItem.name,

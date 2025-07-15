@@ -4,11 +4,11 @@ import OrderStatusHeader from "@/components/OrderStatusHeader";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 
 const OrderStatusPage = () => {
-      const {orders, isLoading} = useGetMyOrders();
-  if(isLoading){
+  const { orders, isLoading } = useGetMyOrders();
+  if (isLoading) {
     return <h1>Loading...</h1>
   }
-  if(!orders||orders.length===0){
+  if (!orders || orders.length === 0) {
     return <h1>No Orders Found</h1>
   }
   return (
@@ -23,7 +23,7 @@ const OrderStatusPage = () => {
           <OrderStatusHeader order={order} />
           <div className="grid gap-6 sm:gap-10 grid-cols-1 md:grid-cols-2">
             <OrderStatusDetails order={order} />
-            <AspectRatio ratio={16/5} className="w-full">
+            <AspectRatio ratio={16 / 5} className="w-full">
               <img src={order.restaurant.imageUrl} className="rounded-md h-full w-full object-cover" alt="Restaurant" />
             </AspectRatio>
           </div>

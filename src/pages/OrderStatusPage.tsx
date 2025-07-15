@@ -32,5 +32,4 @@ const OrderStatusPage = () => {
     </div>
   )
 }
-
 export default OrderStatusPage;

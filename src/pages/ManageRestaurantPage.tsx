@@ -4,9 +4,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OrderItemCard from "@/components/OrderItemCard";
 import { Toaster } from "@/components/ui/toaster";
 
-
-
-
 const ManageRestaurantPage = () => {
     const { createRestaurant, isLoading: createIsLoading } = useCreateMyRestaurant();
     const { currentRestaurant, isLoading: getIsLoading } = useGetMyRestaurant();

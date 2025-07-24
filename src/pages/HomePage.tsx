@@ -3,6 +3,7 @@ import landingImage from "../assets/landing.png";
 import appDownloadImage from "../assets/appDownload.png";
 import SearchBar, { SearchForm } from "@/components/SearchBar";
 import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,25 @@ const HomePage = () => {
   const handleSearchSubmit = (searchFormValues: SearchForm) => {
     navigate(`/search/${searchFormValues.searchQuery}`);
   };
+
+  // Popular cuisines
+  const popularCuisines = [
+    "Pizza",
+    "Chinese",
+    "Indian",
+    "Burgers",
+    "Desserts",
+    "Sushi",
+    "Mexican",
+    "South Indian",
+  ];
+
+  const handleCuisineClick = useCallback(
+    (cuisine: string) => {
+      navigate(`/search/${encodeURIComponent(cuisine)}`);
+    },
+    [navigate]
+  );
 
   return (
     <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12">
@@ -46,6 +66,21 @@ const HomePage = () => {
             onSubmit={handleSearchSubmit}
           />
           <Progress value={80} className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto" />
+        </div>
+      </Card>
+      {/* Popular Cuisines Section */}
+      <Card className="mx-2 sm:mx-6 md:mx-16 lg:mx-28 bg-white rounded-lg shadow-lg py-4 flex flex-col gap-3">
+        <h2 className="text-xl md:text-2xl font-bold text-orange-600 text-center mb-2">Popular Cuisines</h2>
+        <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+          {popularCuisines.map((cuisine) => (
+            <Badge
+              key={cuisine}
+              className="cursor-pointer text-base md:text-lg px-4 py-2 hover:bg-orange-500 hover:text-white transition"
+              onClick={() => handleCuisineClick(cuisine)}
+            >
+              {cuisine}
+            </Badge>
+          ))}
         </div>
       </Card>
       <Separator />

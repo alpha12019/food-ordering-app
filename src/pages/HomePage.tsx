@@ -93,27 +93,27 @@ const HomePage = () => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        className={`w-4 h-4 ${i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
+        className={`w-3 h-3 sm:w-4 sm:h-4 ${i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
       />
     ));
   };
 
   return (
-    <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16">
+    <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16">
       {/* Enhanced Hero Section */}
       <div className="relative">
         <Hero />
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-          <div className="text-center text-white px-4">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center px-4">
+          <div className="text-center text-white max-w-4xl">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight">
               Delicious Food Delivered
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-6">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4 sm:mb-5 md:mb-6 px-2 sm:px-4">
               Order from your favorite restaurants with just a few clicks
             </p>
             <Button 
               size="lg" 
-              className="bg-orange-500 hover:bg-orange-600 text-lg px-8 py-3"
+              className="bg-orange-500 hover:bg-orange-600 text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4"
               onClick={() => document.getElementById('search-section')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Order Now
@@ -123,31 +123,34 @@ const HomePage = () => {
       </div>
 
       {/* Enhanced Search Section */}
-      <Card id="search-section" className="mx-2 sm:mx-6 md:mx-16 lg:mx-28 md:px-8 lg:px-16 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-2xl py-8 sm:py-10 md:py-12 flex flex-col text-center gap-6 -mt-8 sm:-mt-12 md:-mt-16">
-        <div className="space-y-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-orange-600">
+      <Card id="search-section" className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-2xl py-6 sm:py-8 md:py-10 lg:py-12 flex flex-col text-center gap-4 sm:gap-6 -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-12 xl:-mt-16">
+        <div className="space-y-3 sm:space-y-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-orange-600 leading-tight">
             Tuck into a takeaway today
           </h2>
-          <div className="flex flex-wrap justify-center gap-3 my-4">
-            <Badge className="text-sm md:text-base bg-orange-100 text-orange-800 border-orange-200">
-              <Truck className="w-4 h-4 mr-1" />
-              Fast Delivery
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 my-3 sm:my-4">
+            <Badge className="text-xs sm:text-sm md:text-base bg-orange-100 text-orange-800 border-orange-200 px-2 sm:px-3 py-1">
+              <Truck className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+              <span className="hidden sm:inline">Fast Delivery</span>
+              <span className="sm:hidden">Fast</span>
             </Badge>
-            <Badge variant="secondary" className="text-sm md:text-base">
-              <Award className="w-4 h-4 mr-1" />
-              Best Restaurants
+            <Badge variant="secondary" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1">
+              <Award className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+              <span className="hidden sm:inline">Best Restaurants</span>
+              <span className="sm:hidden">Best</span>
             </Badge>
-            <Badge variant="outline" className="text-sm md:text-base">
-              <Users className="w-4 h-4 mr-1" />
-              Easy Payments
+            <Badge variant="outline" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1">
+              <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+              <span className="hidden sm:inline">Easy Payments</span>
+              <span className="sm:hidden">Easy</span>
             </Badge>
           </div>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-700">Food is just a click away</p>
-          <p className="text-sm sm:text-base text-gray-600">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700">Food is just a click away</p>
+          <p className="text-xs sm:text-sm md:text-base text-gray-600 px-2">
             Search Bareilly or Manchester to get results
           </p>
         </div>
-        <div className="flex flex-col items-center gap-4 w-full max-w-2xl mx-auto">
+        <div className="flex flex-col items-center gap-3 sm:gap-4 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto">
           <SearchBar
             placeholder="Search by city or town"
             onSubmit={handleSearchSubmit}
@@ -158,21 +161,21 @@ const HomePage = () => {
       </Card>
 
       {/* Enhanced Popular Cuisines Section */}
-      <Card className="mx-2 sm:mx-6 md:mx-16 lg:mx-28 bg-white rounded-xl shadow-lg py-8">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-orange-600 mb-2">Popular Cuisines</h2>
-          <p className="text-gray-600">Explore our most loved cuisines</p>
+      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-white rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2">Popular Cuisines</h2>
+          <p className="text-xs sm:text-sm md:text-base text-gray-600">Explore our most loved cuisines</p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {popularCuisines.map((cuisine) => (
             <Card
               key={cuisine.name}
               className="cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-105 border-2 hover:border-orange-300"
               onClick={() => handleCuisineClick(cuisine.name)}
             >
-              <CardContent className="p-4 text-center">
-                <div className="text-3xl mb-2">{cuisine.icon}</div>
-                <p className="font-semibold text-gray-800">{cuisine.name}</p>
+              <CardContent className="p-3 sm:p-4 text-center">
+                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">{cuisine.icon}</div>
+                <p className="font-semibold text-gray-800 text-xs sm:text-sm md:text-base">{cuisine.name}</p>
               </CardContent>
             </Card>
           ))}
@@ -180,32 +183,32 @@ const HomePage = () => {
       </Card>
 
       {/* Featured Restaurants Section */}
-      <Card className="mx-2 sm:mx-6 md:mx-16 lg:mx-28 bg-white rounded-xl shadow-lg py-8">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-orange-600 mb-2">Featured Restaurants</h2>
-          <p className="text-gray-600">Discover top-rated restaurants in your area</p>
+      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-white rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2">Featured Restaurants</h2>
+          <p className="text-xs sm:text-sm md:text-base text-gray-600">Discover top-rated restaurants in your area</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {featuredRestaurants.map((restaurant, index) => (
             <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative">
                 <img
                   src={restaurant.image}
                   alt={restaurant.name}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-32 sm:h-40 md:h-48 object-cover"
                 />
-                <Badge className="absolute top-2 right-2 bg-orange-500 text-white">
+                <Badge className="absolute top-2 right-2 bg-orange-500 text-white text-xs sm:text-sm">
                   {restaurant.cuisine}
                 </Badge>
               </div>
-              <CardContent className="p-4">
-                <h3 className="font-bold text-lg mb-2">{restaurant.name}</h3>
-                <div className="flex items-center gap-2 mb-2">
+              <CardContent className="p-3 sm:p-4">
+                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 sm:mb-2">{restaurant.name}</h3>
+                <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
                   {renderStars(restaurant.rating)}
-                  <span className="text-sm text-gray-600">({restaurant.rating})</span>
+                  <span className="text-xs sm:text-sm text-gray-600">({restaurant.rating})</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Clock className="w-4 h-4" />
+                <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600">
+                  <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>{restaurant.deliveryTime}</span>
                 </div>
               </CardContent>
@@ -215,29 +218,29 @@ const HomePage = () => {
       </Card>
 
       {/* Testimonials Section */}
-      <Card className="mx-2 sm:mx-6 md:mx-16 lg:mx-28 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-lg py-8">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-orange-600 mb-2">What Our Customers Say</h2>
-          <p className="text-gray-600">Real reviews from satisfied customers</p>
+      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2">What Our Customers Say</h2>
+          <p className="text-xs sm:text-sm md:text-base text-gray-600">Real reviews from satisfied customers</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-white p-6 text-center">
-              <div className="flex justify-center mb-4">
+            <Card key={index} className="bg-white p-4 sm:p-6 text-center">
+              <div className="flex justify-center mb-3 sm:mb-4">
                 {renderStars(testimonial.rating)}
               </div>
-              <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
-              <p className="font-semibold text-orange-600">{testimonial.name}</p>
+              <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 italic leading-relaxed">"{testimonial.text}"</p>
+              <p className="font-semibold text-orange-600 text-xs sm:text-sm md:text-base">{testimonial.name}</p>
             </Card>
           ))}
         </div>
       </Card>
 
-      <Separator className="mx-2 sm:mx-6 md:mx-16 lg:mx-28" />
+      <Separator className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28" />
 
       {/* Enhanced App Download Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-2 sm:px-4 md:px-0 mx-2 sm:mx-6 md:mx-16 lg:mx-28">
-        <Card className="flex items-center justify-center p-0 overflow-hidden min-h-[300px] rounded-xl">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-28">
+        <Card className="flex items-center justify-center p-0 overflow-hidden min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[350px] rounded-xl order-2 lg:order-1">
           <img
             src={landingImgSrc}
             alt="Landing visual"
@@ -245,36 +248,36 @@ const HomePage = () => {
             className="object-cover w-full h-full rounded-xl"
           />
         </Card>
-        <CardContent className="flex flex-col items-center justify-center gap-6 text-center p-8">
-          <div className="space-y-4">
-            <h3 className="font-bold text-2xl sm:text-3xl md:text-4xl tracking-tighter text-orange-600">
+        <CardContent className="flex flex-col items-center justify-center gap-4 sm:gap-6 text-center p-4 sm:p-6 lg:p-8 order-1 lg:order-2">
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl tracking-tighter text-orange-600 leading-tight">
               Order takeaway even faster
             </h3>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600">
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 leading-relaxed">
               Download MERNeats for faster ordering and personalised recommendations
             </p>
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <div className="space-y-2 sm:space-y-3">
+              <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-gray-600">
+                <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
                 <span>Exclusive app-only offers</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-gray-600">
+                <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
                 <span>Track your order in real-time</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-gray-600">
+                <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
                 <span>Save your favorite restaurants</span>
               </div>
             </div>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-8 py-4 rounded-lg shadow-lg transition w-full max-w-sm">
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg shadow-lg transition w-full max-w-xs sm:max-w-sm">
               Download App
             </Button>
           </div>
           <img
             src={appDownloadImgSrc}
             alt="App download illustration"
-            className="w-full max-w-sm rounded-lg shadow"
+            className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-lg shadow mt-4 sm:mt-6"
             onError={() => setAppDownloadImgSrc(appDownloadImage)}
           />
         </CardContent>

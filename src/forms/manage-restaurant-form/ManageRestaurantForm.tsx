@@ -108,29 +108,29 @@ const ManageRestaurantForm = ({ onSave, isLoading ,restaurant}: Props) => {
     }
     return (
         <Form {...form} >
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-gray-100 rounded-lg md:p-10">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-gray-100 rounded-lg p-3 sm:p-6 md:p-10">
                 <div>
-                    <h3 className="text-xl font-semibold mb-2">Restaurant Details</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2">Restaurant Details</h3>
                     <DetailsSection />
                 </div>
                 <Separator className="my-3 border-t border-gray-300" />
                 <div>
-                    <h3 className="text-xl font-semibold mb-2">Cuisines</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2">Cuisines</h3>
                     <Cuisines />
                     <p className="text-xs text-gray-500 mt-1">Select at least one cuisine that represents your restaurant.</p>
                 </div>
                 <Separator className="my-3 border-t border-gray-300" />
                 <div>
-                    <h3 className="text-xl font-semibold mb-2">Menu Items</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2">Menu Items</h3>
                     <MenuSection />
                     <p className="text-xs text-gray-500 mt-1">Add menu items with name and price.</p>
                 </div>
                 <Separator className="my-3 border-t border-gray-300" />
                 <div>
-                    <h3 className="text-xl font-semibold mb-2">Restaurant Image</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2">Restaurant Image</h3>
                     <ImageSection />
                 </div>
-                {isLoading ? <LoadingButton /> : <Button type="submit" className="bg-orange-500 w-full py-3 text-lg font-semibold">Save Changes</Button>}
+                {isLoading ? <LoadingButton /> : <Button type="submit" className="bg-orange-500 w-full py-2 sm:py-3 text-base sm:text-lg font-semibold">Save Changes</Button>}
             </form> 
         </Form>
     )

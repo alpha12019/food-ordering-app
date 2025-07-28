@@ -11,6 +11,7 @@ import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
 import { Restaurant } from "@/types";
 import { useEffect } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
     restaurantName: z.string({
@@ -56,6 +57,7 @@ type Props = {
 
 
 const ManageRestaurantForm = ({ onSave, isLoading ,restaurant}: Props) => {
+    const { toast } = useToast();
     const form = useForm<RestaurantFormData>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -102,19 +104,33 @@ const ManageRestaurantForm = ({ onSave, isLoading ,restaurant}: Props) => {
             formData.append("imageFile",formDataJson.imageFile);
         }
         onSave(formData);
-
+        toast({ title: "Saving...", description: "Your changes are being saved.", duration: 1500 });
     }
     return (
         <Form {...form} >
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-gray-100 rounded-lg md:p-10">
-                <DetailsSection></DetailsSection>
+                <div>
+                    <h3 className="text-xl font-semibold mb-2">Restaurant Details</h3>
+                    <DetailsSection />
+                </div>
                 <Separator className="my-3 border-t border-gray-300" />
-                <Cuisines></Cuisines>
+                <div>
+                    <h3 className="text-xl font-semibold mb-2">Cuisines</h3>
+                    <Cuisines />
+                    <p className="text-xs text-gray-500 mt-1">Select at least one cuisine that represents your restaurant.</p>
+                </div>
                 <Separator className="my-3 border-t border-gray-300" />
-                <MenuSection></MenuSection>
+                <div>
+                    <h3 className="text-xl font-semibold mb-2">Menu Items</h3>
+                    <MenuSection />
+                    <p className="text-xs text-gray-500 mt-1">Add menu items with name and price.</p>
+                </div>
                 <Separator className="my-3 border-t border-gray-300" />
-                <ImageSection></ImageSection>
-                {isLoading ? <LoadingButton></LoadingButton> : <Button type="submit" className="bg-orange-500">Submit</Button>}
+                <div>
+                    <h3 className="text-xl font-semibold mb-2">Restaurant Image</h3>
+                    <ImageSection />
+                </div>
+                {isLoading ? <LoadingButton /> : <Button type="submit" className="bg-orange-500 w-full py-3 text-lg font-semibold">Save Changes</Button>}
             </form> 
         </Form>
     )

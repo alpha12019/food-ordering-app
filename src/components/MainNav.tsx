@@ -12,16 +12,18 @@ const MainNav = () => {
                 <>
                     <Link 
                         to="/order-status" 
-                        className="font-bold text-white bg-orange-500 py-2 px-3 sm:px-4 md:px-6 rounded-md text-sm sm:text-base hover:bg-orange-600 transition-colors duration-200 whitespace-nowrap"
+                        className="font-bold text-white bg-orange-500 py-2 px-3 sm:px-4 md:px-6 rounded-md text-sm sm:text-base hover:bg-orange-600 transition-all duration-300 hover:scale-105 hover:shadow-lg transform active:scale-95 whitespace-nowrap"
                     >
                         My Orders
                     </Link>
-                    <UserNameMenu />
+                    <div className="animate-fade-in">
+                        <UserNameMenu />
+                    </div>
                 </>
             ) : (
                 <Button 
                     variant="ghost" 
-                    className="font-bold text-sm sm:text-base hover:text-orange-500 hover:bg-white px-3 sm:px-4 md:px-6 py-2 transition-colors duration-200" 
+                    className="font-bold text-sm sm:text-base hover:text-orange-500 hover:bg-orange-50 px-3 sm:px-4 md:px-6 py-2 transition-all duration-300 hover:scale-105 transform active:scale-95" 
                     onClick={async () => await loginWithRedirect()}
                 >
                     Login

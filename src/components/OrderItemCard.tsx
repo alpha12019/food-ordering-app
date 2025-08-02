@@ -27,45 +27,46 @@ const OrderItemCard = ({order}: Props) => {
        return `${hours}:${paddedMinutes}`;
     }
   return (
-    <Card>
-        <CardHeader>
-            <CardTitle className="grid md:grid-cols-4 gap-4 justify-between mb-3">
-                <div>
-                    Customer Name:
-                    <span className="ml-2 font-normal">{order.user.name}</span>
+    <Card className="hover:shadow-lg transition-all duration-300">
+        <CardHeader className="pb-3 sm:pb-4">
+            <CardTitle className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 justify-between mb-3">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                    <span className="text-xs sm:text-sm font-semibold text-gray-600">Customer:</span>
+                    <span className="font-normal text-sm sm:text-base">{order.user.name}</span>
                 </div>
-                <div>
-                    Delivery Address:
-                    <span className="ml-2 font-normal">{order.deliveryDetails.addressLine},{order.deliveryDetails.city}</span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                    <span className="text-xs sm:text-sm font-semibold text-gray-600">Address:</span>
+                    <span className="font-normal text-sm sm:text-base truncate">{order.deliveryDetails.addressLine}, {order.deliveryDetails.city}</span>
                 </div>
-                <div>
-                    Time:
-                    <span className="ml-2 font-normal">{getTime()}</span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                    <span className="text-xs sm:text-sm font-semibold text-gray-600">Time:</span>
+                    <span className="font-normal text-sm sm:text-base">{getTime()}</span>
                 </div>
-                <div>
-                    Total Cost:
-                    <span className="ml-2 font-normal">₹{order.totalAmount}</span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                    <span className="text-xs sm:text-sm font-semibold text-gray-600">Total:</span>
+                    <span className="font-normal text-sm sm:text-base text-orange-600 font-semibold">₹{order.totalAmount}</span>
                 </div>
             </CardTitle>
             <Separator></Separator>
         </CardHeader>
-        <CardContent className="flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
-                {order.cartItems.map((cartItem)=>(
-                    <span>
-                        <Badge variant="outline" className="mr-2">{cartItem.quantity}</Badge>
-                        {cartItem.name}
-                    </span>
-                ))}
-                <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="status" >What is the status of this order</Label>
+        <CardContent className="flex flex-col gap-4 sm:gap-6">
+            <div className="flex flex-col gap-3 sm:gap-4">
+                <div className="space-y-2">
+                    {order.cartItems.map((cartItem, index)=>(
+                        <span key={index} className="flex items-center gap-2 text-sm sm:text-base">
+                            <Badge variant="outline" className="text-xs sm:text-sm px-2 py-1">{cartItem.quantity}</Badge>
+                            <span className="truncate">{cartItem.name}</span>
+                        </span>
+                    ))}
+                </div>
+                <div className="flex flex-col space-y-2 sm:space-y-3">
+                    <Label htmlFor="status" className="text-sm sm:text-base font-semibold">Order Status</Label>
                     <Select onValueChange={(value)=>handleStatusChange(value as OrderStatus)} disabled={isLoading} value={status}>
-                        <SelectTrigger id="status">
-                            <SelectValue placeholder="status"></SelectValue>
-
+                        <SelectTrigger id="status" className="text-sm sm:text-base">
+                            <SelectValue placeholder="Select status"></SelectValue>
                         </SelectTrigger>
                         <SelectContent position="popper">
-                            {ORDER_STATUS.map((status)=>(<SelectItem value={status.value}>{status.label}</SelectItem>))}
+                            {ORDER_STATUS.map((status, index)=>(<SelectItem key={index} value={status.value}>{status.label}</SelectItem>))}
                         </SelectContent>
                     </Select>
                 </div>

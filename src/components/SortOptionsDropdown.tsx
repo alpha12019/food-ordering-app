@@ -33,15 +33,16 @@ const SortOptionDropdown = ({ onChange, sortOption }: Props) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="cursor-pointer">
-        <Button variant="outline" className="w-full">
-          Sort by: {selectedSortLabel}
+      <DropdownMenuTrigger className="cursor-pointer w-full">
+        <Button variant="outline" className="w-full text-xs sm:text-sm md:text-base px-3 sm:px-4 py-2 sm:py-3 justify-between">
+          <span className="truncate">Sort by: {selectedSortLabel}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {SORT_OPTIONS.map((option) => (
+      <DropdownMenuContent className="w-full min-w-[200px] sm:min-w-[250px]">
+        {SORT_OPTIONS.map((option, index) => (
           <DropdownMenuItem
-            className="cursor-pointer"
+            key={index}
+            className="cursor-pointer text-xs sm:text-sm md:text-base px-3 sm:px-4 py-2 sm:py-3 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-300"
             onClick={() => onChange(option.value)}
           >
             {option.label}

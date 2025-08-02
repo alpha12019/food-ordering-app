@@ -39,24 +39,38 @@ const SearchBar = ({ searchQuery, onSubmit, placeholder, onReset }: Props) => {
         }
     }
     return <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className={`mx-[8%] flex items-center gap-3 justify-between flex-row border-2 rounded-full p-1 ${form.formState.errors.searchQuery && "border-red-500"}`}>
-            <Search strokeWidth={2.5} size={30} className="ml-1 text-orange-500 hidden md:block" />
-            <FormField control={form.control} name="searchQuery" render={({ field }) =>
-                <FormItem className="flex-1">
-                    <FormControl>
-                        <Input
-                            {...field}
-                            className="border-none shadow-none text-sm md:text-xl focus-visible:ring-0"
-                            placeholder={placeholder}
-                        />
-                    </FormControl>
-                </FormItem>
-            } />
+        <form onSubmit={form.handleSubmit(onSubmit)} className={`mx-2 sm:mx-4 md:mx-[8%] flex flex-col sm:flex-row items-center gap-2 sm:gap-3 justify-between border-2 rounded-full p-2 sm:p-3 ${form.formState.errors.searchQuery && "border-red-500"}`}>
+            <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+                <Search strokeWidth={2.5} size={24} className="text-orange-500 flex-shrink-0 sm:w-6 sm:h-6 md:w-8 md:h-8" />
+                <FormField control={form.control} name="searchQuery" render={({ field }) =>
+                    <FormItem className="flex-1 min-w-0">
+                        <FormControl>
+                            <Input
+                                {...field}
+                                className="border-none shadow-none text-sm sm:text-base md:text-lg lg:text-xl focus-visible:ring-0 placeholder:text-gray-500"
+                                placeholder={placeholder}
+                            />
+                        </FormControl>
+                    </FormItem>
+                } />
+            </div>
 
-            <Button type="button" variant="outline" className="rounded-full" onClick={handleReset}>
-                Reset
-            </Button>
-            <Button type="submit" className="rounded-full bg-orange-500">Search</Button>
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+                <Button 
+                    type="button" 
+                    variant="outline" 
+                    className="rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 flex-1 sm:flex-none"
+                    onClick={handleReset}
+                >
+                    Reset
+                </Button>
+                <Button 
+                    type="submit" 
+                    className="rounded-full bg-orange-500 hover:bg-orange-600 text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 flex-1 sm:flex-none transition-all duration-300 hover:scale-105"
+                >
+                    Search
+                </Button>
+            </div>
         </form>
     </Form>
 }

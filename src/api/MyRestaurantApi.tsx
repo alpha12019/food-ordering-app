@@ -4,12 +4,29 @@ import { toast } from "sonner";
 import { Orders, Restaurant } from "@/types";
 
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
 
 export const useUpdateMyRestaurant = () => {
     const { getAccessTokenSilently } = useAuth0();
     const updateMyRestaurantRequest = async (restaurantFormData: FormData): Promise<Restaurant> => {
+        // For development, simulate success if API is not available
+        if (!import.meta.env.VITE_API_BASE_URL) {
+            console.warn("API_BASE_URL not configured. Simulating restaurant update for development.");
+            return {
+                _id: "mock-restaurant-id",
+                restaurantName: "Mock Restaurant",
+                city: "Mock City",
+                country: "Mock Country",
+                deliveryPrice: 500,
+                estimatedDeliveryTime: 30,
+                cuisines: ["Mock Cuisine"],
+                menuItems: [],
+                imageUrl: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
+                lastUpdated: new Date().toISOString()
+            } as Restaurant;
+        }
+        
         const accessToken = await getAccessTokenSilently();
         const response = await fetch(`${API_BASE_URL}/api/my/restaurant`, {
             method: "PUT",
@@ -36,6 +53,23 @@ export const useUpdateMyRestaurant = () => {
 export const useCreateMyRestaurant = () => {
     const { getAccessTokenSilently } = useAuth0();
     const createMyRestaurantRequest = async (restaurantFormData: FormData): Promise<Restaurant> => {
+        // For development, simulate success if API is not available
+        if (!import.meta.env.VITE_API_BASE_URL) {
+            console.warn("API_BASE_URL not configured. Simulating restaurant creation for development.");
+            return {
+                _id: "mock-restaurant-id",
+                restaurantName: "Mock Restaurant",
+                city: "Mock City",
+                country: "Mock Country",
+                deliveryPrice: 500,
+                estimatedDeliveryTime: 30,
+                cuisines: ["Mock Cuisine"],
+                menuItems: [],
+                imageUrl: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
+                lastUpdated: new Date().toISOString()
+            } as Restaurant;
+        }
+        
         const accessToken = await getAccessTokenSilently();
         const response = await fetch(`${API_BASE_URL}/api/my/restaurant`, {
             method: "POST",
@@ -62,6 +96,23 @@ export const useCreateMyRestaurant = () => {
 export const useGetMyRestaurant = () => {
     const { getAccessTokenSilently } = useAuth0();
     const getMyRestaurantrequest = async (): Promise<Restaurant> => {
+        // For development, return mock data if API is not available
+        if (!import.meta.env.VITE_API_BASE_URL) {
+            console.warn("API_BASE_URL not configured. Using mock restaurant data for development.");
+            return {
+                _id: "mock-restaurant-id",
+                restaurantName: "Mock Restaurant",
+                city: "Mock City",
+                country: "Mock Country",
+                deliveryPrice: 500,
+                estimatedDeliveryTime: 30,
+                cuisines: ["Mock Cuisine"],
+                menuItems: [],
+                imageUrl: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
+                lastUpdated: new Date().toISOString()
+            } as Restaurant;
+        }
+        
         const accessToken = await getAccessTokenSilently();
         const response = await fetch(`${API_BASE_URL}/api/my/restaurant`, {
             method: "GET",
@@ -85,6 +136,12 @@ export const useGetMyRestaurant = () => {
 export const useGetMyRestaurantOrder=()=>{
     const {getAccessTokenSilently}=useAuth0();
     const getMyOrder=async():Promise<Orders[]>=>{
+        // For development, return mock data if API is not available
+        if (!import.meta.env.VITE_API_BASE_URL) {
+            console.warn("API_BASE_URL not configured. Using mock order data for development.");
+            return [];
+        }
+        
         const accessToken = await getAccessTokenSilently();
         const response = await fetch(`${API_BASE_URL}/api/my/restaurant/order`, {
             method: "GET",
@@ -113,6 +170,12 @@ type UpdateOrderStatusRequest={
 export const useUpdateMyRestaurantOrder=()=>{
     const { getAccessTokenSilently } = useAuth0();
     const updatemyRestaurantOrder = async (updateStatusOrderRequest:UpdateOrderStatusRequest)=> {
+        // For development, simulate success if API is not available
+        if (!import.meta.env.VITE_API_BASE_URL) {
+            console.warn("API_BASE_URL not configured. Simulating order status update for development.");
+            return { success: true };
+        }
+        
         const accessToken = await getAccessTokenSilently();
         const response = await fetch(`${API_BASE_URL}/api/my/restaurant/order/${updateStatusOrderRequest.orderId}/status`, {
             method: "PATCH",

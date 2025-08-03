@@ -11,6 +11,8 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCreateCheckoutSession } from "@/api/OrderApi";
 import { toast } from "sonner";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import ErrorDisplay from "@/components/ErrorDisplay";
 
 export type CartItem={
     _id:string;
@@ -27,7 +29,7 @@ const DetailsPage = () => {
         const storedCartItems=sessionStorage.getItem(`cartItems-${restaurantId}`);
         return storedCartItems?JSON.parse(storedCartItems):[];
     });
-    const {restaurant,isLoading}=useGetrestaurant(restaurantId);
+    const {restaurant,isLoading,error}=useGetrestaurant(restaurantId);
     const addToCart=(menuItem:MenuItem)=>{
         setCartItems((prevCartItems)=>{
             const existingCartItem=prevCartItems.find((cartItem)=>cartItem._id===menuItem._id);
@@ -85,8 +87,16 @@ const DetailsPage = () => {
         toast.success("order sent successfully");
     }
 
-    if(isLoading||!restaurant){
-        return <h1>Loading...</h1>
+    if(isLoading){
+        return <LoadingSpinner fullScreen text="Loading restaurant details..." />
+    }
+
+    if(error){
+        return <ErrorDisplay error={error} title="Restaurant Not Found" message="We couldn't load the restaurant details. Please try again." />
+    }
+
+    if(!restaurant){
+        return <ErrorDisplay title="Restaurant Not Found" message="The restaurant you're looking for doesn't exist or has been removed." />
     }
     
     return (

@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import ErrorDisplay from "@/components/ErrorDisplay";
+import NoResultsFound from "@/components/NoResultsFound";
 
 
 export type SearchState = {
@@ -27,7 +30,7 @@ const SearchPage = () => {
     sortOption: "bestMatch",
   })
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const { results, isLoading } = useSearchRestaurant(searchState, city);
+  const { results, isLoading, error } = useSearchRestaurant(searchState, city);
   const handleIsExpanded = () => {
     setIsExpanded(!isExpanded);
   }
@@ -63,22 +66,39 @@ const SearchPage = () => {
     }))
   }
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-[200px] sm:min-h-[300px]">
-        <span className="text-sm sm:text-base md:text-lg text-gray-600 text-center px-4">
-          Loading (it may take some time as it is deployed on render)
-        </span>
-      </div>
-    )
+    return <LoadingSpinner fullScreen text="Searching restaurants..." />
   }
-  if (!results?.data || !city) {
+
+  if (error) {
+    return <ErrorDisplay error={error} title="Search Error" message="We couldn't search for restaurants. Please try again." />
+  }
+
+  if (!city) {
+    return <ErrorDisplay title="Invalid Search" message="Please provide a valid city to search for restaurants." />
+  }
+
+  if (!results?.data || results.data.length === 0) {
     return (
-      <div className="flex items-center justify-center min-h-[200px] sm:min-h-[300px]">
-        <span className="text-sm sm:text-base md:text-lg text-gray-600 text-center px-4">
-          No results found
-        </span>
-      </div>
-    )
+      <NoResultsFound 
+        searchQuery={searchState.searchQuery}
+        city={city}
+        onClearFilters={() => {
+          setSearchState(prev => ({
+            ...prev,
+            searchQuery: "",
+            selectedCuisines: [],
+            page: 1
+          }));
+        }}
+        onTryDifferentSearch={() => {
+          setSearchState(prev => ({
+            ...prev,
+            searchQuery: "",
+            page: 1
+          }));
+        }}
+      />
+    );
   }
 
   return (

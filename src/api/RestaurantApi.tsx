@@ -11,6 +11,7 @@ export const useGetrestaurant=(restaurantId?:string)=>{
             console.warn("API_BASE_URL not configured. Using mock data for development.");
             return {
                 _id: restaurantId || "mock-id",
+                user: "mock-user",
                 restaurantName: "Mock Restaurant",
                 city: "Mock City",
                 country: "Mock Country",
@@ -25,12 +26,29 @@ export const useGetrestaurant=(restaurantId?:string)=>{
         
         const response=await fetch(`${API_BASE_URL}/api/restaurants/${restaurantId}`);
         if(!response.ok){
-            throw new Error("failed to get restaurant");
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.message || `Failed to get restaurant: ${response.status}`);
         }
         return response.json();
     }
-    const {data:restaurant,isLoading}=useQuery("fetchRestaurant",getRestaurnatByIdRequest,{enabled: !!restaurantId});
-    return {restaurant,isLoading};
+    const {data:restaurant,isLoading,error}=useQuery(
+        ["fetchRestaurant", restaurantId], 
+        getRestaurnatByIdRequest,
+        {
+            enabled: !!restaurantId,
+            retry: (failureCount, error) => {
+                // Don't retry on 404 errors
+                if (error && typeof error === 'object' && 'message' in error) {
+                    const message = (error as any).message;
+                    if (message.includes('404') || message.includes('not found')) {
+                        return false;
+                    }
+                }
+                return failureCount < 2;
+            }
+        }
+    );
+    return {restaurant,isLoading,error};
 }
 
 export const useSearchRestaurant=(searchState:SearchState,city?:string)=>{
@@ -47,6 +65,7 @@ export const useSearchRestaurant=(searchState:SearchState,city?:string)=>{
                 data: [
                     {
                         _id: "mock-1",
+                        user: "mock-user-1",
                         restaurantName: "Spice Garden",
                         city: city || "Mock City",
                         country: "Mock Country",
@@ -59,6 +78,7 @@ export const useSearchRestaurant=(searchState:SearchState,city?:string)=>{
                     },
                     {
                         _id: "mock-2",
+                        user: "mock-user-2",
                         restaurantName: "Pizza Palace",
                         city: city || "Mock City",
                         country: "Mock Country",
@@ -80,10 +100,27 @@ export const useSearchRestaurant=(searchState:SearchState,city?:string)=>{
         
         const response=await fetch(`${API_BASE_URL}/api/restaurants/search/${city}?${params.toString()}`);
         if(!response.ok){
-            throw new Error("failed to search restaurant");
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.message || `Failed to search restaurants: ${response.status}`);
         }
         return response.json();
     }
-    const {data:results,isLoading}=useQuery(["searchRestaurants",searchState],createSearchRequest,{enabled:!!city});
-    return {results,isLoading}
+    const {data:results,isLoading,error}=useQuery(
+        ["searchRestaurants",searchState,city], 
+        createSearchRequest,
+        {
+            enabled:!!city,
+            retry: (failureCount, error) => {
+                // Don't retry on 4xx errors
+                if (error && typeof error === 'object' && 'message' in error) {
+                    const message = (error as any).message;
+                    if (message.includes('400') || message.includes('404')) {
+                        return false;
+                    }
+                }
+                return failureCount < 2;
+            }
+        }
+    );
+    return {results,isLoading,error}
 }

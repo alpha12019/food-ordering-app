@@ -317,6 +317,11 @@ const HomePage = () => {
                   src={restaurant.image}
                   alt={restaurant.name}
                   className="w-full h-32 sm:h-40 md:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                  onError={(e) => {
+                    // Fallback to a placeholder image if the main image fails to load
+                    const target = e.target as HTMLImageElement;
+                    target.src = `https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop&q=80`;
+                  }}
                 />
                 
                 {/* Gradient overlay on hover */}
@@ -345,16 +350,16 @@ const HomePage = () => {
                   <span>{restaurant.deliveryTime}</span>
                 </div>
                 
-                {/* Interactive order button */}
-                <div className="mt-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                {/* Interactive order button - Always visible but enhanced on hover */}
+                <div className="mt-3 transition-all duration-300 transform group-hover:translate-y-0">
                   <Button 
                     size="sm" 
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs group-hover:scale-105 transition-all duration-300"
                     onClick={() => navigate(`/detail/mock-${index + 1}`)}
                   >
                     <span className="flex items-center gap-1">
                       Order Now
-                      <ArrowRight className="w-3 h-3" />
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
                     </span>
                   </Button>
                 </div>

@@ -197,41 +197,62 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Enhanced Search Section */}
-      <Card id="search-section" className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-2xl py-6 sm:py-8 md:py-10 lg:py-12 flex flex-col text-center gap-4 sm:gap-6 -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-12 xl:-mt-16 animate-slide-in-up hover-lift">
-        <div className="space-y-3 sm:space-y-4 stagger-children">
+      {/* Enhanced Search Section with Interactive Animations */}
+      <Card 
+        ref={searchSectionRef}
+        id="search-section" 
+        className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-2xl py-6 sm:py-8 md:py-10 lg:py-12 flex flex-col text-center gap-4 sm:gap-6 -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-12 xl:-mt-16 animate-slide-in-up hover-lift relative overflow-hidden"
+      >
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-4 left-4 w-20 h-20 bg-orange-200 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-4 right-4 w-16 h-16 bg-red-200 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-200 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+        </div>
+        
+        <div className="space-y-3 sm:space-y-4 stagger-children relative z-10">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-orange-600 leading-tight">
-            Tuck into a takeaway today
+            <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+              Tuck into a takeaway today
+            </span>
           </h2>
+          
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 my-3 sm:my-4">
-            <Badge className="text-xs sm:text-sm md:text-base bg-orange-100 text-orange-800 border-orange-200 px-2 sm:px-3 py-1 hover:scale-105 transition-transform duration-300">
-              <Truck className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float" />
+            <Badge className="text-xs sm:text-sm md:text-base bg-orange-100 text-orange-800 border-orange-200 px-2 sm:px-3 py-1 hover:scale-105 transition-transform duration-300 group">
+              <Truck className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float group-hover:animate-bounce" />
               <span className="hidden sm:inline">Fast Delivery</span>
               <span className="sm:hidden">Fast</span>
             </Badge>
-            <Badge variant="secondary" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover:scale-105 transition-transform duration-300">
-              <Award className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float" />
+            <Badge variant="secondary" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover:scale-105 transition-transform duration-300 group">
+              <Award className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float group-hover:animate-bounce" />
               <span className="hidden sm:inline">Best Restaurants</span>
               <span className="sm:hidden">Best</span>
             </Badge>
-            <Badge variant="outline" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover:scale-105 transition-transform duration-300">
-              <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float" />
+            <Badge variant="outline" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover:scale-105 transition-transform duration-300 group">
+              <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float group-hover:animate-bounce" />
               <span className="hidden sm:inline">Easy Payments</span>
               <span className="sm:hidden">Easy</span>
             </Badge>
           </div>
+          
           <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700">Food is just a click away</p>
           <p className="text-xs sm:text-sm md:text-base text-gray-600 px-2">
             Search Bareilly or Manchester to get results
           </p>
         </div>
-        <div className="flex flex-col items-center gap-3 sm:gap-4 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto animate-scale-in">
+        
+        <div className="flex flex-col items-center gap-3 sm:gap-4 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto animate-scale-in relative z-10">
           <SearchBar
             placeholder="Search by city or town"
             onSubmit={handleSearchSubmit}
           />
-          <Progress value={80} className="w-full" />
-          <p className="text-xs text-gray-500">80% of orders delivered within 30 minutes</p>
+          <div className="w-full space-y-2">
+            <Progress value={progressValue} className="w-full transition-all duration-1000 ease-out" />
+            <p className="text-xs text-gray-500 flex items-center justify-center gap-1">
+              <span className="animate-pulse">⚡</span>
+              {progressValue}% of orders delivered within 30 minutes
+            </p>
+          </div>
         </div>
       </Card>
 
@@ -245,13 +266,29 @@ const HomePage = () => {
           {popularCuisines.map((cuisine, index) => (
             <Card
               key={cuisine.name}
-              className="cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-105 border-2 hover:border-orange-300 animate-bounce-in hover-lift"
+              className={`cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-105 border-2 hover:border-orange-300 animate-bounce-in hover-lift group relative overflow-hidden ${
+                hoveredCuisine === cuisine.name ? 'ring-2 ring-orange-400 shadow-xl' : ''
+              }`}
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => handleCuisineClick(cuisine.name)}
+              onMouseEnter={() => setHoveredCuisine(cuisine.name)}
+              onMouseLeave={() => setHoveredCuisine(null)}
             >
-              <CardContent className="p-3 sm:p-4 text-center">
-                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2 animate-float">{cuisine.icon}</div>
-                <p className="font-semibold text-gray-800 text-xs sm:text-sm md:text-base">{cuisine.name}</p>
+              {/* Hover effect overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-red-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <CardContent className="p-3 sm:p-4 text-center relative z-10">
+                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2 animate-float group-hover:scale-125 transition-transform duration-300">
+                  {cuisine.icon}
+                </div>
+                <p className="font-semibold text-gray-800 text-xs sm:text-sm md:text-base group-hover:text-orange-600 transition-colors duration-300">
+                  {cuisine.name}
+                </p>
+                
+                {/* Interactive arrow indicator */}
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                  <ArrowRight className="w-4 h-4 text-orange-500" />
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -266,26 +303,60 @@ const HomePage = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 stagger-children">
           {featuredRestaurants.map((restaurant, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-lg transition-all duration-300 hover-lift animate-scale-in" style={{ animationDelay: `${index * 0.2}s` }}>
-              <div className="relative">
+            <Card 
+              key={index} 
+              className={`overflow-hidden hover:shadow-lg transition-all duration-300 hover-lift animate-scale-in group relative ${
+                hoveredRestaurant === index ? 'ring-2 ring-orange-400 shadow-xl' : ''
+              }`} 
+              style={{ animationDelay: `${index * 0.2}s` }}
+              onMouseEnter={() => setHoveredRestaurant(index)}
+              onMouseLeave={() => setHoveredRestaurant(null)}
+            >
+              <div className="relative overflow-hidden">
                 <img
                   src={restaurant.image}
                   alt={restaurant.name}
-                  className="w-full h-32 sm:h-40 md:h-48 object-cover transition-transform duration-300 hover:scale-110"
+                  className="w-full h-32 sm:h-40 md:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <Badge className="absolute top-2 right-2 bg-orange-500 text-white text-xs sm:text-sm animate-pulse-glow">
+                
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <Badge className="absolute top-2 right-2 bg-orange-500 text-white text-xs sm:text-sm animate-pulse-glow group-hover:bg-orange-600 transition-colors duration-300">
                   {restaurant.cuisine}
                 </Badge>
+                
+                {/* Heart icon for favorites */}
+                <div className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-0 group-hover:scale-100">
+                  <Heart className="w-5 h-5 text-white drop-shadow-lg cursor-pointer hover:text-red-500 transition-colors duration-300" />
+                </div>
               </div>
-              <CardContent className="p-3 sm:p-4">
-                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 sm:mb-2">{restaurant.name}</h3>
+              
+              <CardContent className="p-3 sm:p-4 relative z-10">
+                <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 sm:mb-2 group-hover:text-orange-600 transition-colors duration-300">
+                  {restaurant.name}
+                </h3>
                 <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
                   {renderStars(restaurant.rating)}
                   <span className="text-xs sm:text-sm text-gray-600">({restaurant.rating})</span>
                 </div>
-                <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600">
-                  <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
+                <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600 group-hover:text-orange-600 transition-colors duration-300">
+                  <Clock className="w-3 h-3 sm:w-4 sm:h-4 group-hover:animate-pulse" />
                   <span>{restaurant.deliveryTime}</span>
+                </div>
+                
+                {/* Interactive order button */}
+                <div className="mt-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                  <Button 
+                    size="sm" 
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs"
+                    onClick={() => navigate(`/detail/mock-${index + 1}`)}
+                  >
+                    <span className="flex items-center gap-1">
+                      Order Now
+                      <ArrowRight className="w-3 h-3" />
+                    </span>
+                  </Button>
                 </div>
               </CardContent>
             </Card>

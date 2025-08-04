@@ -64,28 +64,28 @@ const HomePage = () => {
     { name: "South Indian", icon: "🥘" },
   ];
 
-  // Featured restaurants
+  // Featured restaurants with reliable images
   const featuredRestaurants = [
     {
       name: "Spice Garden",
       cuisine: "Indian",
       rating: 4.5,
       deliveryTime: "25-35 min",
-      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop"
+      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop&q=80"
     },
     {
       name: "Pizza Palace",
       cuisine: "Italian",
       rating: 4.3,
       deliveryTime: "20-30 min",
-      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop"
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop&q=80"
     },
     {
       name: "Golden Dragon",
       cuisine: "Chinese",
       rating: 4.7,
       deliveryTime: "30-40 min",
-      image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=300&fit=crop"
+      image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=300&fit=crop&q=80"
     }
   ];
 

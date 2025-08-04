@@ -133,24 +133,66 @@ const HomePage = () => {
 
   return (
     <div className={`flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-      {/* Enhanced Hero Section */}
-      <div className="relative animate-fade-in">
+      {/* Enhanced Hero Section with Interactive Animations */}
+      <div className="relative animate-fade-in overflow-hidden">
         <Hero />
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center px-4">
-          <div className="text-center text-white max-w-4xl stagger-children">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight animate-bounce-in">
-              Delicious Food Delivered
+          <div className="text-center text-white max-w-4xl stagger-children relative">
+            {/* Floating sparkles effect */}
+            {showSparkles && (
+              <div className="absolute inset-0 pointer-events-none">
+                {[...Array(6)].map((_, i) => (
+                  <Sparkles
+                    key={i}
+                    className="absolute text-yellow-300 animate-ping"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                      animationDelay: `${i * 0.2}s`,
+                      animationDuration: '1s'
+                    }}
+                  />
+                ))}
+              </div>
+            )}
+            
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight animate-bounce-in relative">
+              <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+                Delicious Food Delivered
+              </span>
+              <div className="absolute -top-2 -right-2 animate-bounce">
+                <Zap className="w-6 h-6 text-yellow-400" />
+              </div>
             </h1>
+            
             <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4 sm:mb-5 md:mb-6 px-2 sm:px-4 animate-slide-in-up">
               Order from your favorite restaurants with just a few clicks
             </p>
-            <Button 
-              size="lg" 
-              className="bg-orange-500 hover:bg-orange-600 text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 animate-scale-in hover:scale-105 transition-all duration-300 animate-pulse-glow"
-              onClick={() => document.getElementById('search-section')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Order Now
-            </Button>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 animate-pulse-glow hover:scale-105 transition-all duration-300 shadow-2xl group"
+                onClick={scrollToSearch}
+              >
+                <span className="flex items-center gap-2">
+                  Order Now
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-white text-white hover:bg-white hover:text-orange-600 text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 transition-all duration-300 group"
+                onClick={() => navigate('/search/Manchester')}
+              >
+                <span className="flex items-center gap-2">
+                  Explore Restaurants
+                  <MapPin className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                </span>
+              </Button>
+            </div>
           </div>
         </div>
       </div>

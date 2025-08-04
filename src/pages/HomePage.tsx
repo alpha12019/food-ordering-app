@@ -372,12 +372,33 @@ const HomePage = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 stagger-children">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-white p-4 sm:p-6 text-center animate-bounce-in hover-lift" style={{ animationDelay: `${index * 0.15}s` }}>
-              <div className="flex justify-center mb-3 sm:mb-4">
-                {renderStars(testimonial.rating)}
+            <Card 
+              key={index} 
+              className="bg-white p-4 sm:p-6 text-center animate-bounce-in hover-lift group relative overflow-hidden" 
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
+              {/* Background decoration */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+              
+              <div className="relative z-10">
+                <div className="flex justify-center mb-3 sm:mb-4">
+                  {renderStars(testimonial.rating)}
+                </div>
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 italic leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
+                  "{testimonial.text}"
+                </p>
+                <p className="font-semibold text-orange-600 text-xs sm:text-sm md:text-base group-hover:text-orange-700 transition-colors duration-300">
+                  {testimonial.name}
+                </p>
+                
+                {/* Quote marks decoration */}
+                <div className="absolute top-2 left-2 text-4xl text-orange-200 opacity-50 group-hover:opacity-75 transition-opacity duration-300">
+                  "
+                </div>
+                <div className="absolute bottom-2 right-2 text-4xl text-orange-200 opacity-50 group-hover:opacity-75 transition-opacity duration-300">
+                  "
+                </div>
               </div>
-              <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 italic leading-relaxed">"{testimonial.text}"</p>
-              <p className="font-semibold text-orange-600 text-xs sm:text-sm md:text-base">{testimonial.name}</p>
             </Card>
           ))}
         </div>
@@ -385,48 +406,76 @@ const HomePage = () => {
 
       <Separator className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 animate-fade-in" />
 
-      {/* Enhanced App Download Section */}
+      {/* Enhanced App Download Section with Interactive Animations */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-28 animate-slide-in-up">
-        <Card className="flex items-center justify-center p-0 overflow-hidden min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[350px] rounded-xl order-2 lg:order-1 animate-scale-in hover-lift">
+        <Card className="flex items-center justify-center p-0 overflow-hidden min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[350px] rounded-xl order-2 lg:order-1 animate-scale-in hover-lift group relative">
           <img
             src={landingImgSrc}
             alt="Landing visual"
             onError={() => setLandingImgSrc(landingImage)}
-            className="object-cover w-full h-full rounded-xl transition-transform duration-300 hover:scale-105"
+            className="object-cover w-full h-full rounded-xl transition-transform duration-500 group-hover:scale-110"
           />
+          
+          {/* Overlay with interactive elements */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+            <div className="text-white text-center">
+              <p className="text-sm font-semibold mb-2">Interactive Preview</p>
+              <div className="flex gap-2">
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+              </div>
+            </div>
+          </div>
         </Card>
+        
         <CardContent className="flex flex-col items-center justify-center gap-4 sm:gap-6 text-center p-4 sm:p-6 lg:p-8 order-1 lg:order-2 animate-slide-in-left">
           <div className="space-y-3 sm:space-y-4 stagger-children">
             <h3 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl tracking-tighter text-orange-600 leading-tight">
-              Order takeaway even faster
+              <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                Order takeaway even faster
+              </span>
             </h3>
             <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 leading-relaxed">
               Download MERNeats for faster ordering and personalised recommendations
             </p>
+            
             <div className="space-y-2 sm:space-y-3">
-              <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-gray-600">
-                <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0 animate-pulse"></div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-gray-600 group hover:text-orange-600 transition-colors duration-300">
+                <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0 animate-pulse group-hover:scale-150 transition-transform duration-300"></div>
                 <span>Exclusive app-only offers</span>
               </div>
-              <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-gray-600">
-                <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0 animate-pulse"></div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-gray-600 group hover:text-orange-600 transition-colors duration-300">
+                <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0 animate-pulse group-hover:scale-150 transition-transform duration-300" style={{ animationDelay: '0.2s' }}></div>
                 <span>Track your order in real-time</span>
               </div>
-              <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-gray-600">
-                <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0 animate-pulse"></div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm md:text-base text-gray-600 group hover:text-orange-600 transition-colors duration-300">
+                <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0 animate-pulse group-hover:scale-150 transition-transform duration-300" style={{ animationDelay: '0.4s' }}></div>
                 <span>Save your favorite restaurants</span>
               </div>
             </div>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 w-full max-w-xs sm:max-w-sm animate-pulse-glow">
-              Download App
+            
+            <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 w-full max-w-xs sm:max-w-sm animate-pulse-glow group">
+              <span className="flex items-center gap-2">
+                Download App
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </span>
             </Button>
           </div>
-          <img
-            src={appDownloadImgSrc}
-            alt="App download illustration"
-            className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-lg shadow mt-4 sm:mt-6 animate-float"
-            onError={() => setAppDownloadImgSrc(appDownloadImage)}
-          />
+          
+          <div className="relative">
+            <img
+              src={appDownloadImgSrc}
+              alt="App download illustration"
+              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-lg shadow mt-4 sm:mt-6 animate-float hover:scale-105 transition-transform duration-300"
+              onError={() => setAppDownloadImgSrc(appDownloadImage)}
+            />
+            
+            {/* Floating download indicator */}
+            <div className="absolute -top-2 -right-2 bg-orange-500 text-white rounded-full p-2 animate-bounce">
+              <ArrowRight className="w-4 h-4" />
+            </div>
+          </div>
         </CardContent>
       </div>
     </div>

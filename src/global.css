@@ -263,6 +263,28 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 0.6s ease-in-out;
+}
+
+.animate-bounce-soft {
+  animation: bounce-soft 1s ease-in-out;
+}
+
+.animate-slide-in-from-bottom {
+  animation: slide-in-from-bottom 0.6s ease-out;
+}
+
+.animate-scale-in-elastic {
+  animation: scale-in-elastic 0.6s ease-out;
+}
+
 /* Stagger animations for children */
 .stagger-children > * {
   opacity: 0;

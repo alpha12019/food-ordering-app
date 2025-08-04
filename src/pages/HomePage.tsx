@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import landingImage from "../assets/landing.png";
 import appDownloadImage from "../assets/appDownload.png";
 import SearchBar, { SearchForm } from "@/components/SearchBar";
@@ -10,14 +10,35 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import Hero from "@/components/Hero";
-import { Star, Clock, MapPin, Users, Award, Truck } from "lucide-react";
+import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap } from "lucide-react";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
+  const [hoveredCuisine, setHoveredCuisine] = useState<string | null>(null);
+  const [hoveredRestaurant, setHoveredRestaurant] = useState<number | null>(null);
+  const [progressValue, setProgressValue] = useState(0);
+  const [showSparkles, setShowSparkles] = useState(false);
+  const searchSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
+    
+    // Animate progress bar
+    const timer = setTimeout(() => {
+      setProgressValue(80);
+    }, 1000);
+
+    // Show sparkles periodically
+    const sparkleTimer = setInterval(() => {
+      setShowSparkles(true);
+      setTimeout(() => setShowSparkles(false), 1000);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(sparkleTimer);
+    };
   }, []);
 
   const [landingImgSrc, setLandingImgSrc] = useState(
@@ -93,6 +114,13 @@ const HomePage = () => {
     },
     [navigate]
   );
+
+  const scrollToSearch = () => {
+    searchSectionRef.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (

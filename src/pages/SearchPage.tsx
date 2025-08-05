@@ -70,7 +70,7 @@ const SearchPage = () => {
   }
 
   if (error) {
-    return <ErrorDisplay error={error} title="Search Error" message="We couldn't search for restaurants. Please try again." />
+    return <ErrorDisplay error={error} title="Search Error" message="We couldn't search for restaurants. Please try again. " />
   }
 
   if (!city) {

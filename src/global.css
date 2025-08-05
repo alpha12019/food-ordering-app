@@ -545,6 +545,11 @@
 .stagger-children > *:nth-child(9) { animation-delay: 0.9s; }
 .stagger-children > *:nth-child(10) { animation-delay: 1.0s; }
 
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Particle effect container */
 .particle-container {
   position: relative;

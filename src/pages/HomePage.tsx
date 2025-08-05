@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import Hero from "@/components/Hero";
-import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap } from "lucide-react";
+import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap, ChefHat, Utensils, Coffee } from "lucide-react";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ const HomePage = () => {
   const [hoveredRestaurant, setHoveredRestaurant] = useState<number | null>(null);
   const [progressValue, setProgressValue] = useState(0);
   const [showSparkles, setShowSparkles] = useState(false);
+  const [particles, setParticles] = useState<Array<{id: number, x: number, y: number}>>([]);
   const searchSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,9 +36,22 @@ const HomePage = () => {
       setTimeout(() => setShowSparkles(false), 1000);
     }, 3000);
 
+    // Create floating particles
+    const particleTimer = setInterval(() => {
+      setParticles(prev => {
+        const newParticle = {
+          id: Date.now(),
+          x: Math.random() * 100,
+          y: Math.random() * 100
+        };
+        return [...prev.slice(-5), newParticle];
+      });
+    }, 2000);
+
     return () => {
       clearTimeout(timer);
       clearInterval(sparkleTimer);
+      clearInterval(particleTimer);
     };
   }, []);
 
@@ -138,6 +152,21 @@ const HomePage = () => {
         <Hero />
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center px-4">
           <div className="text-center text-white max-w-4xl stagger-children relative">
+            {/* Floating particles effect */}
+            <div className="particle-container absolute inset-0 pointer-events-none">
+              {particles.map(particle => (
+                <div
+                  key={particle.id}
+                  className="particle animate-floating-particles"
+                  style={{
+                    left: `${particle.x}%`,
+                    top: `${particle.y}%`,
+                    animationDelay: `${Math.random() * 2}s`
+                  }}
+                />
+              ))}
+            </div>
+            
             {/* Floating sparkles effect */}
             {showSparkles && (
               <div className="absolute inset-0 pointer-events-none">
@@ -156,23 +185,28 @@ const HomePage = () => {
               </div>
             )}
             
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight animate-bounce-in relative">
-              <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+            {/* Morphing decorative elements */}
+            <div className="absolute top-10 left-10 w-20 h-20 bg-orange-400/20 rounded-full animate-morph"></div>
+            <div className="absolute bottom-10 right-10 w-16 h-16 bg-red-400/20 rounded-full animate-morph" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-400/20 rounded-full animate-morph" style={{ animationDelay: '4s' }}></div>
+            
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight animate-bounce-in-elastic relative">
+              <span className="gradient-text animate-shimmer-text">
                 Delicious Food Delivered
               </span>
-              <div className="absolute -top-2 -right-2 animate-bounce">
+              <div className="absolute -top-2 -right-2 animate-heartbeat">
                 <Zap className="w-6 h-6 text-yellow-400" />
               </div>
             </h1>
             
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4 sm:mb-5 md:mb-6 px-2 sm:px-4 animate-slide-in-up">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4 sm:mb-5 md:mb-6 px-2 sm:px-4 animate-slide-in-up-delayed">
               Order from your favorite restaurants with just a few clicks
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 animate-pulse-glow hover:scale-105 transition-all duration-300 shadow-2xl group"
+                className="btn-interactive bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 animate-glow-pulse hover:scale-105 transition-all duration-300 shadow-2xl group"
                 onClick={scrollToSearch}
               >
                 <span className="flex items-center gap-2">
@@ -184,7 +218,7 @@ const HomePage = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-orange-600 text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 transition-all duration-300 group"
+                className="btn-interactive border-white text-white hover:bg-white hover:text-orange-600 text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 transition-all duration-300 group hover-glow"
                 onClick={() => navigate('/search/Manchester')}
               >
                 <span className="flex items-center gap-2">
@@ -203,32 +237,33 @@ const HomePage = () => {
         id="search-section" 
         className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-2xl py-6 sm:py-8 md:py-10 lg:py-12 flex flex-col text-center gap-4 sm:gap-6 -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-12 xl:-mt-16 animate-slide-in-up hover-lift relative overflow-hidden"
       >
-        {/* Background decoration */}
+        {/* Background decoration with morphing shapes */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-4 left-4 w-20 h-20 bg-orange-200 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-4 right-4 w-16 h-16 bg-red-200 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-200 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-4 left-4 w-20 h-20 bg-orange-200 rounded-full animate-morph"></div>
+          <div className="absolute bottom-4 right-4 w-16 h-16 bg-red-200 rounded-full animate-morph" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-200 rounded-full animate-morph" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/3 right-1/4 w-8 h-8 bg-orange-300 rounded-full animate-morph" style={{ animationDelay: '3s' }}></div>
         </div>
         
         <div className="space-y-3 sm:space-y-4 stagger-children relative z-10">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-orange-600 leading-tight">
-            <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+            <span className="gradient-text animate-shimmer-text">
               Tuck into a takeaway today
             </span>
           </h2>
           
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 my-3 sm:my-4">
-            <Badge className="text-xs sm:text-sm md:text-base bg-orange-100 text-orange-800 border-orange-200 px-2 sm:px-3 py-1 hover:scale-105 transition-transform duration-300 group">
+            <Badge className="text-xs sm:text-sm md:text-base bg-orange-100 text-orange-800 border-orange-200 px-2 sm:px-3 py-1 hover-scale transition-transform duration-300 group">
               <Truck className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float group-hover:animate-bounce" />
               <span className="hidden sm:inline">Fast Delivery</span>
               <span className="sm:hidden">Fast</span>
             </Badge>
-            <Badge variant="secondary" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover:scale-105 transition-transform duration-300 group">
+            <Badge variant="secondary" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover-scale transition-transform duration-300 group">
               <Award className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float group-hover:animate-bounce" />
               <span className="hidden sm:inline">Best Restaurants</span>
               <span className="sm:hidden">Best</span>
             </Badge>
-            <Badge variant="outline" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover:scale-105 transition-transform duration-300 group">
+            <Badge variant="outline" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover-scale transition-transform duration-300 group">
               <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float group-hover:animate-bounce" />
               <span className="hidden sm:inline">Easy Payments</span>
               <span className="sm:hidden">Easy</span>
@@ -259,14 +294,14 @@ const HomePage = () => {
       {/* Enhanced Popular Cuisines Section */}
       <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-white rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift">
         <div className="text-center mb-6 sm:mb-8 animate-fade-in">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2">Popular Cuisines</h2>
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text">Popular Cuisines</h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Explore our most loved cuisines</p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 stagger-children">
           {popularCuisines.map((cuisine, index) => (
             <Card
               key={cuisine.name}
-              className={`cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-105 border-2 hover:border-orange-300 animate-bounce-in hover-lift group relative overflow-hidden ${
+              className={`cursor-pointer hover:shadow-lg transition-all duration-300 hover-scale border-2 hover:border-orange-300 animate-bounce-in hover-lift group relative overflow-hidden ${
                 hoveredCuisine === cuisine.name ? 'ring-2 ring-orange-400 shadow-xl' : ''
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -298,7 +333,7 @@ const HomePage = () => {
       {/* Featured Restaurants Section */}
       <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-white rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift">
         <div className="text-center mb-6 sm:mb-8 animate-fade-in">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2">Featured Restaurants</h2>
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text">Featured Restaurants</h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Discover top-rated restaurants in your area</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 stagger-children">
@@ -354,7 +389,7 @@ const HomePage = () => {
                 <div className="mt-3 transition-all duration-300 transform group-hover:translate-y-0">
                   <Button 
                     size="sm" 
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs group-hover:scale-105 transition-all duration-300"
+                    className="btn-interactive w-full bg-orange-500 hover:bg-orange-600 text-white text-xs group-hover:scale-105 transition-all duration-300"
                     onClick={() => navigate(`/detail/mock-${index + 1}`)}
                   >
                     <span className="flex items-center gap-1">
@@ -372,7 +407,7 @@ const HomePage = () => {
       {/* Testimonials Section */}
       <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift">
         <div className="text-center mb-6 sm:mb-8 animate-fade-in">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2">What Our Customers Say</h2>
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text">What Our Customers Say</h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Real reviews from satisfied customers</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 stagger-children">
@@ -437,7 +472,7 @@ const HomePage = () => {
         <CardContent className="flex flex-col items-center justify-center gap-4 sm:gap-6 text-center p-4 sm:p-6 lg:p-8 order-1 lg:order-2 animate-slide-in-left">
           <div className="space-y-3 sm:space-y-4 stagger-children">
             <h3 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl tracking-tighter text-orange-600 leading-tight">
-              <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+              <span className="gradient-text animate-shimmer-text">
                 Order takeaway even faster
               </span>
             </h3>
@@ -460,7 +495,7 @@ const HomePage = () => {
               </div>
             </div>
             
-            <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 w-full max-w-xs sm:max-w-sm animate-pulse-glow group">
+            <Button className="btn-interactive bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 w-full max-w-xs sm:max-w-sm animate-glow-pulse group">
               <span className="flex items-center gap-2">
                 Download App
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />

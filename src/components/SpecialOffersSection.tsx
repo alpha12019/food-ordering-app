@@ -4,12 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
   Clock, 
-  Gift, 
   ArrowRight, 
   Sparkles, 
-  Fire,
+  Flame,
   Star,
-  Zap,
   Truck
 } from "lucide-react";
 

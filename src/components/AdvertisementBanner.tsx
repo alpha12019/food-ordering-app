@@ -4,17 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
   Star, 
-  Clock, 
   Gift, 
   Zap, 
   ArrowRight, 
   Sparkles, 
   Heart, 
-  Truck,
-  Award,
-  Users,
-  CreditCard,
-  Shield
+  Award
 } from "lucide-react";
 
 interface AdvertisementBannerProps {

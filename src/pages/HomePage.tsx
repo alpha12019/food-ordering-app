@@ -10,6 +10,9 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import Hero from "@/components/Hero";
+import AdvertisementBanner from "@/components/AdvertisementBanner";
+import SpecialOffersSection from "@/components/SpecialOffersSection";
+import FeaturesShowcase from "@/components/FeaturesShowcase";
 import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap, ChefHat, Utensils, Coffee } from "lucide-react";
 
 const HomePage = () => {
@@ -291,6 +294,36 @@ const HomePage = () => {
         </div>
       </Card>
 
+      {/* Advertisement Banners Section */}
+      <div className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <AdvertisementBanner
+            type="promo"
+            title="New User Bonus"
+            description="Get ₹100 off on your first order! Sign up now and enjoy amazing discounts on your favorite restaurants."
+            ctaText="Sign Up Now"
+            badgeText="Limited Time"
+            gradient="from-green-500 to-emerald-500"
+            delay={200}
+          />
+          <AdvertisementBanner
+            type="feature"
+            title="Premium Delivery"
+            description="Upgrade to premium for priority delivery, exclusive offers, and dedicated customer support."
+            ctaText="Upgrade Now"
+            badgeText="Premium"
+            gradient="from-purple-500 to-pink-500"
+            delay={400}
+          />
+        </div>
+      </div>
+
+      {/* Special Offers Section */}
+      <SpecialOffersSection />
+
+      {/* Features Showcase */}
+      <FeaturesShowcase />
+
       {/* Enhanced Popular Cuisines Section */}
       <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-white rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift">
         <div className="text-center mb-6 sm:mb-8 animate-fade-in">
@@ -403,6 +436,39 @@ const HomePage = () => {
           ))}
         </div>
       </Card>
+
+      {/* Additional Advertisement Banners */}
+      <div className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <AdvertisementBanner
+            type="offer"
+            title="Weekend Special"
+            description="Enjoy 25% off on all orders this weekend. Perfect time to try new restaurants!"
+            ctaText="Order Now"
+            badgeText="Weekend"
+            gradient="from-orange-500 to-red-500"
+            delay={100}
+          />
+          <AdvertisementBanner
+            type="testimonial"
+            title="Customer Favorite"
+            description="Join 10,000+ satisfied customers who love our fast delivery and quality food."
+            ctaText="Join Now"
+            badgeText="Popular"
+            gradient="from-blue-500 to-cyan-500"
+            delay={300}
+          />
+          <AdvertisementBanner
+            type="promo"
+            title="Refer & Earn"
+            description="Refer friends and earn ₹50 for each successful referral. Share the love!"
+            ctaText="Refer Friends"
+            badgeText="Earn Money"
+            gradient="from-green-500 to-teal-500"
+            delay={500}
+          />
+        </div>
+      </div>
 
       {/* Testimonials Section */}
       <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift">

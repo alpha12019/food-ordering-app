@@ -13,7 +13,8 @@ import Hero from "@/components/Hero";
 import AdvertisementBanner from "@/components/AdvertisementBanner";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import FeaturesShowcase from "@/components/FeaturesShowcase";
-import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap, ChefHat, Utensils, Coffee } from "lucide-react";
+import TestAdvertisement from "@/components/TestAdvertisement";
+import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap } from "lucide-react";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -293,6 +294,9 @@ const HomePage = () => {
           </div>
         </div>
       </Card>
+
+      {/* Test Advertisement */}
+      <TestAdvertisement />
 
       {/* Advertisement Banners Section */}
       <div className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 mb-8">

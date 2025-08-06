@@ -25,7 +25,7 @@ interface Offer {
 }
 
 const SpecialOffersSection = () => {
-  const [offers, setOffers] = useState<Offer[]>([
+  const [offers] = useState<Offer[]>([
     {
       id: 1,
       title: "First Order Special",
@@ -116,10 +116,10 @@ const SpecialOffersSection = () => {
             {/* Background gradient */}
             <div className={`absolute inset-0 bg-gradient-to-r ${offer.gradient} opacity-10 group-hover:opacity-20 transition-opacity duration-300`} />
             
-            {/* Floating fire icon for hot deals */}
-            <div className="absolute top-4 right-4 z-10">
-              <Fire className="w-6 h-6 text-red-500 animate-pulse" />
-            </div>
+                         {/* Floating fire icon for hot deals */}
+             <div className="absolute top-4 right-4 z-10">
+               <Flame className="w-6 h-6 text-red-500 animate-pulse" />
+             </div>
             
             <CardContent className="p-6 relative z-10">
               {/* Image section */}

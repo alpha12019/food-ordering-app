@@ -4,16 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
   Truck, 
-  Clock, 
   Shield, 
-  CreditCard, 
   Star, 
   Users, 
   Zap, 
   ArrowRight,
   Sparkles,
   Heart,
-  Award,
   MapPin
 } from "lucide-react";
 

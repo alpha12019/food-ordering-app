@@ -92,7 +92,8 @@ const DetailsPage = () => {
     }
 
     if(error){
-        return <ErrorDisplay error={error} title="Restaurant Not Found" message="We couldn't load the restaurant details. Please try again." />
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        return <ErrorDisplay error={errorMessage} title="Restaurant Not Found" message="We couldn't load the restaurant details. Please try again." />
     }
 
     if(!restaurant){

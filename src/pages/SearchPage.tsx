@@ -6,6 +6,7 @@ import SearchResultCard from "@/components/SearchResultCard";
 import SearchResultsInfo from "@/components/SearchResultsInfo";
 import SortOptionsDropdown from "@/components/SortOptionsDropdown";
 import AdvertisementBanner from "@/components/AdvertisementBanner";
+import RestaurantAdvertisement from "@/components/RestaurantAdvertisement";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -72,11 +73,12 @@ const SearchPage = () => {
   }
 
   if (error) {
-    return <ErrorDisplay error={error} title="Search Error" message="We couldn't search for restaurants. Please try again. " />
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    return <ErrorDisplay error={errorMessage} title="Search Error" message="We couldn't search for restaurants. Please try again. " />
   }
 
   if (!city) {
-    return <ErrorDisplay title="Invalid Search" message="Please provide a valid city to search for restaurants." />
+    return <ErrorDisplay error={null} title="Invalid Search" message="Please provide a valid city to search for restaurants." />
   }
 
   if (!results?.data || results.data.length === 0) {
@@ -137,30 +139,13 @@ const SearchPage = () => {
             <div key={restaurant._id || index}>
               <SearchResultCard restaurant={restaurant} />
               
-              {/* Advertisement banners after every 3rd restaurant */}
+              {/* Restaurant-specific advertisements after every 3rd restaurant */}
               {(index + 1) % 3 === 0 && (
                 <div className="my-6">
-                  {index % 6 === 2 ? (
-                    <AdvertisementBanner
-                      type="promo"
-                      title="🎉 Special Restaurant Deals"
-                      description="Discover exclusive offers from top-rated restaurants in your area. Limited time offers with amazing discounts!"
-                      ctaText="View All Deals"
-                      badgeText="Limited Time"
-                      gradient="from-purple-500 to-pink-500"
-                      delay={200}
-                    />
-                  ) : (
-                    <AdvertisementBanner
-                      type="offer"
-                      title="🚚 Free Delivery Available"
-                      description="Order from premium restaurants and get free delivery on orders above ₹300. Fast and reliable service!"
-                      ctaText="Order Now"
-                      badgeText="Free Delivery"
-                      gradient="from-green-500 to-blue-500"
-                      delay={200}
-                    />
-                  )}
+                  <RestaurantAdvertisement 
+                    restaurant={restaurant} 
+                    index={index} 
+                  />
                 </div>
               )}
             </div>

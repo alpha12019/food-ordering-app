@@ -59,6 +59,7 @@ export const useCreateMyRestaurant = () => {
             console.warn("API_BASE_URL not configured. Simulating restaurant creation for development.");
             return {
                 _id: "mock-restaurant-id",
+                user: "mock-user",
                 restaurantName: "Mock Restaurant",
                 city: "Mock City",
                 country: "Mock Country",
@@ -102,6 +103,7 @@ export const useGetMyRestaurant = () => {
             console.warn("API_BASE_URL not configured. Using mock restaurant data for development.");
             return {
                 _id: "mock-restaurant-id",
+                user: "mock-user",
                 restaurantName: "Mock Restaurant",
                 city: "Mock City",
                 country: "Mock Country",

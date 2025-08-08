@@ -8,8 +8,14 @@ import {
   Sparkles, 
   Flame,
   Star,
-  Truck
+  Truck,
+  Heart,
+  Share2,
+  ShoppingCart,
+  Eye,
+  MapPin
 } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Offer {
   id: number;
@@ -65,6 +71,10 @@ const SpecialOffersSection = () => {
   ]);
 
   const [timeLeft, setTimeLeft] = useState<{ [key: number]: { hours: number; minutes: number; seconds: number } }>({});
+  const [likedOffers, setLikedOffers] = useState<Set<number>>(new Set());
+  const [expandedOffers, setExpandedOffers] = useState<Set<number>>(new Set());
+  const [clickCounts, setClickCounts] = useState<{ [key: number]: number }>({});
+  const { toast } = useToast();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -95,6 +105,60 @@ const SpecialOffersSection = () => {
     return `${time.hours.toString().padStart(2, '0')}:${time.minutes.toString().padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`;
   };
 
+  // Interactive handlers
+  const handleLike = (offerId: number) => {
+    const newLikedOffers = new Set(likedOffers);
+    if (newLikedOffers.has(offerId)) {
+      newLikedOffers.delete(offerId);
+      toast({
+        title: "Removed from favorites",
+        description: "Offer removed from your favorites.",
+      });
+    } else {
+      newLikedOffers.add(offerId);
+      toast({
+        title: "Added to favorites",
+        description: "Offer added to your favorites.",
+      });
+    }
+    setLikedOffers(newLikedOffers);
+  };
+
+  const handleShare = (offer: Offer) => {
+    if (navigator.share) {
+      navigator.share({
+        title: offer.title,
+        text: `${offer.title} - ${offer.description}`,
+        url: window.location.href,
+      });
+    } else {
+      navigator.clipboard.writeText(`${offer.title} - ${offer.description}`);
+      toast({
+        title: "Link copied!",
+        description: "Offer link copied to clipboard.",
+      });
+    }
+  };
+
+  const handleExpand = (offerId: number) => {
+    const newExpandedOffers = new Set(expandedOffers);
+    if (newExpandedOffers.has(offerId)) {
+      newExpandedOffers.delete(offerId);
+    } else {
+      newExpandedOffers.add(offerId);
+    }
+    setExpandedOffers(newExpandedOffers);
+    setClickCounts(prev => ({ ...prev, [offerId]: (prev[offerId] || 0) + 1 }));
+  };
+
+  const handleClaimOffer = (offer: Offer) => {
+    toast({
+      title: "Offer claimed!",
+      description: `Redirecting to ${offer.title}...`,
+    });
+    setClickCounts(prev => ({ ...prev, [offer.id]: (prev[offer.id] || 0) + 1 }));
+  };
+
   return (
     <div className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 mb-8">
       <div className="text-center mb-6">
@@ -110,16 +174,17 @@ const SpecialOffersSection = () => {
         {offers.map((offer, index) => (
           <Card 
             key={offer.id}
-            className="relative overflow-hidden hover:scale-105 transition-all duration-300 group animate-bounce-in animate-advertisement-glow"
+            className="relative overflow-hidden hover:scale-105 transition-all duration-300 group animate-bounce-in animate-advertisement-glow cursor-pointer"
             style={{ animationDelay: `${index * 0.2}s` }}
+            onClick={() => setClickCounts(prev => ({ ...prev, [offer.id]: (prev[offer.id] || 0) + 1 }))}
           >
             {/* Background gradient */}
             <div className={`absolute inset-0 bg-gradient-to-r ${offer.gradient} opacity-10 group-hover:opacity-20 transition-opacity duration-300`} />
             
-                         {/* Floating fire icon for hot deals */}
-             <div className="absolute top-4 right-4 z-10">
-               <Flame className="w-6 h-6 text-red-500 animate-pulse" />
-             </div>
+            {/* Floating fire icon for hot deals */}
+            <div className="absolute top-4 right-4 z-10">
+              <Flame className="w-6 h-6 text-red-500 animate-pulse" />
+            </div>
             
             <CardContent className="p-6 relative z-10">
               {/* Image section */}
@@ -141,6 +206,32 @@ const SpecialOffersSection = () => {
                   <Clock className="w-3 h-3 mr-1" />
                   {timeLeft[offer.id] ? formatTime(timeLeft[offer.id]) : "00:00:00"}
                 </Badge>
+
+                {/* Interactive action buttons */}
+                <div className="absolute top-2 right-12 flex gap-1">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleShare(offer);
+                    }}
+                    className="p-1 rounded-full bg-white bg-opacity-80 hover:bg-opacity-100 transition-all duration-200"
+                    title="Share"
+                  >
+                    <Share2 className="w-3 h-3 text-gray-600" />
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleLike(offer.id);
+                    }}
+                    className={`p-1 rounded-full transition-all duration-200 ${
+                      likedOffers.has(offer.id) ? 'bg-red-100' : 'bg-white bg-opacity-80 hover:bg-opacity-100'
+                    }`}
+                    title={likedOffers.has(offer.id) ? "Remove from favorites" : "Add to favorites"}
+                  >
+                    <Heart className={`w-3 h-3 ${likedOffers.has(offer.id) ? 'text-red-500 fill-red-500' : 'text-gray-600'}`} />
+                  </button>
+                </div>
               </div>
               
               {/* Content section */}
@@ -157,6 +248,26 @@ const SpecialOffersSection = () => {
                 <p className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                   {offer.description}
                 </p>
+
+                {/* Expanded details */}
+                {expandedOffers.has(offer.id) && (
+                  <div className="p-3 bg-gray-50 rounded-lg animate-in slide-in-from-top-2 duration-300">
+                    <div className="text-xs text-gray-600 space-y-1">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-3 h-3" />
+                        <span>Available in all locations</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Truck className="w-3 h-3" />
+                        <span>Free delivery included</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Star className="w-3 h-3 text-yellow-400" />
+                        <span>4.5+ rated restaurants</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 
                 {/* Price comparison */}
                 <div className="flex items-center gap-2">
@@ -180,15 +291,34 @@ const SpecialOffersSection = () => {
                   </div>
                 </div>
                 
-                {/* CTA Button */}
-                <Button 
-                  className={`w-full bg-gradient-to-r ${offer.gradient} hover:shadow-lg text-white group-hover:scale-105 transition-all duration-300`}
-                >
-                  <span className="flex items-center gap-2">
-                    Claim Offer
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                </Button>
+                {/* CTA Buttons */}
+                <div className="flex gap-2">
+                  <Button 
+                    className={`w-full bg-gradient-to-r ${offer.gradient} hover:shadow-lg text-white group-hover:scale-105 transition-all duration-300`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleClaimOffer(offer);
+                    }}
+                  >
+                    <span className="flex items-center gap-2">
+                      <ShoppingCart className="w-4 h-4" />
+                      Claim Offer
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </Button>
+                  
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleExpand(offer.id);
+                    }}
+                    className="hover:bg-orange-50 hover:border-orange-300 transition-colors duration-200"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </Button>
+                </div>
               </div>
             </CardContent>
             
@@ -197,6 +327,13 @@ const SpecialOffersSection = () => {
               <Sparkles className="absolute top-4 left-4 text-yellow-400 animate-ping" />
               <Sparkles className="absolute bottom-4 right-4 text-yellow-400 animate-ping" style={{ animationDelay: '0.5s' }} />
             </div>
+
+            {/* Click counter (hidden but functional) */}
+            {clickCounts[offer.id] > 0 && (
+              <div className="absolute top-2 left-2 text-xs text-gray-400 bg-white bg-opacity-80 px-1 rounded">
+                Clicks: {clickCounts[offer.id]}
+              </div>
+            )}
           </Card>
         ))}
       </div>

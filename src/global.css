@@ -511,6 +511,44 @@
   animation: rotate-3d 4s linear infinite;
 }
 
+@keyframes rotate-y-6 {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(6deg);
+  }
+}
+
+@keyframes rotate-y-12 {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(12deg);
+  }
+}
+
+.animate-rotate-y-6 {
+  animation: rotate-y-6 0.3s ease-out forwards;
+}
+
+.animate-rotate-y-12 {
+  animation: rotate-y-12 0.3s ease-out forwards;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.rotate-y-6 {
+  transform: rotateY(6deg);
+}
+
+.rotate-y-12 {
+  transform: rotateY(12deg);
+}
+
 .animate-bounce-in-elastic {
   animation: bounce-in-elastic 1s ease-out;
 }

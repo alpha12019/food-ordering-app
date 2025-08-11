@@ -14,7 +14,7 @@ import AdvertisementBanner from "@/components/AdvertisementBanner";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import FeaturesShowcase from "@/components/FeaturesShowcase";
 import TestAdvertisement from "@/components/TestAdvertisement";
-import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap } from "lucide-react";
+import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap, ChefHat, Utensils, Coffee, Pizza } from "lucide-react";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -24,6 +24,7 @@ const HomePage = () => {
   const [progressValue, setProgressValue] = useState(0);
   const [showSparkles, setShowSparkles] = useState(false);
   const [particles, setParticles] = useState<Array<{id: number, x: number, y: number}>>([]);
+  const [floatingIcons, setFloatingIcons] = useState<Array<{id: number, x: number, y: number, icon: string, delay: number}>>([]);
   const searchSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -52,10 +53,26 @@ const HomePage = () => {
       });
     }, 2000);
 
+    // Create floating icons
+    const iconTimer = setInterval(() => {
+      setFloatingIcons(prev => {
+        const icons = ['🍕', '🍔', '🍣', '🍜', '🍰', '☕'];
+        const newIcon = {
+          id: Date.now(),
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          icon: icons[Math.floor(Math.random() * icons.length)],
+          delay: Math.random() * 2
+        };
+        return [...prev.slice(-3), newIcon];
+      });
+    }, 3000);
+
     return () => {
       clearTimeout(timer);
       clearInterval(sparkleTimer);
       clearInterval(particleTimer);
+      clearInterval(iconTimer);
     };
   }, []);
 
@@ -241,12 +258,32 @@ const HomePage = () => {
         id="search-section" 
         className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-2xl py-6 sm:py-8 md:py-10 lg:py-12 flex flex-col text-center gap-4 sm:gap-6 -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-12 xl:-mt-16 animate-slide-in-up hover-lift relative overflow-hidden"
       >
-        {/* Background decoration with morphing shapes */}
+        {/* Enhanced background decoration with morphing shapes */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-4 left-4 w-20 h-20 bg-orange-200 rounded-full animate-morph"></div>
           <div className="absolute bottom-4 right-4 w-16 h-16 bg-red-200 rounded-full animate-morph" style={{ animationDelay: '1s' }}></div>
           <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-200 rounded-full animate-morph" style={{ animationDelay: '2s' }}></div>
           <div className="absolute top-1/3 right-1/4 w-8 h-8 bg-orange-300 rounded-full animate-morph" style={{ animationDelay: '3s' }}></div>
+          <div className="absolute top-1/6 right-1/6 w-10 h-10 bg-pink-200 rounded-full animate-morph" style={{ animationDelay: '1.5s' }}></div>
+          <div className="absolute bottom-1/6 left-1/6 w-14 h-14 bg-blue-200 rounded-full animate-morph" style={{ animationDelay: '2.5s' }}></div>
+        </div>
+
+        {/* Floating food icons */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {floatingIcons.map(icon => (
+            <div
+              key={icon.id}
+              className="absolute text-2xl animate-float opacity-20"
+              style={{
+                left: `${icon.x}%`,
+                top: `${icon.y}%`,
+                animationDelay: `${icon.delay}s`,
+                animationDuration: '4s'
+              }}
+            >
+              {icon.icon}
+            </div>
+          ))}
         </div>
         
         <div className="space-y-3 sm:space-y-4 stagger-children relative z-10">

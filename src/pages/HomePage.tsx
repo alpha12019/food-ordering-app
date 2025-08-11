@@ -284,6 +284,12 @@ const HomePage = () => {
               {icon.icon}
             </div>
           ))}
+          
+          {/* Additional static floating icons */}
+          <div className="absolute top-1/6 left-1/6 text-3xl animate-float opacity-15" style={{ animationDelay: '0.5s' }}>🍜</div>
+          <div className="absolute top-1/3 right-1/6 text-2xl animate-float opacity-15" style={{ animationDelay: '1.5s' }}>🍰</div>
+          <div className="absolute bottom-1/4 left-1/3 text-3xl animate-float opacity-15" style={{ animationDelay: '2.5s' }}>🥘</div>
+          <div className="absolute bottom-1/6 right-1/3 text-2xl animate-float opacity-15" style={{ animationDelay: '3.5s' }}>🍹</div>
         </div>
         
         <div className="space-y-3 sm:space-y-4 stagger-children relative z-10">

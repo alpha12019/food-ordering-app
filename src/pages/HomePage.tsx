@@ -553,21 +553,39 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Testimonials Section */}
-      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift">
-        <div className="text-center mb-6 sm:mb-8 animate-fade-in">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text">What Our Customers Say</h2>
+      {/* Enhanced Testimonials Section */}
+      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-48 h-48 bg-gradient-to-br from-orange-200 to-red-200 rounded-full animate-morph"></div>
+          <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-yellow-200 to-orange-200 rounded-full animate-morph" style={{ animationDelay: '2s' }}></div>
+        </div>
+        
+        <div className="text-center mb-6 sm:mb-8 animate-fade-in relative z-10">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text animate-shimmer-text">
+            What Our Customers Say
+          </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Real reviews from satisfied customers</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 stagger-children">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 stagger-children relative z-10">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index} 
-              className="bg-white p-4 sm:p-6 text-center animate-bounce-in hover-lift group relative overflow-hidden" 
-              style={{ animationDelay: `${index * 0.15}s` }}
+              className="bg-white p-4 sm:p-6 text-center animate-bounce-in hover-lift group relative overflow-hidden transform perspective-1000" 
+              style={{ 
+                animationDelay: `${index * 0.15}s`,
+                transformStyle: 'preserve-3d'
+              }}
             >
-              {/* Background decoration */}
+              {/* Enhanced background decoration */}
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+              
+              {/* Floating particles on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-orange-300 rounded-full animate-ping"></div>
+                <div className="absolute top-1/4 right-1/4 w-1 h-1 bg-red-300 rounded-full animate-ping" style={{ animationDelay: '0.2s' }}></div>
+                <div className="absolute bottom-1/4 left-1/4 w-1 h-1 bg-yellow-300 rounded-full animate-ping" style={{ animationDelay: '0.4s' }}></div>
+              </div>
               
               <div className="relative z-10">
                 <div className="flex justify-center mb-3 sm:mb-4">
@@ -580,13 +598,16 @@ const HomePage = () => {
                   {testimonial.name}
                 </p>
                 
-                {/* Quote marks decoration */}
-                <div className="absolute top-2 left-2 text-4xl text-orange-200 opacity-50 group-hover:opacity-75 transition-opacity duration-300">
+                {/* Enhanced floating quote marks decoration */}
+                <div className="absolute top-2 left-2 text-4xl text-orange-200 opacity-50 group-hover:opacity-75 transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-12">
                   "
                 </div>
-                <div className="absolute bottom-2 right-2 text-4xl text-orange-200 opacity-50 group-hover:opacity-75 transition-opacity duration-300">
+                <div className="absolute bottom-2 right-2 text-4xl text-orange-200 opacity-50 group-hover:opacity-75 transition-all duration-500 transform group-hover:scale-110 group-hover:-rotate-12">
                   "
                 </div>
+                
+                {/* Bottom glow effect */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
               </div>
             </Card>
           ))}
@@ -596,19 +617,27 @@ const HomePage = () => {
       <Separator className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 animate-fade-in" />
 
       {/* Enhanced App Download Section with Interactive Animations */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-28 animate-slide-in-up">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-28 animate-slide-in-up relative overflow-hidden">
+        {/* Background floating elements */}
+        <div className="absolute inset-0 pointer-events-none opacity-20">
+          <div className="absolute top-1/4 left-1/4 text-4xl animate-float" style={{ animationDelay: '0s' }}>🍕</div>
+          <div className="absolute top-1/3 right-1/3 text-3xl animate-float" style={{ animationDelay: '1s' }}>🍔</div>
+          <div className="absolute bottom-1/3 left-1/3 text-4xl animate-float" style={{ animationDelay: '2s' }}>🍣</div>
+          <div className="absolute bottom-1/4 right-1/4 text-3xl animate-float" style={{ animationDelay: '1.5s' }}>☕</div>
+        </div>
+        
         <Card className="flex items-center justify-center p-0 overflow-hidden min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[350px] rounded-xl order-2 lg:order-1 animate-scale-in hover-lift group relative">
           <img
             src={landingImgSrc}
             alt="Landing visual"
             onError={() => setLandingImgSrc(landingImage)}
-            className="object-cover w-full h-full rounded-xl transition-transform duration-500 group-hover:scale-110"
+            className="object-cover w-full h-full rounded-xl transition-transform duration-700 group-hover:scale-125 group-hover:rotate-1"
           />
           
-          {/* Overlay with interactive elements */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+          {/* Enhanced overlay with interactive elements */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-4">
             <div className="text-white text-center">
-              <p className="text-sm font-semibold mb-2">Interactive Preview</p>
+              <p className="text-sm font-semibold mb-2 animate-pulse">Interactive Preview</p>
               <div className="flex gap-2">
                 <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
                 <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
@@ -616,9 +645,16 @@ const HomePage = () => {
               </div>
             </div>
           </div>
+          
+          {/* Floating sparkles on hover */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <Sparkles className="absolute top-1/4 left-1/4 text-yellow-300 animate-ping" style={{ animationDelay: '0.1s' }} />
+            <Sparkles className="absolute top-1/3 right-1/3 text-orange-300 animate-ping" style={{ animationDelay: '0.3s' }} />
+            <Sparkles className="absolute bottom-1/3 left-1/3 text-red-300 animate-ping" style={{ animationDelay: '0.5s' }} />
+          </div>
         </Card>
         
-        <CardContent className="flex flex-col items-center justify-center gap-4 sm:gap-6 text-center p-4 sm:p-6 lg:p-8 order-1 lg:order-2 animate-slide-in-left">
+        <CardContent className="flex flex-col items-center justify-center gap-4 sm:gap-6 text-center p-4 sm:p-6 lg:p-8 order-1 lg:order-2 animate-slide-in-left relative z-10">
           <div className="space-y-3 sm:space-y-4 stagger-children">
             <h3 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl tracking-tighter text-orange-600 leading-tight">
               <span className="gradient-text animate-shimmer-text">
@@ -656,14 +692,19 @@ const HomePage = () => {
             <img
               src={appDownloadImgSrc}
               alt="App download illustration"
-              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-lg shadow mt-4 sm:mt-6 animate-float hover:scale-105 transition-transform duration-300"
+              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-lg shadow mt-4 sm:mt-6 animate-float hover:scale-110 transition-transform duration-500"
               onError={() => setAppDownloadImgSrc(appDownloadImage)}
             />
             
-            {/* Floating download indicator */}
-            <div className="absolute -top-2 -right-2 bg-orange-500 text-white rounded-full p-2 animate-bounce">
+            {/* Enhanced floating download indicator */}
+            <div className="absolute -top-2 -right-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full p-2 animate-bounce group-hover:scale-110 transition-transform duration-300">
               <ArrowRight className="w-4 h-4" />
             </div>
+            
+            {/* Floating particles around the image */}
+            <div className="absolute -top-4 -left-4 w-2 h-2 bg-orange-300 rounded-full animate-ping opacity-60"></div>
+            <div className="absolute -bottom-4 -right-4 w-2 h-2 bg-red-300 rounded-full animate-ping opacity-60" style={{ animationDelay: '0.3s' }}></div>
+            <div className="absolute top-1/2 -right-6 w-1 h-1 bg-yellow-300 rounded-full animate-ping opacity-60" style={{ animationDelay: '0.6s' }}></div>
           </div>
         </CardContent>
       </div>

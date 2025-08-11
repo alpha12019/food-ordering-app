@@ -366,58 +366,90 @@ const HomePage = () => {
       <FeaturesShowcase />
 
       {/* Enhanced Popular Cuisines Section */}
-      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-white rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift">
-        <div className="text-center mb-6 sm:mb-8 animate-fade-in">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text">Popular Cuisines</h2>
+      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-white rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-orange-200 to-red-200 rounded-full animate-morph"></div>
+          <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full animate-morph" style={{ animationDelay: '1s' }}></div>
+        </div>
+        
+        <div className="text-center mb-6 sm:mb-8 animate-fade-in relative z-10">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text animate-shimmer-text">
+            Popular Cuisines
+          </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Explore our most loved cuisines</p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 stagger-children">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 stagger-children relative z-10">
           {popularCuisines.map((cuisine, index) => (
             <Card
               key={cuisine.name}
-              className={`cursor-pointer hover:shadow-lg transition-all duration-300 hover-scale border-2 hover:border-orange-300 animate-bounce-in hover-lift group relative overflow-hidden ${
-                hoveredCuisine === cuisine.name ? 'ring-2 ring-orange-400 shadow-xl' : ''
+              className={`cursor-pointer hover:shadow-2xl transition-all duration-500 hover-scale border-2 hover:border-orange-300 animate-bounce-in hover-lift group relative overflow-hidden transform perspective-1000 ${
+                hoveredCuisine === cuisine.name ? 'ring-2 ring-orange-400 shadow-xl rotate-y-12' : ''
               }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                transformStyle: 'preserve-3d'
+              }}
               onClick={() => handleCuisineClick(cuisine.name)}
               onMouseEnter={() => setHoveredCuisine(cuisine.name)}
               onMouseLeave={() => setHoveredCuisine(null)}
             >
-              {/* Hover effect overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-red-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              {/* Enhanced 3D hover effect overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-400/30 to-red-400/30 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-xl"></div>
+              
+              {/* Floating particles on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute top-2 left-2 w-1 h-1 bg-orange-300 rounded-full animate-ping"></div>
+                <div className="absolute top-2 right-2 w-1 h-1 bg-red-300 rounded-full animate-ping" style={{ animationDelay: '0.2s' }}></div>
+                <div className="absolute bottom-2 left-2 w-1 h-1 bg-yellow-300 rounded-full animate-ping" style={{ animationDelay: '0.4s' }}></div>
+              </div>
               
               <CardContent className="p-3 sm:p-4 text-center relative z-10">
-                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2 animate-float group-hover:scale-125 transition-transform duration-300">
+                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2 animate-float group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
                   {cuisine.icon}
                 </div>
                 <p className="font-semibold text-gray-800 text-xs sm:text-sm md:text-base group-hover:text-orange-600 transition-colors duration-300">
                   {cuisine.name}
                 </p>
                 
-                {/* Interactive arrow indicator */}
-                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                  <ArrowRight className="w-4 h-4 text-orange-500" />
+                {/* Enhanced interactive arrow indicator */}
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-2 group-hover:translate-x-0 group-hover:scale-110">
+                  <ArrowRight className="w-4 h-4 text-orange-500 animate-pulse" />
                 </div>
+                
+                {/* Bottom glow effect */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
               </CardContent>
             </Card>
           ))}
         </div>
       </Card>
 
-      {/* Featured Restaurants Section */}
-      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-white rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift">
-        <div className="text-center mb-6 sm:mb-8 animate-fade-in">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text">Featured Restaurants</h2>
+      {/* Enhanced Featured Restaurants Section */}
+      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-white rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-orange-200 to-yellow-200 rounded-full animate-morph"></div>
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-red-200 to-pink-200 rounded-full animate-morph" style={{ animationDelay: '1.5s' }}></div>
+        </div>
+        
+        <div className="text-center mb-6 sm:mb-8 animate-fade-in relative z-10">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text animate-shimmer-text">
+            Featured Restaurants
+          </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Discover top-rated restaurants in your area</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 stagger-children">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 stagger-children relative z-10">
           {featuredRestaurants.map((restaurant, index) => (
             <Card 
               key={index} 
-              className={`overflow-hidden hover:shadow-lg transition-all duration-300 hover-lift animate-scale-in group relative ${
-                hoveredRestaurant === index ? 'ring-2 ring-orange-400 shadow-xl' : ''
+              className={`overflow-hidden hover:shadow-2xl transition-all duration-500 hover-lift animate-scale-in group relative transform perspective-1000 ${
+                hoveredRestaurant === index ? 'ring-2 ring-orange-400 shadow-xl rotate-y-6' : ''
               }`} 
-              style={{ animationDelay: `${index * 0.2}s` }}
+              style={{ 
+                animationDelay: `${index * 0.2}s`,
+                transformStyle: 'preserve-3d'
+              }}
               onMouseEnter={() => setHoveredRestaurant(index)}
               onMouseLeave={() => setHoveredRestaurant(null)}
             >
@@ -425,7 +457,7 @@ const HomePage = () => {
                 <img
                   src={restaurant.image}
                   alt={restaurant.name}
-                  className="w-full h-32 sm:h-40 md:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-32 sm:h-40 md:h-48 object-cover transition-transform duration-700 group-hover:scale-125 group-hover:rotate-2"
                   onError={(e) => {
                     // Fallback to a placeholder image if the main image fails to load
                     const target = e.target as HTMLImageElement;
@@ -433,16 +465,23 @@ const HomePage = () => {
                   }}
                 />
                 
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Enhanced gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                 
-                <Badge className="absolute top-2 right-2 bg-orange-500 text-white text-xs sm:text-sm animate-pulse-glow group-hover:bg-orange-600 transition-colors duration-300">
+                {/* Floating rating badge */}
+                <Badge className="absolute top-2 right-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs sm:text-sm animate-pulse-glow group-hover:scale-110 transition-all duration-300 shadow-lg">
                   {restaurant.cuisine}
                 </Badge>
                 
-                {/* Heart icon for favorites */}
-                <div className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-0 group-hover:scale-100">
+                {/* Enhanced heart icon for favorites */}
+                <div className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100 group-hover:animate-heartbeat">
                   <Heart className="w-5 h-5 text-white drop-shadow-lg cursor-pointer hover:text-red-500 transition-colors duration-300" />
+                </div>
+                
+                {/* Floating sparkles on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <Sparkles className="absolute top-1/2 left-1/4 text-yellow-300 animate-ping" style={{ animationDelay: '0.1s' }} />
+                  <Sparkles className="absolute top-1/3 right-1/3 text-orange-300 animate-ping" style={{ animationDelay: '0.3s' }} />
                 </div>
               </div>
               
@@ -459,11 +498,11 @@ const HomePage = () => {
                   <span>{restaurant.deliveryTime}</span>
                 </div>
                 
-                {/* Interactive order button - Always visible but enhanced on hover */}
-                <div className="mt-3 transition-all duration-300 transform group-hover:translate-y-0">
+                {/* Enhanced interactive order button */}
+                <div className="mt-3 transition-all duration-500 transform group-hover:translate-y-0">
                   <Button 
                     size="sm" 
-                    className="btn-interactive w-full bg-orange-500 hover:bg-orange-600 text-white text-xs group-hover:scale-105 transition-all duration-300"
+                    className="btn-interactive w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-xs group-hover:scale-105 group-hover:shadow-lg transition-all duration-300"
                     onClick={() => navigate(`/detail/mock-${index + 1}`)}
                   >
                     <span className="flex items-center gap-1">
@@ -472,6 +511,9 @@ const HomePage = () => {
                     </span>
                   </Button>
                 </div>
+                
+                {/* Bottom glow effect */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
               </CardContent>
             </Card>
           ))}

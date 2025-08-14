@@ -1,4 +1,6 @@
-const Footer=()=>{
+import React from "react";
+
+const Footer = () => {
     return (
         <div className="bg-orange-500 py-6 sm:py-8 md:py-10">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">

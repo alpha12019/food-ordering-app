@@ -172,7 +172,7 @@ const HomePage = () => {
       <div className="relative animate-fade-in overflow-hidden">
         <Hero />
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center px-4">
-          <div className="text-center text-white max-w-4xl stagger-children relative">
+          <div className="text-center text-white max-w-4xl relative">
             {/* Floating particles effect */}
             <div className="particle-container absolute inset-0 pointer-events-none">
               {particles.map(particle => (

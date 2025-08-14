@@ -661,7 +661,7 @@ const HomePage = () => {
         </Card>
         
         <CardContent className="flex flex-col items-center justify-center gap-4 sm:gap-6 text-center p-4 sm:p-6 lg:p-8 order-1 lg:order-2 animate-slide-in-left relative z-10">
-          <div className="space-y-3 sm:space-y-4 stagger-children">
+          <div className="space-y-3 sm:space-y-4">
             <h3 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl tracking-tighter text-orange-600 leading-tight">
               <span className="gradient-text animate-shimmer-text">
                 Order takeaway even faster

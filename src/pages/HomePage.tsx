@@ -292,7 +292,7 @@ const HomePage = () => {
           <div className="absolute bottom-1/6 right-1/3 text-2xl animate-float opacity-15" style={{ animationDelay: '3.5s' }}>🍹</div>
         </div>
         
-        <div className="space-y-3 sm:space-y-4 stagger-children relative z-10">
+        <div className="space-y-3 sm:space-y-4 relative z-10">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-orange-600 leading-tight">
             <span className="gradient-text animate-shimmer-text">
               Tuck into a takeaway today
@@ -385,7 +385,7 @@ const HomePage = () => {
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Explore our most loved cuisines</p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 stagger-children relative z-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 relative z-10">
           {popularCuisines.map((cuisine, index) => (
             <Card
               key={cuisine.name}
@@ -445,7 +445,7 @@ const HomePage = () => {
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Discover top-rated restaurants in your area</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 stagger-children relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 relative z-10">
           {featuredRestaurants.map((restaurant, index) => (
             <Card 
               key={index} 
@@ -573,7 +573,7 @@ const HomePage = () => {
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Real reviews from satisfied customers</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 stagger-children relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 relative z-10">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index} 

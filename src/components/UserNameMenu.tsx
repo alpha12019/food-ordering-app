@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { User, Store, LogOut, ChevronDown } from "lucide-react";

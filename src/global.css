@@ -583,6 +583,147 @@
 .stagger-children > *:nth-child(9) { animation-delay: 0.9s; }
 .stagger-children > *:nth-child(10) { animation-delay: 1.0s; }
 
+/* Missing animation classes */
+.animate-slide-in-left {
+  animation: slide-in-left 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.6s ease-out;
+}
+
+.animate-slide-in-up-delayed {
+  animation: slide-in-up-delayed 0.8s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s ease-out;
+}
+
+.animate-bounce-in-elastic {
+  animation: bounce-in-elastic 1s ease-out;
+}
+
+.animate-shimmer-text {
+  background: linear-gradient(90deg, #ff6b35, #f7931e, #ff6b35, #ff6b35);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-text 3s linear infinite;
+}
+
+.animate-floating-particles {
+  animation: floating-particles 4s ease-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-morph {
+  animation: morph 8s ease-in-out infinite;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.8s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-slide-in-up {
+  animation: slide-in-up 0.6s ease-out;
+}
+
+.animate-scale-in-elastic {
+  animation: scale-in-elastic 0.6s ease-out;
+}
+
+.animate-slide-in-from-bottom {
+  animation: slide-in-from-bottom 0.6s ease-out;
+}
+
+.animate-bounce-soft {
+  animation: bounce-soft 1s ease-in-out;
+}
+
+.animate-wiggle {
+  animation: wiggle 0.6s ease-in-out;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-gradient-shift {
+  background: linear-gradient(-45deg, #ff6b35, #f7931e, #ff6b35, #f7931e);
+  background-size: 400% 400%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.animate-particle-float {
+  animation: particle-float 3s ease-out infinite;
+}
+
+.animate-typewriter {
+  overflow: hidden;
+  border-right: 2px solid;
+  white-space: nowrap;
+  animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
+}
+
+.animate-wave {
+  animation: wave 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+.animate-ripple {
+  animation: ripple 1s ease-out;
+}
+
+.animate-rotate-3d {
+  animation: rotate-3d 4s linear infinite;
+}
+
+.animate-rotate-y-6 {
+  animation: rotate-y-6 0.3s ease-out forwards;
+}
+
+.animate-rotate-y-12 {
+  animation: rotate-y-12 0.3s ease-out forwards;
+}
+
+.animate-advertisement-pulse {
+  animation: advertisement-pulse 2s infinite;
+}
+
+.animate-advertisement-glow {
+  animation: advertisement-glow 3s infinite;
+}
+
+.animate-advertisement-bounce {
+  animation: advertisement-bounce 2s infinite;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;

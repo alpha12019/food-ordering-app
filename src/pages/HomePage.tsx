@@ -561,6 +561,46 @@ const HomePage = () => {
         </div>
       </Card>
 
+      {/* New Animated Quick Actions Section */}
+      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-gradient-to-r from-green-50 to-teal-50 rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift relative overflow-hidden mb-8">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-green-200 to-teal-200 rounded-full animate-morph"></div>
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-teal-200 to-blue-200 rounded-full animate-morph" style={{ animationDelay: '1.5s' }}></div>
+        </div>
+        
+        <div className="text-center mb-6 sm:mb-8 relative z-10">
+          <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-green-600 mb-2 gradient-text transition-all duration-500 ${bounceElements ? 'animate-bounce' : 'animate-shimmer-text'}`}>
+            Quick Actions
+          </h2>
+          <p className="text-xs sm:text-sm md:text-base text-gray-600">Get started in seconds</p>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 relative z-10">
+          {[
+            { icon: "🔍", label: "Search Food", action: () => navigate('/search/Manchester'), color: "from-blue-400 to-cyan-500" },
+            { icon: "🍕", label: "Order Now", action: scrollToSearch, color: "from-orange-400 to-red-500" },
+            { icon: "👤", label: "My Profile", action: () => navigate('/profile'), color: "from-purple-400 to-pink-500" },
+            { icon: "📱", label: "Download App", action: () => window.open('#', '_blank'), color: "from-green-400 to-emerald-500" }
+          ].map((action, index) => (
+            <div
+              key={action.label}
+              onClick={action.action}
+              className={`text-center p-4 rounded-lg bg-white shadow-md hover:shadow-xl transition-all duration-500 hover-scale cursor-pointer group animate-bounce-in`}
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
+              <div className={`text-3xl sm:text-4xl mb-2 animate-float group-hover:scale-110 transition-transform duration-300`}>
+                {action.icon}
+              </div>
+              <div className={`text-sm sm:text-base font-semibold bg-gradient-to-r ${action.color} bg-clip-text text-transparent`}>
+                {action.label}
+              </div>
+              <div className="w-full h-1 bg-gradient-to-r from-transparent via-gray-300 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center mt-2"></div>
+            </div>
+          ))}
+        </div>
+      </Card>
+
       {/* Additional Advertisement Banners */}
       <div className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 mb-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

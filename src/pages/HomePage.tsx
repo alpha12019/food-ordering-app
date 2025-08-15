@@ -25,6 +25,8 @@ const HomePage = () => {
   const [showSparkles, setShowSparkles] = useState(false);
   const [particles, setParticles] = useState<Array<{id: number, x: number, y: number}>>([]);
   const [floatingIcons, setFloatingIcons] = useState<Array<{id: number, x: number, y: number, icon: string, delay: number}>>([]);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [bounceElements, setBounceElements] = useState(false);
   const searchSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -68,11 +70,25 @@ const HomePage = () => {
       });
     }, 3000);
 
+    // Show confetti effect
+    const confettiTimer = setInterval(() => {
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 2000);
+    }, 8000);
+
+    // Bounce elements periodically
+    const bounceTimer = setInterval(() => {
+      setBounceElements(true);
+      setTimeout(() => setBounceElements(false), 1000);
+    }, 5000);
+
     return () => {
       clearTimeout(timer);
       clearInterval(sparkleTimer);
       clearInterval(particleTimer);
       clearInterval(iconTimer);
+      clearInterval(confettiTimer);
+      clearInterval(bounceTimer);
     };
   }, []);
 
@@ -205,17 +221,36 @@ const HomePage = () => {
                 ))}
               </div>
             )}
+
+            {/* Confetti effect */}
+            {showConfetti && (
+              <div className="absolute inset-0 pointer-events-none">
+                {[...Array(20)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-2 h-2 animate-bounce"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                      backgroundColor: ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'][Math.floor(Math.random() * 6)],
+                      animationDelay: `${Math.random() * 2}s`,
+                      animationDuration: `${2 + Math.random() * 2}s`
+                    }}
+                  />
+                ))}
+              </div>
+            )}
             
             {/* Morphing decorative elements */}
             <div className="absolute top-10 left-10 w-20 h-20 bg-orange-400/20 rounded-full animate-morph"></div>
             <div className="absolute bottom-10 right-10 w-16 h-16 bg-red-400/20 rounded-full animate-morph" style={{ animationDelay: '2s' }}></div>
             <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-400/20 rounded-full animate-morph" style={{ animationDelay: '4s' }}></div>
             
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight animate-bounce-in-elastic relative">
+            <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight relative transition-all duration-500 ${bounceElements ? 'animate-bounce' : 'animate-bounce-in-elastic'}`}>
               <span className="gradient-text animate-shimmer-text">
                 Delicious Food Delivered
               </span>
-              <div className="absolute -top-2 -right-2 animate-heartbeat">
+              <div className={`absolute -top-2 -right-2 transition-all duration-500 ${bounceElements ? 'animate-spin' : 'animate-heartbeat'}`}>
                 <Zap className="w-6 h-6 text-yellow-400" />
               </div>
             </h1>
@@ -224,10 +259,10 @@ const HomePage = () => {
               Order from your favorite restaurants with just a few clicks
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
+            <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-500 ${bounceElements ? 'animate-pulse' : 'animate-scale-in'}`}>
               <Button 
                 size="lg" 
-                className="btn-interactive bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 animate-glow-pulse hover:scale-105 transition-all duration-300 shadow-2xl group"
+                className={`btn-interactive bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 hover:scale-105 transition-all duration-300 shadow-2xl group ${bounceElements ? 'animate-bounce' : 'animate-glow-pulse'}`}
                 onClick={scrollToSearch}
               >
                 <span className="flex items-center gap-2">
@@ -292,8 +327,8 @@ const HomePage = () => {
           <div className="absolute bottom-1/6 right-1/3 text-2xl animate-float opacity-15" style={{ animationDelay: '3.5s' }}>🍹</div>
         </div>
         
-        <div className="space-y-3 sm:space-y-4 relative z-10">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-orange-600 leading-tight">
+        <div className={`space-y-3 sm:space-y-4 relative z-10 transition-all duration-500 ${bounceElements ? 'animate-pulse' : ''}`}>
+          <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-orange-600 leading-tight transition-all duration-500 ${bounceElements ? 'animate-bounce' : 'animate-shimmer-text'}`}>
             <span className="gradient-text animate-shimmer-text">
               Tuck into a takeaway today
             </span>

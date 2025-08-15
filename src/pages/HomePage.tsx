@@ -414,8 +414,8 @@ const HomePage = () => {
           <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full animate-morph" style={{ animationDelay: '1s' }}></div>
         </div>
         
-        <div className="text-center mb-6 sm:mb-8 animate-fade-in relative z-10">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text animate-shimmer-text">
+        <div className={`text-center mb-6 sm:mb-8 relative z-10 transition-all duration-500 ${bounceElements ? 'animate-pulse' : 'animate-fade-in'}`}>
+          <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text transition-all duration-500 ${bounceElements ? 'animate-bounce' : 'animate-shimmer-text'}`}>
             Popular Cuisines
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Explore our most loved cuisines</p>
@@ -474,8 +474,8 @@ const HomePage = () => {
           <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-red-200 to-pink-200 rounded-full animate-morph" style={{ animationDelay: '1.5s' }}></div>
         </div>
         
-        <div className="text-center mb-6 sm:mb-8 animate-fade-in relative z-10">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text animate-shimmer-text">
+        <div className={`text-center mb-6 sm:mb-8 relative z-10 transition-all duration-500 ${bounceElements ? 'animate-pulse' : 'animate-fade-in'}`}>
+          <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text transition-all duration-500 ${bounceElements ? 'animate-bounce' : 'animate-shimmer-text'}`}>
             Featured Restaurants
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Discover top-rated restaurants in your area</p>
@@ -602,8 +602,8 @@ const HomePage = () => {
           <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-yellow-200 to-orange-200 rounded-full animate-morph" style={{ animationDelay: '2s' }}></div>
         </div>
         
-        <div className="text-center mb-6 sm:mb-8 animate-fade-in relative z-10">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text animate-shimmer-text">
+        <div className={`text-center mb-6 sm:mb-8 relative z-10 transition-all duration-500 ${bounceElements ? 'animate-pulse' : 'animate-fade-in'}`}>
+          <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-orange-600 mb-2 gradient-text transition-all duration-500 ${bounceElements ? 'animate-bounce' : 'animate-shimmer-text'}`}>
             What Our Customers Say
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Real reviews from satisfied customers</p>

@@ -657,6 +657,45 @@ const HomePage = () => {
 
       <Separator className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 animate-fade-in" />
 
+      {/* New Animated Statistics Section */}
+      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full animate-morph"></div>
+          <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full animate-morph" style={{ animationDelay: '1s' }}></div>
+        </div>
+        
+        <div className="text-center mb-6 sm:mb-8 relative z-10">
+          <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-blue-600 mb-2 gradient-text transition-all duration-500 ${bounceElements ? 'animate-bounce' : 'animate-shimmer-text'}`}>
+            Amazing Stats
+          </h2>
+          <p className="text-xs sm:text-sm md:text-base text-gray-600">Numbers that speak for themselves</p>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 relative z-10">
+          {[
+            { number: "50K+", label: "Happy Customers", icon: "😊", color: "from-green-400 to-emerald-500" },
+            { number: "200+", label: "Restaurants", icon: "🍽️", color: "from-orange-400 to-red-500" },
+            { number: "15min", label: "Avg Delivery", icon: "⚡", color: "from-blue-400 to-cyan-500" },
+            { number: "99%", label: "Satisfaction", icon: "⭐", color: "from-purple-400 to-pink-500" }
+          ].map((stat, index) => (
+            <div
+              key={stat.label}
+              className={`text-center p-4 rounded-lg bg-white shadow-md hover:shadow-xl transition-all duration-500 hover-scale group animate-bounce-in`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className={`text-3xl sm:text-4xl mb-2 animate-float group-hover:scale-110 transition-transform duration-300`}>
+                {stat.icon}
+              </div>
+              <div className={`text-xl sm:text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1`}>
+                {stat.number}
+              </div>
+              <div className="text-xs sm:text-sm text-gray-600">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </Card>
+
       {/* Enhanced App Download Section with Interactive Animations */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-28 animate-slide-in-up relative overflow-hidden">
         {/* Background floating elements */}

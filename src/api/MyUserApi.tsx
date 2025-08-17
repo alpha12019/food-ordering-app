@@ -45,8 +45,8 @@ export const useGetMyUser=()=>{
 
 
 type CreateUserRequest={
-    auth0id:String,
-    email:String,
+    auth0id: string,
+    email: string,
 }
 
 export const useCreateMyUser=()=>{
@@ -77,10 +77,10 @@ export const useCreateMyUser=()=>{
 }
 
 type UpdateUserRequest={
-    name:String,
-    addressLine:String,
-    city:String,
-    country:String
+    name: string,
+    addressLine: string,
+    city: string,
+    country: string
 }
 
 export const useUpdateMyUser=()=>{

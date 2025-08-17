@@ -52,7 +52,7 @@ type RestaurantFormData = z.infer<typeof formSchema>
 type Props = {
     restaurant?:Restaurant;
     onSave: (restaurantFormData: FormData) => void;
-    isLoading: Boolean;
+    isLoading: boolean;
 }
 
 

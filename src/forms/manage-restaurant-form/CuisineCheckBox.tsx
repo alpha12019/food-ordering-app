@@ -3,8 +3,8 @@ import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
 
 type Props={
-    cuisine:String;
-    field:ControllerRenderProps<FieldValues,"cuisines">;
+    cuisine: string;
+    field: ControllerRenderProps<FieldValues,"cuisines">;
 }
 
 const CuisineCheckBox=({cuisine,field}:Props)=>{
@@ -18,7 +18,7 @@ const CuisineCheckBox=({cuisine,field}:Props)=>{
                         field.onChange([...field.value,cuisine]);
                     }
                     else{
-                        field.onChange(field.value.filter((value:String)=>value!=cuisine))
+                        field.onChange(field.value.filter((value: string)=>value!=cuisine))
                     }
                 }}>
 

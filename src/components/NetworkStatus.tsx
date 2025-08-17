@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Wifi, WifiOff, AlertTriangle } from 'lucide-react';
+import { WifiOff } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface NetworkStatusProps {

@@ -12,8 +12,7 @@ import {
   Award,
   Share2,
   Eye,
-  ShoppingCart,
-  ExternalLink
+  ShoppingCart
 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 

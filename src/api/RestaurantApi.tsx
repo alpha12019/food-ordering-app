@@ -39,7 +39,7 @@ export const useGetrestaurant=(restaurantId?:string)=>{
             retry: (failureCount, error) => {
                 // Don't retry on 404 errors
                 if (error && typeof error === 'object' && 'message' in error) {
-                    const message = (error as any).message;
+                    const message = (error as Error).message;
                     if (message.includes('404') || message.includes('not found')) {
                         return false;
                     }
@@ -113,7 +113,7 @@ export const useSearchRestaurant=(searchState:SearchState,city?:string)=>{
             retry: (failureCount, error) => {
                 // Don't retry on 4xx errors
                 if (error && typeof error === 'object' && 'message' in error) {
-                    const message = (error as any).message;
+                    const message = (error as Error).message;
                     if (message.includes('400') || message.includes('404')) {
                         return false;
                     }

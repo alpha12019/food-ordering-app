@@ -14,7 +14,6 @@ import {
   Award,
   Flame,
   Share2,
-  Eye,
   ShoppingCart,
   MapPin,
   Phone,
@@ -32,7 +31,6 @@ const RestaurantAdvertisement = ({ restaurant, index }: RestaurantAdvertisementP
   const [isVisible, setIsVisible] = useState(false);
   const [showSparkles, setShowSparkles] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const { toast } = useToast();

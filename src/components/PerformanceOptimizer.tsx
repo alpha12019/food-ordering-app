@@ -58,7 +58,7 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
   // Monitor memory usage
   const monitorMemoryUsage = useCallback(() => {
     if ('memory' in performance) {
-      const memory = (performance as any).memory;
+      const memory = (performance as Performance & { memory: { usedJSHeapSize: number; totalJSHeapSize: number } }).memory;
       const usedMB = Math.round(memory.usedJSHeapSize / 1048576);
       const totalMB = Math.round(memory.totalJSHeapSize / 1048576);
       

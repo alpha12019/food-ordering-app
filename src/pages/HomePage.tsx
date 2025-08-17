@@ -14,7 +14,7 @@ import AdvertisementBanner from "@/components/AdvertisementBanner";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import FeaturesShowcase from "@/components/FeaturesShowcase";
 import TestAdvertisement from "@/components/TestAdvertisement";
-import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap, ChefHat, Utensils, Coffee, Pizza } from "lucide-react";
+import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap } from "lucide-react";
 
 const HomePage = () => {
   const navigate = useNavigate();

@@ -15,7 +15,7 @@ const AuthCallbackPage=()=>{
         hasCreatedUser.current=true;
     }
     navigate('/');
-   },[]);
+   },[user?.sub, user?.email, createuser, navigate]);
    return <div>loading...</div>
 
 }

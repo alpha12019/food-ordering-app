@@ -79,7 +79,7 @@ const Hero = () => {
         
         {/* Additional floating elements */}
         <div className="absolute top-1/6 left-1/6 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-yellow-300 rounded-full animate-float opacity-40" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute bottom-1/4 right-1/6 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-red-300 rounded-full animate-float opacity-35" style={{ animationDelay: '2.5s' }}></div>
+        <div className="absolute bottom-1/4 right-1/6 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-red-300 rounded-full animate-float opacity-40" style={{ animationDelay: '2.5s' }}></div>
       </div>
 
       {/* Interactive floating icons */}

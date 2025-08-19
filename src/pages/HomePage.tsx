@@ -321,14 +321,14 @@ const HomePage = () => {
           ))}
           
           {/* Additional static floating icons */}
-          <div className="absolute top-1/6 left-1/6 text-3xl animate-float opacity-15" style={{ animationDelay: '0.5s' }}>🍜</div>
-          <div className="absolute top-1/3 right-1/6 text-2xl animate-float opacity-15" style={{ animationDelay: '1.5s' }}>🍰</div>
-          <div className="absolute bottom-1/4 left-1/3 text-3xl animate-float opacity-15" style={{ animationDelay: '2.5s' }}>🥘</div>
-          <div className="absolute bottom-1/6 right-1/3 text-2xl animate-float opacity-15" style={{ animationDelay: '3.5s' }}>🍹</div>
+          <div className="absolute top-1/6 left-1/6 text-3xl animate-float opacity-20" style={{ animationDelay: '0.5s' }}>🍜</div>
+          <div className="absolute top-1/3 right-1/6 text-2xl animate-float opacity-20" style={{ animationDelay: '1.5s' }}>🍰</div>
+          <div className="absolute bottom-1/4 left-1/3 text-3xl animate-float opacity-20" style={{ animationDelay: '2.5s' }}>🥘</div>
+          <div className="absolute bottom-1/6 right-1/3 text-2xl animate-float opacity-20" style={{ animationDelay: '3.5s' }}>🍹</div>
           
           {/* Enhanced floating elements with different animations */}
           <div className="absolute top-1/5 left-1/5 text-2xl animate-bounce opacity-20" style={{ animationDelay: '0.8s' }}>🎯</div>
-          <div className="absolute top-2/5 right-1/5 text-3xl animate-pulse opacity-15" style={{ animationDelay: '1.2s' }}>🌟</div>
+          <div className="absolute top-2/5 right-1/5 text-3xl animate-pulse opacity-20" style={{ animationDelay: '1.2s' }}>🌟</div>
           <div className="absolute bottom-1/5 left-2/5 text-2xl animate-spin opacity-25" style={{ animationDelay: '2.8s' }}>🎪</div>
           <div className="absolute bottom-2/5 right-2/5 text-3xl animate-ping opacity-20" style={{ animationDelay: '3.2s' }}>💫</div>
         </div>

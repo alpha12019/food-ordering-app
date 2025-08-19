@@ -631,6 +631,59 @@
   animation: rotate-3d 4s linear infinite;
 }
 
+/* New animation classes for the missing animations */
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.slide-in-from-top-2 {
+  animation: slide-in-from-top-2 0.3s ease-out;
+}
+
+.slide-in-from-bottom-2 {
+  animation: slide-in-from-bottom-2 0.3s ease-out;
+}
+
+.slide-in-from-left-2 {
+  animation: slide-in-from-left-2 0.3s ease-out;
+}
+
+.slide-in-from-right-2 {
+  animation: slide-in-from-right-2 0.3s ease-out;
+}
+
+.zoom-in-95 {
+  animation: zoom-in-95 0.2s ease-out;
+}
+
+.zoom-out-95 {
+  animation: zoom-out-95 0.2s ease-out;
+}
+
+.fade-out-0 {
+  animation: fade-out-0 0.2s ease-out;
+}
+
+.fade-in-0 {
+  animation: fade-in-0 0.2s ease-out;
+}
+
+.fade-out-80 {
+  animation: fade-out-80 0.2s ease-out;
+}
+
+.slide-out-to-right-full {
+  animation: slide-out-to-right-full 0.2s ease-out;
+}
+
+.slide-in-from-top-full {
+  animation: slide-in-from-top-full 0.2s ease-out;
+}
+
+.slide-in-from-bottom-full {
+  animation: slide-in-from-bottom-full 0.2s ease-out;
+}
+
 @keyframes rotate-y-6 {
   0% {
     transform: rotateY(0deg);

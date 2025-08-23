@@ -1,4 +1,4 @@
-import { Form } from "@/components/ui/form-hooks";
+import { Form } from "@/components/ui/form-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";

@@ -8,8 +8,6 @@ import {
   useFormContext,
 } from "react-hook-form"
 
-import { Label } from "@/components/ui/label"
-
 export const Form = FormProvider
 
 type FormFieldContextValue<
@@ -66,4 +64,3 @@ type FormItemContextValue = {
 export const FormItemContext = React.createContext<FormItemContextValue>(
   {} as FormItemContextValue
 )
-

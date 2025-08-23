@@ -4,7 +4,7 @@ import { Slot } from "@radix-ui/react-slot"
 
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
-import { useFormField, FormItemContext } from "./form-hooks"
+import { useFormField, FormItemContext } from "./form-utils"
 
 const FormItem = React.forwardRef<
   HTMLDivElement,

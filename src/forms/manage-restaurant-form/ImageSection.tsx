@@ -1,4 +1,5 @@
-import { FormControl, FormDescription, FormField, FormItem } from "@/components/ui/form";
+import { FormControl, FormItem } from "@/components/ui/form";
+import { FormField } from "@/components/ui/form-hooks";
 import { Input } from "@/components/ui/input";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { useFormContext } from "react-hook-form";

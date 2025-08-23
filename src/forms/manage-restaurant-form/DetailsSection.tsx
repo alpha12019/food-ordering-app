@@ -1,4 +1,5 @@
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormField } from "@/components/ui/form-hooks";
 import { Input } from "@/components/ui/input";
 import { useFormContext } from "react-hook-form";
 

@@ -9,7 +9,7 @@ import AdvertisementBanner from "@/components/AdvertisementBanner";
 import RestaurantAdvertisement from "@/components/RestaurantAdvertisement";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp, Clock, X } from "lucide-react";
+import { ChevronDown, ChevronUp, Clock, X, ArrowUp } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "@/components/LoadingSpinner";

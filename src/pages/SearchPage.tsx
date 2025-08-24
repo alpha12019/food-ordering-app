@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp, Clock, X, ArrowUp } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import LoadingSpinner from "@/components/LoadingSpinner";
+
 import ErrorDisplay from "@/components/ErrorDisplay";
 import SearchResultSkeleton from "@/components/SearchResultSkeleton";
 import NoResultsFound from "@/components/NoResultsFound";

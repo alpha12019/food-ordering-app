@@ -34,6 +34,7 @@ const SearchPage = () => {
   })
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   
   // Load search history from localStorage on component mount
   useEffect(() => {
@@ -47,6 +48,24 @@ const SearchPage = () => {
   useEffect(() => {
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
   }, [searchHistory]);
+
+  // Handle scroll event for back to top button
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const { results, isLoading, error } = useSearchRestaurant(searchState, city);
   

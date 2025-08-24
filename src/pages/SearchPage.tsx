@@ -273,6 +273,51 @@ const SearchPage = () => {
           <SortOptionsDropdown onChange={(value) => setSortOptions(value)} sortOption={searchState.sortOption}></SortOptionsDropdown>
         </div>
         
+        {/* Active Filters Summary */}
+        {(searchState.searchQuery || searchState.selectedCuisines.length > 0) && (
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-medium text-orange-800">Active Filters:</span>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setSearchState(prev => ({
+                    ...prev,
+                    searchQuery: "",
+                    selectedCuisines: [],
+                    page: 1
+                  }));
+                }}
+                className="text-xs text-orange-600 hover:text-orange-700 hover:bg-orange-100"
+              >
+                Clear All Filters
+              </Button>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {searchState.searchQuery && (
+                <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
+                  Search: "{searchState.searchQuery}"
+                </span>
+              )}
+              {searchState.selectedCuisines.map((cuisine) => (
+                <span
+                  key={cuisine}
+                  className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2"
+                >
+                  {cuisine}
+                  <button
+                    onClick={() => SetSelectedCuisines(searchState.selectedCuisines.filter(c => c !== cuisine))}
+                    className="text-orange-600 hover:text-orange-800"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        
         <div className="space-y-3 sm:space-y-4">
           {results.data.map((restaurant, index) => (
             <div key={restaurant._id || index}>

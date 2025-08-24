@@ -239,6 +239,35 @@ const SearchPage = () => {
         {/* Special Offers Section - Top of search results */}
         <SpecialOffersSection />
         
+        {/* Quick Filter Bar */}
+        <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="text-sm font-medium text-gray-700">Quick Filters:</span>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {['Pizza', 'Indian', 'Chinese', 'Burgers', 'Sushi', 'Mexican', 'Italian', 'Thai'].map((cuisine) => (
+              <button
+                key={cuisine}
+                onClick={() => {
+                  const isSelected = searchState.selectedCuisines.includes(cuisine);
+                  if (isSelected) {
+                    SetSelectedCuisines(searchState.selectedCuisines.filter(c => c !== cuisine));
+                  } else {
+                    SetSelectedCuisines([...searchState.selectedCuisines, cuisine]);
+                  }
+                }}
+                className={`px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  searchState.selectedCuisines.includes(cuisine)
+                    ? 'bg-orange-500 text-white shadow-md hover:bg-orange-600'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
+                }`}
+              >
+                {cuisine}
+              </button>
+            ))}
+          </div>
+        </div>
+        
         <div className="flex justify-between flex-col gap-3 lg:flex-row">
           <SearchResultsInfo total={results.pagination.total} city={city}></SearchResultsInfo>
           <SortOptionsDropdown onChange={(value) => setSortOptions(value)} sortOption={searchState.sortOption}></SortOptionsDropdown>

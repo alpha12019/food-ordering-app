@@ -212,43 +212,6 @@ const SearchPage = () => {
     );
   }
 
-  const handleIsExpanded = () => {
-    setIsExpanded(!isExpanded);
-  }
-
-  const setSortOptions = (sortOption: string) => {
-    setSearchState((prevState) => ({
-      ...prevState, sortOption, page: 1,
-    }))
-  }
-
-  const SetSelectedCuisines = (selectedCuisines: string[]) => {
-    setSearchState((prevstate) => ({
-      ...prevstate, selectedCuisines, page: 1
-    }))
-  }
-  const setPage = (page: number) => {
-    setSearchState((previousState) => ({
-      ...previousState, page
-    }))
-  }
-  const setSearchQuery = (searchFormData: SearchForm) => {
-    setSearchState((previousState) => ({
-      ...previousState,
-      searchQuery: searchFormData.searchQuery,
-      page: 1
-    }))
-    // Add to search history
-    addToSearchHistory(searchFormData.searchQuery);
-  }
-  const resetSearch = () => {
-    setSearchState((previousState) => ({
-      ...previousState,
-      searchQuery: "",
-      page: 1
-    }))
-  }
-
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-4 sm:gap-5 lg:gap-6">
       <div id="cuisinesList" className="order-2 lg:order-1">

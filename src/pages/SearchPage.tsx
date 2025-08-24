@@ -188,6 +188,54 @@ const SearchPage = () => {
       <div id="main content" className="flex flex-col gap-4 sm:gap-5 order-1 lg:order-2">
         <SearchBar searchQuery={searchState.searchQuery} onSubmit={setSearchQuery} placeholder="search by cuisine or restaurant name" onReset={resetSearch}></SearchBar>
         
+        {/* Search History Section */}
+        {searchHistory.length > 0 && (
+          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                <Clock className="w-4 h-4" />
+                Recent Searches
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={clearSearchHistory}
+                className="text-xs text-gray-500 hover:text-red-500 hover:bg-red-50"
+              >
+                Clear All
+              </Button>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {searchHistory.map((query, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-2 bg-white px-3 py-2 rounded-full border border-gray-200 hover:border-orange-300 transition-colors duration-200"
+                >
+                  <button
+                    onClick={() => {
+                      setSearchState(prev => ({
+                        ...prev,
+                        searchQuery: query,
+                        page: 1
+                      }));
+                      addToSearchHistory(query);
+                    }}
+                    className="text-sm text-gray-700 hover:text-orange-600 transition-colors duration-200"
+                  >
+                    {query}
+                  </button>
+                  <button
+                    onClick={() => removeFromSearchHistory(query)}
+                    className="text-gray-400 hover:text-red-500 transition-colors duration-200"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        
         {/* Special Offers Section - Top of search results */}
         <SpecialOffersSection />
         

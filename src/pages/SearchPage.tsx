@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ErrorDisplay from "@/components/ErrorDisplay";
+import SearchResultSkeleton from "@/components/SearchResultSkeleton";
 import NoResultsFound from "@/components/NoResultsFound";
 
 
@@ -89,11 +90,73 @@ const SearchPage = () => {
     setSearchHistory([]);
   };
 
+  const handleIsExpanded = () => {
+    setIsExpanded(!isExpanded);
+  }
+
+  const setSortOptions = (sortOption: string) => {
+    setSearchState((prevState) => ({
+      ...prevState, sortOption, page: 1,
+    }))
+  }
+
+  const SetSelectedCuisines = (selectedCuisines: string[]) => {
+    setSearchState((prevstate) => ({
+      ...prevstate, selectedCuisines, page: 1
+    }))
+  }
+  const setPage = (page: number) => {
+    setSearchState((previousState) => ({
+      ...previousState, page
+    }))
+  }
+  const setSearchQuery = (searchFormData: SearchForm) => {
+    setSearchState((previousState) => ({
+      ...previousState,
+      searchQuery: searchFormData.searchQuery,
+      page: 1
+    }))
+    // Add to search history
+    addToSearchHistory(searchFormData.searchQuery);
+  }
+  const resetSearch = () => {
+    setSearchState((previousState) => ({
+      ...previousState,
+      searchQuery: "",
+      page: 1
+    }))
+  }
+
   // Show loading state while fetching results
   if (isLoading) {
     return (
-      <div className="min-h-[400px] flex items-center justify-center">
-        <LoadingSpinner text="Searching restaurants..." />
+      <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-4 sm:gap-5 lg:gap-6">
+        <div id="cuisinesList" className="order-2 lg:order-1">
+          <CuisineFilter selectedCuisines={searchState.selectedCuisines} onChange={SetSelectedCuisines} isExpanded={isExpanded}></CuisineFilter>
+          <Button variant="link" onClick={handleIsExpanded} className="mt-3 sm:mt-4 flex-1 text-sm sm:text-base">
+            {isExpanded ? (
+              <span className="flex flex-row items-center gap-1">
+                View Less
+                <ChevronUp className="w-4 h-4" />
+              </span>
+            ) : (
+              <span className="flex flex-row items-center gap-1">
+                View More
+                <ChevronDown className="w-4 h-4" />
+              </span>
+            )}
+          </Button>
+        </div>
+        <div id="main content" className="flex flex-col gap-4 sm:gap-5 order-1 lg:order-2">
+          <SearchBar searchQuery={searchState.searchQuery} onSubmit={setSearchQuery} placeholder="search by cuisine or restaurant name" onReset={resetSearch}></SearchBar>
+          
+          {/* Loading Skeletons */}
+          <div className="space-y-3 sm:space-y-4">
+            {[...Array(6)].map((_, index) => (
+              <SearchResultSkeleton key={index} />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

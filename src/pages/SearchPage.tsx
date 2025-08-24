@@ -9,8 +9,8 @@ import AdvertisementBanner from "@/components/AdvertisementBanner";
 import RestaurantAdvertisement from "@/components/RestaurantAdvertisement";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import { ChevronDown, ChevronUp, Clock, X } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ErrorDisplay from "@/components/ErrorDisplay";
@@ -33,7 +33,103 @@ const SearchPage = () => {
     sortOption: "bestMatch",
   })
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
+  
+  // Load search history from localStorage on component mount
+  useEffect(() => {
+    const savedHistory = localStorage.getItem('searchHistory');
+    if (savedHistory) {
+      setSearchHistory(JSON.parse(savedHistory));
+    }
+  }, []);
+
+  // Save search history to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+  }, [searchHistory]);
+
   const { results, isLoading, error } = useSearchRestaurant(searchState, city);
+  
+  // Add search to history
+  const addToSearchHistory = (query: string) => {
+    if (query.trim()) {
+      setSearchHistory(prev => {
+        const filtered = prev.filter(item => item !== query);
+        return [query, ...filtered].slice(0, 5); // Keep only last 5 searches
+      });
+    }
+  };
+
+  // Remove search from history
+  const removeFromSearchHistory = (query: string) => {
+    setSearchHistory(prev => prev.filter(item => item !== query));
+  };
+
+  // Clear all search history
+  const clearSearchHistory = () => {
+    setSearchHistory([]);
+  };
+
+  // Show loading state while fetching results
+  if (isLoading) {
+    return (
+      <div className="min-h-[400px] flex items-center justify-center">
+        <LoadingSpinner text="Searching restaurants..." />
+      </div>
+    );
+  }
+
+  // Show error state if there's an error
+  if (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    return (
+      <ErrorDisplay 
+        error={errorMessage} 
+        title="Search Error" 
+        message="We couldn't search for restaurants. Please try again." 
+        showRetry={true}
+        onRetry={() => window.location.reload()}
+      />
+    );
+  }
+
+  // Show error if no city is provided
+  if (!city) {
+    return (
+      <ErrorDisplay 
+        error={null} 
+        title="Invalid Search" 
+        message="Please provide a valid city to search for restaurants." 
+        showHome={true}
+      />
+    );
+  }
+
+  // Show no results found if no restaurants are found
+  if (!results?.data || results.data.length === 0) {
+    return (
+      <NoResultsFound 
+        searchQuery={searchState.searchQuery}
+        city={city}
+        onClearFilters={() => {
+          setSearchState(prev => ({
+            ...prev,
+            searchQuery: "",
+            selectedCuisines: [],
+            page: 1
+          }));
+        }}
+        onTryDifferentSearch={() => {
+          setSearchState(prev => ({
+            ...prev,
+            searchQuery: "",
+            page: 1
+          }));
+        }}
+      />
+    );
+  }
+
   const handleIsExpanded = () => {
     setIsExpanded(!isExpanded);
   }
@@ -60,6 +156,8 @@ const SearchPage = () => {
       searchQuery: searchFormData.searchQuery,
       page: 1
     }))
+    // Add to search history
+    addToSearchHistory(searchFormData.searchQuery);
   }
   const resetSearch = () => {
     setSearchState((previousState) => ({
@@ -67,42 +165,6 @@ const SearchPage = () => {
       searchQuery: "",
       page: 1
     }))
-  }
-  if (isLoading) {
-    return <LoadingSpinner fullScreen text="Searching restaurants..." />
-  }
-
-  if (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    return <ErrorDisplay error={errorMessage} title="Search Error" message="We couldn't search for restaurants. Please try again. " />
-  }
-
-  if (!city) {
-    return <ErrorDisplay error={null} title="Invalid Search" message="Please provide a valid city to search for restaurants." />
-  }
-
-  if (!results?.data || results.data.length === 0) {
-    return (
-      <NoResultsFound 
-        searchQuery={searchState.searchQuery}
-        city={city}
-        onClearFilters={() => {
-          setSearchState(prev => ({
-            ...prev,
-            searchQuery: "",
-            selectedCuisines: [],
-            page: 1
-          }));
-        }}
-        onTryDifferentSearch={() => {
-          setSearchState(prev => ({
-            ...prev,
-            searchQuery: "",
-            page: 1
-          }));
-        }}
-      />
-    );
   }
 
   return (

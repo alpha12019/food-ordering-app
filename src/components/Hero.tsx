@@ -60,7 +60,7 @@ const Hero = () => {
         src={imgSrc}
         alt="Hero banner"
         onError={() => setImgSrc(hero)} // fallback to local image
-        className={`w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] object-cover transition-all duration-1000 ${
+        className={`w-full h-[150px] xs:h-[200px] sm:h-[250px] md:h-[350px] lg:h-[450px] xl:h-[550px] 2xl:h-[600px] object-cover transition-all duration-1000 ${
           isLoaded ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
         }`}
         onLoad={() => setIsLoaded(true)}
@@ -72,7 +72,7 @@ const Hero = () => {
       
       {/* Floating particles effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-1 h-1 sm:w-2 sm:h-2 bg-orange-300 rounded-full animate-float opacity-60"></div>
+        <div className="absolute top-1/4 left-1/4 w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 bg-orange-300 rounded-full animate-float opacity-60"></div>
         <div className="absolute top-1/3 right-1/3 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-orange-200 rounded-full animate-float opacity-40" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-1/3 left-1/3 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-orange-400 rounded-full animate-float opacity-50" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 right-1/4 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-orange-300 rounded-full animate-float opacity-30" style={{ animationDelay: '0.5s' }}></div>
@@ -91,7 +91,7 @@ const Hero = () => {
           {[...Array(8)].map((_, i) => (
             <Sparkles
               key={i}
-              className="absolute text-yellow-300 animate-ping"
+              className="absolute text-yellow-300 animate-ping w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -104,10 +104,10 @@ const Hero = () => {
       )}
 
       {/* Morphing decorative elements */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-orange-400/20 rounded-full animate-morph"></div>
-      <div className="absolute bottom-10 right-10 w-16 h-16 bg-red-400/20 rounded-full animate-morph" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-400/20 rounded-full animate-morph" style={{ animationDelay: '4s' }}></div>
-      <div className="absolute top-1/3 right-1/6 w-8 h-8 bg-orange-300/20 rounded-full animate-morph" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-4 sm:top-6 md:top-8 lg:top-10 left-4 sm:left-6 md:left-8 lg:left-10 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-orange-400/20 rounded-full animate-morph"></div>
+      <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-10 right-4 sm:right-6 md:right-8 lg:right-10 w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-red-400/20 rounded-full animate-morph" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute top-1/2 left-1/4 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-yellow-400/20 rounded-full animate-morph" style={{ animationDelay: '4s' }}></div>
+      <div className="absolute top-1/3 right-1/6 w-6 h-6 sm:w-8 sm:h-8 bg-orange-300/20 rounded-full animate-morph" style={{ animationDelay: '1s' }}></div>
     </div>
   );
 };

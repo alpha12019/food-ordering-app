@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { FormControl, FormItem } from "@/components/ui/form";
-import { Form } from "@/components/ui/form";
+import { Form } from "@/components/ui/form-provider";
 import { FormField } from "@/components/ui/form-hooks";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";

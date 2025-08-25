@@ -291,7 +291,7 @@ const HomePage = () => {
       <Card 
         ref={searchSectionRef}
         id="search-section" 
-        className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-2xl py-6 sm:py-8 md:py-10 lg:py-12 flex flex-col text-center gap-4 sm:gap-6 -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-12 xl:-mt-16 animate-slide-in-up hover-lift relative overflow-hidden"
+        className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-2xl py-4 sm:py-6 md:py-8 lg:py-10 xl:py-12 flex flex-col text-center gap-3 sm:gap-4 md:gap-6 -mt-2 sm:-mt-4 md:-mt-6 lg:-mt-8 xl:-mt-12 animate-slide-in-up hover-lift relative overflow-hidden"
       >
         {/* Enhanced background decoration with morphing shapes */}
         <div className="absolute inset-0 opacity-10">
@@ -340,7 +340,7 @@ const HomePage = () => {
             </span>
           </h2>
           
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 my-3 sm:my-4">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 my-2 sm:my-3 md:my-4">
             <Badge className="text-xs sm:text-sm md:text-base bg-orange-100 text-orange-800 border-orange-200 px-2 sm:px-3 py-1 hover-scale transition-transform duration-300 group">
               <Truck className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float group-hover:animate-bounce" />
               <span className="hidden sm:inline">Fast Delivery</span>
@@ -383,8 +383,8 @@ const HomePage = () => {
       <TestAdvertisement />
 
       {/* Advertisement Banners Section */}
-      <div className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 mb-6 sm:mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           <AdvertisementBanner
             type="promo"
             title="New User Bonus"
@@ -413,7 +413,7 @@ const HomePage = () => {
       <FeaturesShowcase />
 
       {/* Enhanced Popular Cuisines Section */}
-      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-white rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+      <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-white rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-orange-200 to-red-200 rounded-full animate-morph"></div>
@@ -426,7 +426,7 @@ const HomePage = () => {
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Explore our most loved cuisines</p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 relative z-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 relative z-10">
           {popularCuisines.map((cuisine, index) => (
             <Card
               key={cuisine.name}
@@ -473,7 +473,7 @@ const HomePage = () => {
       </Card>
 
       {/* Enhanced Featured Restaurants Section */}
-      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-white rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+      <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-white rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-orange-200 to-yellow-200 rounded-full animate-morph"></div>
@@ -486,7 +486,7 @@ const HomePage = () => {
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Discover top-rated restaurants in your area</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 relative z-10">
           {featuredRestaurants.map((restaurant, index) => (
             <Card 
               key={index} 
@@ -568,7 +568,7 @@ const HomePage = () => {
       </Card>
 
       {/* New Animated Quick Actions Section */}
-      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-gradient-to-r from-green-50 to-teal-50 rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift relative overflow-hidden mb-8">
+      <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-gradient-to-r from-green-50 to-teal-50 rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden mb-6 sm:mb-8">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-green-200 to-teal-200 rounded-full animate-morph"></div>
@@ -582,7 +582,7 @@ const HomePage = () => {
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Get started in seconds</p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 relative z-10">
           {[
             { icon: "🔍", label: "Search Food", action: () => navigate('/search/Manchester'), color: "from-blue-400 to-cyan-500" },
             { icon: "🍕", label: "Order Now", action: scrollToSearch, color: "from-orange-400 to-red-500" },
@@ -608,8 +608,8 @@ const HomePage = () => {
       </Card>
 
       {/* Additional Advertisement Banners */}
-      <div className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 mb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 mb-6 sm:mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           <AdvertisementBanner
             type="offer"
             title="Weekend Special"
@@ -641,7 +641,7 @@ const HomePage = () => {
       </div>
 
       {/* Enhanced Testimonials Section */}
-      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+      <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-48 h-48 bg-gradient-to-br from-orange-200 to-red-200 rounded-full animate-morph"></div>
@@ -654,7 +654,7 @@ const HomePage = () => {
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Real reviews from satisfied customers</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 relative z-10">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index} 
@@ -689,7 +689,7 @@ const HomePage = () => {
                 <div className="absolute top-2 left-2 text-4xl text-orange-200 opacity-50 group-hover:opacity-75 transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-12">
                   "
                 </div>
-                <div className="absolute bottom-2 right-2 text-4xl text-orange-200 opacity-50 group-hover:opacity-75 transition-all duration-500 transform group-hover:scale-110 group-hover:-rotate-12">
+                <div className="absolute bottom-2 right-2 text-4xl text-orange-200 opacity-50 group-hover:opacity-75 transition-all duration-500 transform group-hover:-rotate-12">
                   "
                 </div>
                 
@@ -701,10 +701,10 @@ const HomePage = () => {
         </div>
       </Card>
 
-      <Separator className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 animate-fade-in" />
+      <Separator className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 animate-fade-in" />
 
       {/* New Animated Statistics Section */}
-      <Card className="mx-2 sm:mx-4 md:mx-8 lg:mx-16 xl:mx-28 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl shadow-lg py-6 sm:py-8 px-4 sm:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+      <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full animate-morph"></div>
@@ -718,7 +718,7 @@ const HomePage = () => {
           <p className="text-xs sm:text-sm md:text-base text-gray-600">Numbers that speak for themselves</p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 relative z-10">
           {[
             { number: "50K+", label: "Happy Customers", icon: "😊", color: "from-green-400 to-emerald-500" },
             { number: "200+", label: "Restaurants", icon: "🍽️", color: "from-orange-400 to-red-500" },
@@ -743,7 +743,7 @@ const HomePage = () => {
       </Card>
 
       {/* Enhanced App Download Section with Interactive Animations */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-28 animate-slide-in-up relative overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 px-1 sm:px-2 md:px-4 lg:px-8 xl:px-16 animate-slide-in-up relative overflow-hidden">
         {/* Background floating elements */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute top-1/4 left-1/4 text-4xl animate-float" style={{ animationDelay: '0s' }}>🍕</div>

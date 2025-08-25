@@ -13,7 +13,7 @@ const Layout=({children,showHero=false}:Props)=>{
         <div className="flex flex-col min-h-screen">
             <Header></Header>
             {showHero&&<Hero></Hero>}
-            <div className="container mx-auto flex-1 py-4 sm:py-6 md:py-8 lg:py-10 px-2 sm:px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto flex-1 py-2 sm:py-4 md:py-6 lg:py-8 xl:py-10 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12">
               {children}
             </div>
             <Footer></Footer>

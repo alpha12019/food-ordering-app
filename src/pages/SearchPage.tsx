@@ -130,10 +130,10 @@ const SearchPage = () => {
   // Show loading state while fetching results
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-4 sm:gap-5 lg:gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-3 sm:gap-4 md:gap-5 lg:gap-6">
         <div id="cuisinesList" className="order-2 lg:order-1">
           <CuisineFilter selectedCuisines={searchState.selectedCuisines} onChange={SetSelectedCuisines} isExpanded={isExpanded}></CuisineFilter>
-          <Button variant="link" onClick={handleIsExpanded} className="mt-3 sm:mt-4 flex-1 text-sm sm:text-base">
+          <Button variant="link" onClick={handleIsExpanded} className="mt-2 sm:mt-3 md:mt-4 flex-1 text-sm sm:text-base">
             {isExpanded ? (
               <span className="flex flex-row items-center gap-1">
                 View Less
@@ -147,7 +147,7 @@ const SearchPage = () => {
             )}
           </Button>
         </div>
-        <div id="main content" className="flex flex-col gap-4 sm:gap-5 order-1 lg:order-2">
+        <div id="main content" className="flex flex-col gap-3 sm:gap-4 md:gap-5 order-1 lg:order-2">
           <SearchBar searchQuery={searchState.searchQuery} onSubmit={setSearchQuery} placeholder="search by cuisine or restaurant name" onReset={resetSearch}></SearchBar>
           
           {/* Loading Skeletons */}
@@ -213,10 +213,10 @@ const SearchPage = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-4 sm:gap-5 lg:gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-3 sm:gap-4 md:gap-5 lg:gap-6">
       <div id="cuisinesList" className="order-2 lg:order-1">
         <CuisineFilter selectedCuisines={searchState.selectedCuisines} onChange={SetSelectedCuisines} isExpanded={isExpanded}></CuisineFilter>
-        <Button variant="link" onClick={handleIsExpanded} className="mt-3 sm:mt-4 flex-1 text-sm sm:text-base">
+        <Button variant="link" onClick={handleIsExpanded} className="mt-2 sm:mt-3 md:mt-4 flex-1 text-sm sm:text-base">
           {isExpanded ? (
             <span className="flex flex-row items-center gap-1">
               View Less
@@ -230,13 +230,13 @@ const SearchPage = () => {
           )}
         </Button>
       </div>
-      <div id="main content" className="flex flex-col gap-4 sm:gap-5 order-1 lg:order-2">
+      <div id="main content" className="flex flex-col gap-3 sm:gap-4 md:gap-5 order-1 lg:order-2">
         <SearchBar searchQuery={searchState.searchQuery} onSubmit={setSearchQuery} placeholder="search by cuisine or restaurant name" onReset={resetSearch}></SearchBar>
         
         {/* Search History Section */}
         {searchHistory.length > 0 && (
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <div className="flex items-center justify-between mb-3">
+          <div className="bg-gray-50 rounded-lg p-3 sm:p-4 border border-gray-200">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
               <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
                 <Clock className="w-4 h-4" />
                 Recent Searches
@@ -254,7 +254,7 @@ const SearchPage = () => {
               {searchHistory.map((query, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-2 bg-white px-3 py-2 rounded-full border border-gray-200 hover:border-orange-300 transition-colors duration-200"
+                  className="flex items-center gap-2 bg-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-full border border-gray-200 hover:border-orange-300 transition-colors duration-200"
                 >
                   <button
                     onClick={() => {
@@ -285,8 +285,8 @@ const SearchPage = () => {
         <SpecialOffersSection />
         
         {/* Quick Filter Bar */}
-        <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
-          <div className="flex items-center gap-3 mb-3">
+        <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200 shadow-sm">
+          <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
             <span className="text-sm font-medium text-gray-700">Quick Filters:</span>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -301,7 +301,7 @@ const SearchPage = () => {
                     SetSelectedCuisines([...searchState.selectedCuisines, cuisine]);
                   }
                 }}
-                className={`px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
                   searchState.selectedCuisines.includes(cuisine)
                     ? 'bg-orange-500 text-white shadow-md hover:bg-orange-600'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
@@ -313,15 +313,15 @@ const SearchPage = () => {
           </div>
         </div>
         
-        <div className="flex justify-between flex-col gap-3 lg:flex-row">
+        <div className="flex justify-between flex-col gap-2 sm:gap-3 lg:flex-row">
           <SearchResultsInfo total={results.pagination.total} city={city}></SearchResultsInfo>
           <SortOptionsDropdown onChange={(value) => setSortOptions(value)} sortOption={searchState.sortOption}></SortOptionsDropdown>
         </div>
         
         {/* Active Filters Summary */}
         {(searchState.searchQuery || searchState.selectedCuisines.length > 0) && (
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-            <div className="flex items-center justify-between mb-3">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 sm:p-4">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
               <span className="text-sm font-medium text-orange-800">Active Filters:</span>
               <Button
                 variant="ghost"
@@ -341,14 +341,14 @@ const SearchPage = () => {
             </div>
             <div className="flex flex-wrap gap-2">
               {searchState.searchQuery && (
-                <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
+                <span className="bg-orange-100 text-orange-800 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium">
                   Search: "{searchState.searchQuery}"
                 </span>
               )}
               {searchState.selectedCuisines.map((cuisine) => (
                 <span
                   key={cuisine}
-                  className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2"
+                  className="bg-orange-100 text-orange-800 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 sm:gap-2"
                 >
                   {cuisine}
                   <button
@@ -370,7 +370,7 @@ const SearchPage = () => {
               
               {/* Restaurant-specific advertisements after every 3rd restaurant */}
               {(index + 1) % 3 === 0 && (
-                <div className="my-6">
+                <div className="my-4 sm:my-6">
                   <RestaurantAdvertisement 
                     restaurant={restaurant} 
                     index={index} 
@@ -382,7 +382,7 @@ const SearchPage = () => {
         </div>
         
         {/* Bottom advertisement before pagination */}
-        <div className="my-6">
+        <div className="my-4 sm:my-6">
           <AdvertisementBanner
             type="feature"
             title="⭐ Premium Restaurant Experience"
@@ -401,10 +401,10 @@ const SearchPage = () => {
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
+          className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 bg-orange-500 hover:bg-orange-600 text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl touch-manipulation"
           aria-label="Back to top"
         >
-          <ArrowUp className="w-5 h-5" />
+          <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       )}
     </div>

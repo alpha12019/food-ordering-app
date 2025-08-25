@@ -101,26 +101,25 @@ const DetailsPage = () => {
     }
     
     return (
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-6 sm:gap-8 md:gap-10">
             <AspectRatio ratio={16/5}>
                 <img src={restaurant.imageUrl} className="rounded-md object-cover h-full w-full"  />
             </AspectRatio>
-            <div className="grid md:grid-cols-[4fr_2fr] gap-5 md:px-32">
-                <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-[4fr_2fr] gap-4 sm:gap-5 md:gap-6 lg:gap-8 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32">
+                <div className="flex flex-col gap-3 sm:gap-4 md:gap-6">
                     <RestaurantInfo restaurant={restaurant}></RestaurantInfo>
-                    <span className="text-2xl font-bold tracking-tight">Menu</span>
+                    <span className="text-xl sm:text-2xl font-bold tracking-tight">Menu</span>
                     {restaurant.menuItems.map((menuitem)=>(
-                        <MenuItems menuitem={menuitem} addToCart={()=>addToCart(menuitem)}></MenuItems>
+                        <MenuItems key={menuitem._id} menuitem={menuitem} addToCart={()=>addToCart(menuitem)}></MenuItems>
                     ))}
                 </div>
-                <div>
-                    <Card>
+                <div className="order-first lg:order-last">
+                    <Card className="sticky top-24">
                         <OrderSummary cartItems={cartItems} restaurant={restaurant} deleteFromCart={deleteFromCart}></OrderSummary>
-                        <CardFooter>
+                        <CardFooter className="p-3 sm:p-4">
                             <CheckOutButton disabled={cartItems.length===0} isLoading={isCheckoutLoading} onCheckout={onCheckout}></CheckOutButton>
                         </CardFooter>
                     </Card>
-
                 </div>
             </div>
         </div>

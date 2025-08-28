@@ -156,8 +156,8 @@
   50% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-
-@keyframes glow-pulse {
+/*glow-pulse*/
+@keyframes  glow-pulse{
   0%, 100% { box-shadow: 0 0 5px rgba(249, 115, 22, 0.3); }
   50% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.6); }
 }

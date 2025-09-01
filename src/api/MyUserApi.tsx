@@ -6,7 +6,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000
 
 
 export const useGetMyUser = () => {
-    const {getAccessTokenSilently}=useAuth0();
+    const {getAccessTokenSilently} = useAuth0();
     const getMyUserRequest=async():Promise<User>=>{
         // For development, return mock data if API is not available
         if (!import.meta.env.VITE_API_BASE_URL) {

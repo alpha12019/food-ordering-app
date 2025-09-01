@@ -105,7 +105,7 @@ export const useSearchRestaurant = (searchState: SearchState, city?: string) => 
         }
         return response.json();
     }
-    const {data:results,isLoading,error}=useQuery(
+    const {data: results, isLoading, error} = useQuery(
         ["searchRestaurants",searchState,city], 
         createSearchRequest,
         {

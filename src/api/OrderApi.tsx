@@ -21,7 +21,7 @@ type checkoutSessionRequest={
 
 }
 
-export const useGetMyOrders=()=>{
+export const useGetMyOrders = () => {
     const {getAccessTokenSilently}=useAuth0();
     const getMyOrderRestaurant=async():Promise<Orders[]>=>{
         // For development, return mock data if API is not available
@@ -47,7 +47,7 @@ export const useGetMyOrders=()=>{
 
 }
 
-export const useCreateCheckoutSession=()=>{
+export const useCreateCheckoutSession = () => {
     const {getAccessTokenSilently}=useAuth0();
     const createCheckoutSessionRequest=async(checkoutSessionRequest:checkoutSessionRequest)=>{
         // For development, simulate success if API is not available

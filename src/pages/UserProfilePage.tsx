@@ -3,7 +3,7 @@ import UserProfileForm from "@/forms/user-profile-form/UserProfileForm";
 import { Toaster } from "@/components/ui/toaster";
 
 const UserProfilePage=()=>{
-    const {currentUser,isLoading:isGetLoading}=useGetMyUser();
+    const {currentUser, isLoading: isGetLoading} = useGetMyUser();
     const {updateuser,isLoading:isUpdateLoading}=useUpdateMyUser();
     if(isGetLoading){
         return <div>loading</div>

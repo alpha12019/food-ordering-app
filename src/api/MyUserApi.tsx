@@ -84,7 +84,7 @@ type UpdateUserRequest={
 }
 
 export const useUpdateMyUser = () => {
-    const {getAccessTokenSilently}=useAuth0();
+    const {getAccessTokenSilently} = useAuth0();
     const updateMyUserRequest=async(formdata:UpdateUserRequest)=>{
         // For development, simulate success if API is not available
         if (!import.meta.env.VITE_API_BASE_URL) {

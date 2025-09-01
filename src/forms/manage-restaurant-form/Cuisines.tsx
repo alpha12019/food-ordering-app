@@ -4,7 +4,7 @@ import {cuisineList} from "@/config/restaurant-options-config"
 import CuisineCheckBox from "./CuisineCheckBox";
 
 const Cuisines=()=>{
-    const {control}=useFormContext()
+    const {control} = useFormContext();
     return (
         <div className="space-y-2">
             <div>

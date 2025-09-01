@@ -5,7 +5,7 @@ import { useFieldArray, useFormContext } from "react-hook-form"
 import MenuItemInput from "./MenuItemInput";
 
 const MenuSection=()=>{
-    const {control} =useFormContext();
+    const {control} = useFormContext();
     const {fields,append,remove}=useFieldArray({
         control,
         name:"menuItems",

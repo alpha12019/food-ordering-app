@@ -71,7 +71,7 @@ export const useCreateMyUser = () => {
             throw new Error("failed to create user");
         }
     }
-    const {mutateAsync:createuser,isLoading,isError,isSuccess}=useMutation(creatMyUserRequest);
+    const {mutateAsync: createuser, isLoading, isError, isSuccess} = useMutation(creatMyUserRequest);
 
     return {createuser,isLoading,isError,isSuccess};
 }
@@ -105,7 +105,7 @@ export const useUpdateMyUser = () => {
             throw new Error("failed to update user");
         }
     }
-    const {mutateAsync:updateuser,isLoading,isSuccess,error,reset}=useMutation(updateMyUserRequest);
+    const {mutateAsync: updateuser, isLoading, isSuccess, error, reset} = useMutation(updateMyUserRequest);
 
     if(isSuccess){
         toast.success("user profile updated");

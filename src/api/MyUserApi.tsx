@@ -5,7 +5,7 @@ import { toast } from "sonner";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
 
-export const useGetMyUser=()=>{
+export const useGetMyUser = () => {
     const {getAccessTokenSilently}=useAuth0();
     const getMyUserRequest=async():Promise<User>=>{
         // For development, return mock data if API is not available
@@ -49,7 +49,7 @@ type CreateUserRequest={
     email: string,
 }
 
-export const useCreateMyUser=()=>{
+export const useCreateMyUser = () => {
     const {getAccessTokenSilently}=useAuth0();
     const creatMyUserRequest=async(user:CreateUserRequest)=>{
         // For development, simulate success if API is not available

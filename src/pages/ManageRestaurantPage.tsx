@@ -10,7 +10,7 @@ import { Toaster } from "@/components/ui/toaster";
 const ManageRestaurantPage=()=>{
     const {createRestaurant, isLoading: createIsLoading} = useCreateMyRestaurant();
     const {currentRestaurant, isLoading: getIsLoading} = useGetMyRestaurant();
-    const {updateRestaurant,isLoading:updateIsLoading}=useUpdateMyRestaurant();
+    const {updateRestaurant, isLoading: updateIsLoading} = useUpdateMyRestaurant();
     const {orders}=useGetMyRestaurantOrder();
     const isEditing=!!currentRestaurant;
     if(isEditing&&getIsLoading){

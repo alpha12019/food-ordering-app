@@ -4,7 +4,7 @@ import OrderStatusHeader from "@/components/OrderStatusHeader";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 
 const OrderStatusPage = () => {
-  const {orders,isLoading}=useGetMyOrders();
+      const {orders, isLoading} = useGetMyOrders();
   if(isLoading){
     return <h1>Loading...</h1>
   }

@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 const UserProfilePage=()=>{
     const {currentUser, isLoading: isGetLoading} = useGetMyUser();
-    const {updateuser,isLoading:isUpdateLoading}=useUpdateMyUser();
+    const {updateuser, isLoading: isUpdateLoading} = useUpdateMyUser();
     if(isGetLoading){
         return <div>loading</div>
     }

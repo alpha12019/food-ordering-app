@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
-export const useGetrestaurant=(restaurantId?:string)=>{
+export const useGetrestaurant = (restaurantId?: string) => {
     const getRestaurnatByIdRequest=async():Promise<Restaurant>=>{
         // For development, return mock data if API is not available
         if (!import.meta.env.VITE_API_BASE_URL) {
@@ -51,7 +51,7 @@ export const useGetrestaurant=(restaurantId?:string)=>{
     return {restaurant,isLoading,error};
 }
 
-export const useSearchRestaurant=(searchState:SearchState,city?:string)=>{
+export const useSearchRestaurant = (searchState: SearchState, city?: string) => {
     const params=new URLSearchParams();
     params.set("searchQuery",searchState.searchQuery);
     params.set("page",searchState.page.toString());

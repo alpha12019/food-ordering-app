@@ -136,7 +136,7 @@ export const useGetMyRestaurant = () => {
 }
 
 
-export const useGetMyRestaurantOrder=()=>{
+export const useGetMyRestaurantOrder = () => {
     const {getAccessTokenSilently}=useAuth0();
     const getMyOrder=async():Promise<Orders[]>=>{
         // For development, return mock data if API is not available

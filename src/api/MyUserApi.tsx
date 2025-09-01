@@ -83,7 +83,7 @@ type UpdateUserRequest={
     country: string
 }
 
-export const useUpdateMyUser=()=>{
+export const useUpdateMyUser = () => {
     const {getAccessTokenSilently}=useAuth0();
     const updateMyUserRequest=async(formdata:UpdateUserRequest)=>{
         // For development, simulate success if API is not available

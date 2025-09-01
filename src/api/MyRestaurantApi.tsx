@@ -170,7 +170,7 @@ type UpdateOrderStatusRequest={
     status:string;
 }
 
-export const useUpdateMyRestaurantOrder=()=>{
+export const useUpdateMyRestaurantOrder = () => {
     const { getAccessTokenSilently } = useAuth0();
     const updatemyRestaurantOrder = async (updateStatusOrderRequest:UpdateOrderStatusRequest)=> {
         // For development, simulate success if API is not available

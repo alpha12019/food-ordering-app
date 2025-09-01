@@ -29,7 +29,7 @@ const DetailsPage = () => {
         const storedCartItems=sessionStorage.getItem(`cartItems-${restaurantId}`);
         return storedCartItems?JSON.parse(storedCartItems):[];
     });
-    const {restaurant,isLoading,error}=useGetrestaurant(restaurantId);
+    const {restaurant, isLoading, error} = useGetrestaurant(restaurantId);
     const addToCart=(menuItem:MenuItem)=>{
         setCartItems((prevCartItems)=>{
             const existingCartItem=prevCartItems.find((cartItem)=>cartItem._id===menuItem._id);

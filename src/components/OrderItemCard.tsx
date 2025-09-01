@@ -13,7 +13,7 @@ type Props = {
 }
 
 const OrderItemCard = ({order}: Props) => {
-    const {updateRestaurantStatus,isLoading}=useUpdateMyRestaurantOrder();
+    const {updateRestaurantStatus, isLoading} = useUpdateMyRestaurantOrder();
     const [status, setStatus] = useState<OrderStatus>(order.status);
     const handleStatusChange=async(newStatus:OrderStatus)=>{
         await updateRestaurantStatus({orderId:order._id as string,status:newStatus});

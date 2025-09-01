@@ -6,7 +6,7 @@ import MenuItemInput from "./MenuItemInput";
 
 const MenuSection=()=>{
     const {control} = useFormContext();
-    const {fields,append,remove}=useFieldArray({
+    const {fields, append, remove} = useFieldArray({
         control,
         name:"menuItems",
     })

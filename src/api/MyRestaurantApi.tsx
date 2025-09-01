@@ -193,7 +193,7 @@ export const useUpdateMyRestaurantOrder = () => {
         }
         return response.json();
     }
-    const { mutate:updateRestaurantStatus, isLoading, isSuccess, error } = useMutation(updatemyRestaurantOrder);
+    const { mutate: updateRestaurantStatus, isLoading, isSuccess, error } = useMutation(updatemyRestaurantOrder);
     if (isSuccess) {
         toast.success("Restaurant status updated");
     }

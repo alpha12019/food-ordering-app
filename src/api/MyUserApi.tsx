@@ -50,7 +50,7 @@ type CreateUserRequest={
 }
 
 export const useCreateMyUser = () => {
-    const {getAccessTokenSilently}=useAuth0();
+    const {getAccessTokenSilently} = useAuth0();
     const creatMyUserRequest=async(user:CreateUserRequest)=>{
         // For development, simulate success if API is not available
         if (!import.meta.env.VITE_API_BASE_URL) {

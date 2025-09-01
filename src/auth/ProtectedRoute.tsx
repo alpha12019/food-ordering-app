@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import LoadingSpinner from "@/components/LoadingSpinner";
 
 const ProtectedRoute=()=>{
-    const {isAuthenticated,isLoading,error}=useAuth0();
+    const {isAuthenticated, isLoading, error} = useAuth0();
     
     // For development, if Auth0 is not configured, allow access
     if (!import.meta.env.VITE_AUTH0_DOMAIN || !import.meta.env.VITE_AUTH0_CLIENT_ID) {

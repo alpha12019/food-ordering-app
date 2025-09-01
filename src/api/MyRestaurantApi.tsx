@@ -137,7 +137,7 @@ export const useGetMyRestaurant = () => {
 
 
 export const useGetMyRestaurantOrder = () => {
-    const {getAccessTokenSilently}=useAuth0();
+    const {getAccessTokenSilently} = useAuth0();
     const getMyOrder=async():Promise<Orders[]>=>{
         // For development, return mock data if API is not available
         if (!import.meta.env.VITE_API_BASE_URL) {

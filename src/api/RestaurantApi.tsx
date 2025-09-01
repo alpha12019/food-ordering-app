@@ -31,7 +31,7 @@ export const useGetrestaurant = (restaurantId?: string) => {
         }
         return response.json();
     }
-    const {data:restaurant,isLoading,error}=useQuery(
+    const {data: restaurant, isLoading, error} = useQuery(
         ["fetchRestaurant", restaurantId], 
         getRestaurnatByIdRequest,
         {

@@ -172,6 +172,22 @@ module.exports = {
           "0%, 100%": { transform: "translateY(0px) rotate(0deg)", opacity: "0.7" },
           "50%": { transform: "translateY(-20px) rotate(180deg)", opacity: "1" },
         },
+        "carousel-slide": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        "banner-scroll": {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        "rotate-3d": {
+          "0%": { transform: "rotateY(0deg) rotateX(0deg)" },
+          "100%": { transform: "rotateY(360deg) rotateX(360deg)" },
+        },
+        "float-delayed": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-15px)" },
+        },
         "hover-lift": {
           "0%": { transform: "translateY(0px)" },
           "100%": { transform: "translateY(-5px)" },

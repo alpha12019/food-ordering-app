@@ -144,6 +144,168 @@ const HomePage = () => {
     }
   ];
 
+  // Carousel items for the main hero carousel
+  const carouselItems = [
+    {
+      id: 1,
+      title: "Delicious Food Delivered",
+      description: "Order from your favorite restaurants with just a few clicks. Fast delivery, great prices, and amazing taste!",
+      image: "https://images.unsplash.com/photo-1504674900242-87fec7f8e8c6?w=800&h=500&fit=crop&q=80",
+      badge: "New",
+      gradient: "from-green-500 to-emerald-500"
+    },
+    {
+      id: 2,
+      title: "Weekend Special Offers",
+      description: "Enjoy 25% off on all orders this weekend. Perfect time to try new restaurants and cuisines!",
+      image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=500&fit=crop&q=80",
+      badge: "Limited Time",
+      gradient: "from-orange-500 to-red-500"
+    },
+    {
+      id: 3,
+      title: "Premium Delivery Service",
+      description: "Upgrade to premium for priority delivery, exclusive offers, and dedicated customer support.",
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800&h=500&fit=crop&q=80",
+      badge: "Premium",
+      gradient: "from-purple-500 to-pink-500"
+    }
+  ];
+
+  // Moving banner items
+  const movingBannerItems = [
+    "🔥 Hot Deals Today!",
+    "⭐ New Restaurants Added",
+    "🚚 Free Delivery on Orders Above ₹500",
+    "🎉 Weekend Special Offers",
+    "🍕 Pizza Mania - 50% Off",
+    "🍔 Burger Bonanza - Buy 2 Get 1 Free",
+    "🍣 Sushi Special - Fresh Daily",
+    "🍰 Dessert Delights - Sweet Treats"
+  ];
+
+  // Rotating showcase items
+  const rotatingShowcaseItems = [
+    {
+      id: 1,
+      name: "Spice Garden",
+      cuisine: "Indian",
+      rating: 4.5,
+      deliveryTime: "25-35 min",
+      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop&q=80",
+      badge: "Popular"
+    },
+    {
+      id: 2,
+      name: "Pizza Palace",
+      cuisine: "Italian",
+      rating: 4.3,
+      deliveryTime: "20-30 min",
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop&q=80",
+      badge: "Trending"
+    },
+    {
+      id: 3,
+      name: "Golden Dragon",
+      cuisine: "Chinese",
+      rating: 4.7,
+      deliveryTime: "30-40 min",
+      image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=300&fit=crop&q=80",
+      badge: "Top Rated"
+    },
+    {
+      id: 4,
+      name: "Burger House",
+      cuisine: "American",
+      rating: 4.2,
+      deliveryTime: "15-25 min",
+      image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop&q=80",
+      badge: "Fast"
+    },
+    {
+      id: 5,
+      name: "Sushi Master",
+      cuisine: "Japanese",
+      rating: 4.6,
+      deliveryTime: "35-45 min",
+      image: "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=400&h=300&fit=crop&q=80",
+      badge: "Fresh"
+    },
+    {
+      id: 6,
+      name: "Taco Fiesta",
+      cuisine: "Mexican",
+      rating: 4.4,
+      deliveryTime: "20-30 min",
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop&q=80",
+      badge: "Spicy"
+    }
+  ];
+
+  // Floating cards items
+  const floatingCardsItems = [
+    {
+      id: 1,
+      title: "Quick Order",
+      subtitle: "Fast & Easy",
+      description: "Order your favorite food in just a few clicks with our streamlined ordering process.",
+      image: "https://images.unsplash.com/photo-1504674900242-87fec7f8e8c6?w=400&h=300&fit=crop&q=80",
+      rating: 4.8,
+      badge: "Popular",
+      gradient: "from-blue-500 to-cyan-500"
+    },
+    {
+      id: 2,
+      title: "Live Tracking",
+      subtitle: "Real-time Updates",
+      description: "Track your order in real-time and know exactly when your delicious food will arrive.",
+      image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop&q=80",
+      rating: 4.9,
+      badge: "New",
+      gradient: "from-green-500 to-emerald-500"
+    },
+    {
+      id: 3,
+      title: "Secure Payments",
+      subtitle: "100% Safe",
+      description: "Multiple payment options with bank-grade security to keep your transactions safe.",
+      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&q=80",
+      rating: 4.7,
+      badge: "Secure",
+      gradient: "from-purple-500 to-pink-500"
+    },
+    {
+      id: 4,
+      title: "24/7 Support",
+      subtitle: "Always Here",
+      description: "Round-the-clock customer support to help you with any questions or issues.",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&q=80",
+      rating: 4.6,
+      badge: "Support",
+      gradient: "from-orange-500 to-red-500"
+    },
+    {
+      id: 5,
+      title: "Loyalty Rewards",
+      subtitle: "Earn Points",
+      description: "Earn points with every order and redeem them for exciting rewards and discounts.",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&q=80",
+      rating: 4.5,
+      badge: "Rewards",
+      gradient: "from-yellow-500 to-orange-500"
+    },
+    {
+      id: 6,
+      title: "Family Meals",
+      subtitle: "Perfect Portions",
+      description: "Specially curated family meal packages that are perfect for sharing and saving.",
+      image: "https://images.unsplash.com/photo-1504674900242-87fec7f8e8c6?w=400&h=300&fit=crop&q=80",
+      rating: 4.4,
+      badge: "Family",
+      gradient: "from-pink-500 to-rose-500"
+    }
+  ];
+
   // Testimonials
   const testimonials = [
     {

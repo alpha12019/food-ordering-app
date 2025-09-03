@@ -14,6 +14,10 @@ import AdvertisementBanner from "@/components/AdvertisementBanner";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import FeaturesShowcase from "@/components/FeaturesShowcase";
 import TestAdvertisement from "@/components/TestAdvertisement";
+import AnimatedCarousel from "@/components/AnimatedCarousel";
+import MovingBanner from "@/components/MovingBanner";
+import RotatingShowcase from "@/components/RotatingShowcase";
+import FloatingCards from "@/components/FloatingCards";
 import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap } from "lucide-react";
 
 const HomePage = () => {

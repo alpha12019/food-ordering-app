@@ -547,6 +547,29 @@ const HomePage = () => {
         </div>
       </div>
 
+      {/* Rotating Showcase Section */}
+      <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full animate-morph"></div>
+          <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full animate-morph" style={{ animationDelay: '1s' }}></div>
+        </div>
+        
+        <div className="text-center mb-6 sm:mb-8 relative z-10">
+          <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-blue-600 mb-2 gradient-text transition-all duration-500 ${bounceElements ? 'animate-bounce' : 'animate-shimmer-text'}`}>
+            Interactive Restaurant Showcase
+          </h2>
+          <p className="text-xs sm:text-sm md:text-base text-gray-600">Hover to pause rotation and explore</p>
+        </div>
+        
+        <RotatingShowcase 
+          items={rotatingShowcaseItems}
+          autoRotate={true}
+          rotationSpeed={0.3}
+          className="relative z-10"
+        />
+      </Card>
+
       {/* Special Offers Section */}
       <SpecialOffersSection />
 

@@ -576,6 +576,28 @@ const HomePage = () => {
       {/* Features Showcase */}
       <FeaturesShowcase />
 
+      {/* Floating Cards Section */}
+      <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-gradient-to-r from-green-50 to-teal-50 rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-green-200 to-teal-200 rounded-full animate-morph"></div>
+          <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-br from-teal-200 to-blue-200 rounded-full animate-morph" style={{ animationDelay: '1s' }}></div>
+        </div>
+        
+        <div className="text-center mb-6 sm:mb-8 relative z-10">
+          <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-green-600 mb-2 gradient-text transition-all duration-500 ${bounceElements ? 'animate-bounce' : 'animate-shimmer-text'}`}>
+            Our Amazing Features
+          </h2>
+          <p className="text-xs sm:text-sm md:text-base text-gray-600">Discover what makes us special</p>
+        </div>
+        
+        <FloatingCards 
+          items={floatingCardsItems}
+          maxCards={6}
+          className="relative z-10"
+        />
+      </Card>
+
       {/* Enhanced Popular Cuisines Section */}
       <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-white rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
         {/* Background decoration */}

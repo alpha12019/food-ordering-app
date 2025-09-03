@@ -930,12 +930,18 @@ const HomePage = () => {
 
       {/* Enhanced App Download Section with Interactive Animations */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 px-1 sm:px-2 md:px-4 lg:px-8 xl:px-16 animate-slide-in-up relative overflow-hidden">
-        {/* Background floating elements */}
+        {/* Background floating elements with enhanced animations */}
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute top-1/4 left-1/4 text-4xl animate-float" style={{ animationDelay: '0s' }}>🍕</div>
           <div className="absolute top-1/3 right-1/3 text-3xl animate-float" style={{ animationDelay: '1s' }}>🍔</div>
           <div className="absolute bottom-1/3 left-1/3 text-4xl animate-float" style={{ animationDelay: '2s' }}>🍣</div>
           <div className="absolute bottom-1/4 right-1/4 text-3xl animate-float" style={{ animationDelay: '1.5s' }}>☕</div>
+          
+          {/* Additional floating elements with different animations */}
+          <div className="absolute top-1/6 left-1/6 text-2xl animate-float-delayed" style={{ animationDelay: '0.5s' }}>🎯</div>
+          <div className="absolute top-2/6 right-1/6 text-3xl animate-float" style={{ animationDelay: '1.2s' }}>🌟</div>
+          <div className="absolute bottom-1/6 left-2/6 text-2xl animate-rotate-3d" style={{ animationDelay: '2.8s' }}>🎪</div>
+          <div className="absolute bottom-2/6 right-2/6 text-3xl animate-ping" style={{ animationDelay: '3.2s' }}>💫</div>
         </div>
         
         <Card className="flex items-center justify-center p-0 overflow-hidden min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[350px] rounded-xl order-2 lg:order-1 animate-scale-in hover-lift group relative">

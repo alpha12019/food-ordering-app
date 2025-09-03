@@ -350,107 +350,73 @@ const HomePage = () => {
 
   return (
     <div className={`flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-      {/* Enhanced Hero Section with Interactive Animations */}
+      {/* Enhanced Hero Section with Animated Carousel */}
       <div className="relative animate-fade-in overflow-hidden">
-        <Hero />
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center px-4">
-          <div className="text-center text-white max-w-4xl relative">
-            {/* Floating particles effect */}
-            <div className="particle-container absolute inset-0 pointer-events-none">
-              {particles.map(particle => (
-                <div
-                  key={particle.id}
-                  className="particle animate-floating-particles"
-                  style={{
-                    left: `${particle.x}%`,
-                    top: `${particle.y}%`,
-                    animationDelay: `${Math.random() * 2}s`
-                  }}
-                />
-              ))}
-            </div>
-            
-            {/* Floating sparkles effect */}
-            {showSparkles && (
-              <div className="absolute inset-0 pointer-events-none">
-                {[...Array(6)].map((_, i) => (
-                  <Sparkles
-                    key={i}
-                    className="absolute text-yellow-300 animate-ping"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                      animationDelay: `${i * 0.2}s`,
-                      animationDuration: '1s'
-                    }}
-                  />
-                ))}
-              </div>
-            )}
-
-            {/* Confetti effect */}
-            {showConfetti && (
-              <div className="absolute inset-0 pointer-events-none">
-                {[...Array(20)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-2 h-2 animate-bounce"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                      backgroundColor: ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'][Math.floor(Math.random() * 6)],
-                      animationDelay: `${Math.random() * 2}s`,
-                      animationDuration: `${2 + Math.random() * 2}s`
-                    }}
-                  />
-                ))}
-              </div>
-            )}
-            
-            {/* Morphing decorative elements */}
-            <div className="absolute top-10 left-10 w-20 h-20 bg-orange-400/20 rounded-full animate-morph"></div>
-            <div className="absolute bottom-10 right-10 w-16 h-16 bg-red-400/20 rounded-full animate-morph" style={{ animationDelay: '2s' }}></div>
-            <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-400/20 rounded-full animate-morph" style={{ animationDelay: '4s' }}></div>
-            
-            <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight relative transition-all duration-500 ${bounceElements ? 'animate-bounce' : 'animate-bounce-in-elastic'}`}>
-              <span className="gradient-text animate-shimmer-text">
-                Delicious Food Delivered
-              </span>
-              <div className={`absolute -top-2 -right-2 transition-all duration-500 ${bounceElements ? 'animate-spin' : 'animate-heartbeat'}`}>
-                <Zap className="w-6 h-6 text-yellow-400" />
-              </div>
-            </h1>
-            
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl mb-4 sm:mb-5 md:mb-6 px-2 sm:px-4 animate-slide-in-up-delayed">
-              Order from your favorite restaurants with just a few clicks
-            </p>
-            
-            <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-500 ${bounceElements ? 'animate-pulse' : 'animate-scale-in'}`}>
-              <Button 
-                size="lg" 
-                className={`btn-interactive bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 hover:scale-105 transition-all duration-300 shadow-2xl group ${bounceElements ? 'animate-bounce' : 'animate-glow-pulse'}`}
-                onClick={scrollToSearch}
-              >
-                <span className="flex items-center gap-2">
-                  Order Now
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="btn-interactive border-white text-white hover:bg-white hover:text-orange-600 text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 transition-all duration-300 group hover-glow"
-                onClick={() => navigate('/search/Manchester')}
-              >
-                <span className="flex items-center gap-2">
-                  Explore Restaurants
-                  <MapPin className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
-                </span>
-              </Button>
-            </div>
-          </div>
+        <AnimatedCarousel 
+          items={carouselItems}
+          autoPlay={true}
+          interval={5000}
+          showControls={true}
+          showIndicators={true}
+          className="h-[500px] sm:h-[600px] md:h-[700px]"
+        />
+        
+        {/* Floating particles effect */}
+        <div className="particle-container absolute inset-0 pointer-events-none z-10">
+          {particles.map(particle => (
+            <div
+              key={particle.id}
+              className="particle animate-floating-particles"
+              style={{
+                left: `${particle.x}%`,
+                top: `${particle.y}%`,
+                animationDelay: `${Math.random() * 2}s`
+              }}
+            />
+          ))}
         </div>
+        
+        {/* Floating sparkles effect */}
+        {showSparkles && (
+          <div className="absolute inset-0 pointer-events-none z-10">
+            {[...Array(6)].map((_, i) => (
+              <Sparkles
+                key={i}
+                className="absolute text-yellow-300 animate-ping"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${i * 0.2}s`,
+                  animationDuration: '1s'
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Confetti effect */}
+        {showConfetti && (
+          <div className="absolute inset-0 pointer-events-none z-10">
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-2 h-2 animate-bounce"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  backgroundColor: ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'][Math.floor(Math.random() * 6)],
+                  animationDelay: `${Math.random() * 2}s`,
+                  animationDuration: `${2 + Math.random() * 2}s`
+                }}
+              />
+            ))}
+          </div>
+        )}
+        
+        {/* Morphing decorative elements */}
+        <div className="absolute top-10 left-10 w-20 h-20 bg-orange-400/20 rounded-full animate-morph z-10"></div>
+        <div className="absolute bottom-10 right-10 w-16 h-16 bg-red-400/20 rounded-full animate-morph z-10" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-400/20 rounded-full animate-morph z-10" style={{ animationDelay: '4s' }}></div>
       </div>
 
       {/* Enhanced Search Section with Interactive Animations */}
@@ -544,6 +510,15 @@ const HomePage = () => {
           </div>
         </div>
       </Card>
+
+      {/* Moving Banner */}
+      <MovingBanner 
+        items={movingBannerItems}
+        speed={40}
+        direction="left"
+        showBadges={true}
+        className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16"
+      />
 
       {/* Test Advertisement */}
       <TestAdvertisement />

@@ -30,7 +30,6 @@ const MovingBanner: React.FC<MovingBannerProps> = ({
     let animationId: number;
     let position = 0;
     const bannerWidth = banner.offsetWidth;
-    const containerWidth = container.offsetWidth;
 
     const animate = () => {
       if (direction === 'left') {

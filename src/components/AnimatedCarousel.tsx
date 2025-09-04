@@ -72,7 +72,7 @@ const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPlaying, autoPlay, interval, currentIndex]);
+  }, [isPlaying, autoPlay, interval, currentIndex, nextSlide]);
 
   useEffect(() => {
     // Pause auto-play on hover
@@ -119,7 +119,7 @@ const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
             width: `${items.length * 100}%`
           }}
         >
-          {items.map((item, index) => (
+          {items.map((item) => (
             <div
               key={item.id}
               className="relative w-full h-full flex-shrink-0"

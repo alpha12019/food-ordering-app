@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Star, Clock, Heart, ArrowRight } from 'lucide-react';
+import { Star, Heart, ArrowRight } from 'lucide-react';
 
 interface FloatingCardItem {
   id: number;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Star, Clock, MapPin } from 'lucide-react';
+import { Star, Clock } from 'lucide-react';
 
 interface ShowcaseItem {
   id: number;

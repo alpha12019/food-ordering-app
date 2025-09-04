@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
-import Hero from "@/components/Hero";
+// Removed unused Hero import
 import AdvertisementBanner from "@/components/AdvertisementBanner";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import FeaturesShowcase from "@/components/FeaturesShowcase";
@@ -18,7 +18,7 @@ import AnimatedCarousel from "@/components/AnimatedCarousel";
 import MovingBanner from "@/components/MovingBanner";
 import RotatingShowcase from "@/components/RotatingShowcase";
 import FloatingCards from "@/components/FloatingCards";
-import { Star, Clock, MapPin, Users, Award, Truck, ArrowRight, Sparkles, Heart, Zap } from "lucide-react";
+import { Star, Clock, Users, Award, Truck, ArrowRight, Sparkles, Heart } from "lucide-react";
 
 const HomePage = () => {
   const navigate = useNavigate();

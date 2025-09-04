@@ -26,7 +26,7 @@ const SORT_OPTIONS = [
   },
 ];
 
-const SortOptionDropdown = ({ onChange, sortOption }: Props) => {
+const SortOptionsDropdown = ({ onChange, sortOption }: Props) => {
   const selectedSortLabel =
     SORT_OPTIONS.find((option) => option.value === sortOption)?.label ||
     SORT_OPTIONS[0].label;
@@ -53,4 +53,4 @@ const SortOptionDropdown = ({ onChange, sortOption }: Props) => {
   );
 };
 
-export default SortOptionDropdown;
+export default SortOptionsDropdown;

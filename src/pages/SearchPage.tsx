@@ -1,3 +1,4 @@
+
 import { useSearchRestaurant } from "@/api/RestaurantApi";
 import CuisineFilter from "@/components/CuisineFilter";
 import PaginationSelector from "@/components/PaginationSelector";

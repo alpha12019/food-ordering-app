@@ -417,6 +417,16 @@ const HomePage = () => {
         <div className="absolute top-10 left-10 w-20 h-20 bg-orange-400/20 rounded-full animate-morph z-10"></div>
         <div className="absolute bottom-10 right-10 w-16 h-16 bg-red-400/20 rounded-full animate-morph z-10" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-400/20 rounded-full animate-morph z-10" style={{ animationDelay: '4s' }}></div>
+
+        {/* Subtle scroll cue */}
+        <button
+          type="button"
+          onClick={scrollToSearch}
+          aria-label="Scroll to search"
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-white/80 backdrop-blur-sm border border-orange-200 shadow-md rounded-full w-10 h-10 flex items-center justify-center text-orange-600 hover:bg-white transition-colors animate-bounce"
+        >
+          <ArrowRight className="w-5 h-5 transform rotate-90" />
+        </button>
       </div>
 
       {/* Enhanced Search Section with Interactive Animations */}

@@ -67,10 +67,18 @@ const SearchPage = () => {
     }
   }, []);
 
-  // Save search history to localStorage whenever it changes
+  // Save search history, favorites, and compare list to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
   }, [searchHistory]);
+
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  useEffect(() => {
+    localStorage.setItem('compareList', JSON.stringify(compareList));
+  }, [compareList]);
 
   // Handle scroll event for back to top button
   useEffect(() => {
@@ -146,6 +154,43 @@ const SearchPage = () => {
       ...previousState,
       searchQuery: "",
       page: 1
+    }))
+  }
+
+  // Favorites functionality
+  const toggleFavorite = (restaurantId: string) => {
+    setFavorites(prev => {
+      if (prev.includes(restaurantId)) {
+        return prev.filter(id => id !== restaurantId);
+      } else {
+        return [...prev, restaurantId];
+      }
+    });
+  };
+
+  // Comparison functionality
+  const toggleCompare = (restaurantId: string) => {
+    setCompareList(prev => {
+      if (prev.includes(restaurantId)) {
+        return prev.filter(id => id !== restaurantId);
+      } else if (prev.length < 3) {
+        return [...prev, restaurantId];
+      } else {
+        return prev; // Max 3 items for comparison
+      }
+    });
+  };
+
+  // Filter functions
+  const setPriceRange = (priceRange: string) => {
+    setSearchState((prevState) => ({
+      ...prevState, priceRange, page: 1,
+    }))
+  }
+
+  const setDeliveryTime = (deliveryTime: string) => {
+    setSearchState((prevState) => ({
+      ...prevState, deliveryTime, page: 1,
     }))
   }
 
@@ -254,6 +299,111 @@ const SearchPage = () => {
       </div>
       <div id="main content" className="flex flex-col gap-3 sm:gap-4 md:gap-5 order-1 lg:order-2">
         <SearchBar searchQuery={searchState.searchQuery} onSubmit={setSearchQuery} placeholder="search by cuisine or restaurant name" onReset={resetSearch}></SearchBar>
+        
+        {/* View Mode and Filter Toggle */}
+        <div className="flex items-center justify-between bg-white rounded-lg p-3 sm:p-4 border border-gray-200 shadow-sm">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="text-sm font-medium text-gray-700">View:</span>
+            <div className="flex bg-gray-100 rounded-lg p-1">
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-1.5 sm:p-2 rounded-md transition-all duration-200 ${
+                  viewMode === 'list' 
+                    ? 'bg-white text-orange-600 shadow-sm' 
+                    : 'text-gray-600 hover:text-gray-800'
+                }`}
+              >
+                <List className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-1.5 sm:p-2 rounded-md transition-all duration-200 ${
+                  viewMode === 'grid' 
+                    ? 'bg-white text-orange-600 shadow-sm' 
+                    : 'text-gray-600 hover:text-gray-800'
+                }`}
+              >
+                <Grid3X3 className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Compare List Indicator */}
+            {compareList.length > 0 && (
+              <div className="flex items-center gap-1 bg-orange-100 text-orange-800 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium">
+                <Compare className="w-3 h-3 sm:w-4 sm:h-4" />
+                {compareList.length}/3
+              </div>
+            )}
+            
+            {/* Favorites Count */}
+            {favorites.length > 0 && (
+              <div className="flex items-center gap-1 bg-red-100 text-red-800 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium">
+                <Heart className="w-3 h-3 sm:w-4 sm:h-4" />
+                {favorites.length}
+              </div>
+            )}
+            
+            {/* Advanced Filters Toggle */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowFilters(!showFilters)}
+              className="flex items-center gap-1 sm:gap-2"
+            >
+              <Filter className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Filters</span>
+            </Button>
+          </div>
+        </div>
+        
+        {/* Advanced Filters Panel */}
+        {showFilters && (
+          <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200 shadow-sm animate-fade-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              {/* Price Range Filter */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
+                <div className="flex flex-wrap gap-2">
+                  {['$', '$$', '$$$', '$$$$'].map((price) => (
+                    <button
+                      key={price}
+                      onClick={() => setPriceRange(searchState.priceRange === price ? '' : price)}
+                      className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
+                        searchState.priceRange === price
+                          ? 'bg-orange-500 text-white shadow-md hover:bg-orange-600'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
+                      }`}
+                    >
+                      {price}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Delivery Time Filter */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Delivery Time</label>
+                <div className="flex flex-wrap gap-2">
+                  {['< 15 min', '15-30 min', '30-45 min', '> 45 min'].map((time) => (
+                    <button
+                      key={time}
+                      onClick={() => setDeliveryTime(searchState.deliveryTime === time ? '' : time)}
+                      className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
+                        searchState.deliveryTime === time
+                          ? 'bg-orange-500 text-white shadow-md hover:bg-orange-600'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
+                      }`}
+                    >
+                      {time}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         
         {/* Search History Section */}
         {searchHistory.length > 0 && (

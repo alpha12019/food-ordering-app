@@ -280,7 +280,7 @@ const SearchPage = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+    <div className={`grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-3 sm:gap-4 md:gap-5 lg:gap-6 ${compareList.length > 0 ? 'pb-20 sm:pb-24' : ''}`}>
       <div id="cuisinesList" className="order-2 lg:order-1">
         <CuisineFilter selectedCuisines={searchState.selectedCuisines} onChange={SetSelectedCuisines} isExpanded={isExpanded}></CuisineFilter>
         <Button variant="link" onClick={handleIsExpanded} className="mt-2 sm:mt-3 md:mt-4 flex-1 text-sm sm:text-base">
@@ -559,14 +559,47 @@ const SearchPage = () => {
           </div>
         )}
         
-        <div className="space-y-3 sm:space-y-4">
+        {/* Restaurant Results */}
+        <div className={viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4' : 'space-y-3 sm:space-y-4'}>
           {results.data.map((restaurant, index) => (
-            <div key={restaurant._id || index}>
+            <div key={restaurant._id || index} className="relative group">
+              {/* Action Buttons Overlay */}
+              <div className="absolute top-2 right-2 z-10 flex flex-col gap-1 sm:gap-2">
+                {/* Favorite Button */}
+                <button
+                  onClick={() => toggleFavorite(restaurant._id)}
+                  className={`p-1.5 sm:p-2 rounded-full shadow-md transition-all duration-200 ${
+                    favorites.includes(restaurant._id)
+                      ? 'bg-red-500 text-white hover:bg-red-600'
+                      : 'bg-white text-gray-600 hover:bg-red-50 hover:text-red-500'
+                  }`}
+                  aria-label={favorites.includes(restaurant._id) ? 'Remove from favorites' : 'Add to favorites'}
+                >
+                  <Heart className={`w-3 h-3 sm:w-4 sm:h-4 ${favorites.includes(restaurant._id) ? 'fill-current' : ''}`} />
+                </button>
+                
+                {/* Compare Button */}
+                <button
+                  onClick={() => toggleCompare(restaurant._id)}
+                  disabled={!compareList.includes(restaurant._id) && compareList.length >= 3}
+                  className={`p-1.5 sm:p-2 rounded-full shadow-md transition-all duration-200 ${
+                    compareList.includes(restaurant._id)
+                      ? 'bg-orange-500 text-white hover:bg-orange-600'
+                      : compareList.length >= 3
+                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      : 'bg-white text-gray-600 hover:bg-orange-50 hover:text-orange-500'
+                  }`}
+                  aria-label={compareList.includes(restaurant._id) ? 'Remove from comparison' : 'Add to comparison'}
+                >
+                  <Compare className="w-3 h-3 sm:w-4 sm:h-4" />
+                </button>
+              </div>
+              
               <SearchResultCard restaurant={restaurant} />
               
               {/* Restaurant-specific advertisements after every 3rd restaurant */}
               {(index + 1) % 3 === 0 && (
-                <div className="my-4 sm:my-6">
+                <div className="my-4 sm:my-6 col-span-full">
                   <RestaurantAdvertisement 
                     restaurant={restaurant} 
                     index={index} 
@@ -576,6 +609,66 @@ const SearchPage = () => {
             </div>
           ))}
         </div>
+        
+        {/* Comparison Panel */}
+        {compareList.length > 0 && (
+          <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40 animate-slide-in-up">
+            <div className="max-w-7xl mx-auto p-3 sm:p-4">
+              <div className="flex items-center justify-between mb-2 sm:mb-3">
+                <div className="flex items-center gap-2">
+                  <Compare className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
+                  <span className="text-sm sm:text-base font-medium text-gray-800">
+                    Comparing {compareList.length} restaurants
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      // Navigate to comparison page or show comparison modal
+                      console.log('Compare restaurants:', compareList);
+                    }}
+                    className="text-xs sm:text-sm"
+                  >
+                    Compare Now
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setCompareList([])}
+                    className="text-xs sm:text-sm text-gray-500 hover:text-red-500"
+                  >
+                    Clear All
+                  </Button>
+                </div>
+              </div>
+              <div className="flex gap-2 overflow-x-auto">
+                {compareList.map((restaurantId) => {
+                  const restaurant = results.data.find(r => r._id === restaurantId);
+                  return restaurant ? (
+                    <div key={restaurantId} className="flex items-center gap-2 bg-gray-50 rounded-lg p-2 min-w-0 flex-shrink-0">
+                      <img
+                        src={restaurant.imageUrl}
+                        alt={restaurant.restaurantName}
+                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
+                      />
+                      <span className="text-xs sm:text-sm font-medium text-gray-800 truncate max-w-20 sm:max-w-32">
+                        {restaurant.restaurantName}
+                      </span>
+                      <button
+                        onClick={() => toggleCompare(restaurantId)}
+                        className="text-gray-400 hover:text-red-500 transition-colors duration-200"
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                    </div>
+                  ) : null;
+                })}
+              </div>
+            </div>
+          </div>
+        )}
         
         {/* Bottom advertisement before pagination */}
         <div className="my-4 sm:my-6">

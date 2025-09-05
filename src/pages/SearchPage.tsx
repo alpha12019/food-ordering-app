@@ -13,7 +13,7 @@ import AdvertisementBanner from "@/components/AdvertisementBanner";
 import RestaurantAdvertisement from "@/components/RestaurantAdvertisement";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp, Clock, X, ArrowUp, Heart, Grid3X3, List, Star, Filter, Compare } from "lucide-react";
+import { ChevronDown, ChevronUp, Clock, X, ArrowUp, Heart, Grid3X3, List, Filter, GitGitCompare } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -46,7 +46,7 @@ const SearchPage = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
-  const [compareList, setCompareList] = useState<string[]>([]);
+  const [compareList, setGitCompareList] = useState<string[]>([]);
   const [showFilters, setShowFilters] = useState(false);
   
   // Load search history and favorites from localStorage on component mount
@@ -61,9 +61,9 @@ const SearchPage = () => {
       setFavorites(JSON.parse(savedFavorites));
     }
     
-    const savedCompareList = localStorage.getItem('compareList');
-    if (savedCompareList) {
-      setCompareList(JSON.parse(savedCompareList));
+    const savedGitCompareList = localStorage.getItem('compareList');
+    if (savedGitCompareList) {
+      setGitCompareList(JSON.parse(savedGitCompareList));
     }
   }, []);
 
@@ -169,8 +169,8 @@ const SearchPage = () => {
   };
 
   // Comparison functionality
-  const toggleCompare = (restaurantId: string) => {
-    setCompareList(prev => {
+  const toggleGitCompare = (restaurantId: string) => {
+    setGitCompareList(prev => {
       if (prev.includes(restaurantId)) {
         return prev.filter(id => id !== restaurantId);
       } else if (prev.length < 3) {
@@ -329,10 +329,10 @@ const SearchPage = () => {
           </div>
           
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Compare List Indicator */}
+            {/* GitCompare List Indicator */}
             {compareList.length > 0 && (
               <div className="flex items-center gap-1 bg-orange-100 text-orange-800 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium">
-                <Compare className="w-3 h-3 sm:w-4 sm:h-4" />
+                <GitCompare className="w-3 h-3 sm:w-4 sm:h-4" />
                 {compareList.length}/3
               </div>
             )}
@@ -578,9 +578,9 @@ const SearchPage = () => {
                   <Heart className={`w-3 h-3 sm:w-4 sm:h-4 ${favorites.includes(restaurant._id) ? 'fill-current' : ''}`} />
                 </button>
                 
-                {/* Compare Button */}
+                {/* GitCompare Button */}
                 <button
-                  onClick={() => toggleCompare(restaurant._id)}
+                  onClick={() => toggleGitCompare(restaurant._id)}
                   disabled={!compareList.includes(restaurant._id) && compareList.length >= 3}
                   className={`p-1.5 sm:p-2 rounded-full shadow-md transition-all duration-200 ${
                     compareList.includes(restaurant._id)
@@ -591,7 +591,7 @@ const SearchPage = () => {
                   }`}
                   aria-label={compareList.includes(restaurant._id) ? 'Remove from comparison' : 'Add to comparison'}
                 >
-                  <Compare className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <GitCompare className="w-3 h-3 sm:w-4 sm:h-4" />
                 </button>
               </div>
               
@@ -616,7 +616,7 @@ const SearchPage = () => {
             <div className="max-w-7xl mx-auto p-3 sm:p-4">
               <div className="flex items-center justify-between mb-2 sm:mb-3">
                 <div className="flex items-center gap-2">
-                  <Compare className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
+                  <GitCompare className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
                   <span className="text-sm sm:text-base font-medium text-gray-800">
                     Comparing {compareList.length} restaurants
                   </span>
@@ -627,16 +627,16 @@ const SearchPage = () => {
                     size="sm"
                     onClick={() => {
                       // Navigate to comparison page or show comparison modal
-                      console.log('Compare restaurants:', compareList);
+                      console.log('GitCompare restaurants:', compareList);
                     }}
                     className="text-xs sm:text-sm"
                   >
-                    Compare Now
+                    GitCompare Now
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => setCompareList([])}
+                    onClick={() => setGitCompareList([])}
                     className="text-xs sm:text-sm text-gray-500 hover:text-red-500"
                   >
                     Clear All
@@ -657,7 +657,7 @@ const SearchPage = () => {
                         {restaurant.restaurantName}
                       </span>
                       <button
-                        onClick={() => toggleCompare(restaurantId)}
+                        onClick={() => toggleGitCompare(restaurantId)}
                         className="text-gray-400 hover:text-red-500 transition-colors duration-200"
                       >
                         <X className="w-3 h-3" />

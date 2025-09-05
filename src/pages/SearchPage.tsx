@@ -491,7 +491,7 @@ const SearchPage = () => {
         </div>
         
         {/* Active Filters Summary */}
-        {(searchState.searchQuery || searchState.selectedCuisines.length > 0) && (
+        {(searchState.searchQuery || searchState.selectedCuisines.length > 0 || searchState.priceRange || searchState.deliveryTime) && (
           <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 sm:p-4">
             <div className="flex items-center justify-between mb-2 sm:mb-3">
               <span className="text-sm font-medium text-orange-800">Active Filters:</span>
@@ -503,6 +503,8 @@ const SearchPage = () => {
                     ...prev,
                     searchQuery: "",
                     selectedCuisines: [],
+                    priceRange: "",
+                    deliveryTime: "",
                     page: 1
                   }));
                 }}
@@ -531,6 +533,28 @@ const SearchPage = () => {
                   </button>
                 </span>
               ))}
+              {searchState.priceRange && (
+                <span className="bg-orange-100 text-orange-800 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 sm:gap-2">
+                  Price: {searchState.priceRange}
+                  <button
+                    onClick={() => setPriceRange('')}
+                    className="text-orange-600 hover:text-orange-800"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+              {searchState.deliveryTime && (
+                <span className="bg-orange-100 text-orange-800 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 sm:gap-2">
+                  Delivery: {searchState.deliveryTime}
+                  <button
+                    onClick={() => setDeliveryTime('')}
+                    className="text-orange-600 hover:text-orange-800"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
             </div>
           </div>
         )}

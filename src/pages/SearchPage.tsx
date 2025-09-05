@@ -13,7 +13,7 @@ import AdvertisementBanner from "@/components/AdvertisementBanner";
 import RestaurantAdvertisement from "@/components/RestaurantAdvertisement";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp, Clock, X, ArrowUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Clock, X, ArrowUp, Heart, Grid3X3, List, Star, Filter, Compare } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -27,6 +27,8 @@ export type SearchState = {
   page: number;
   selectedCuisines: string[];
   sortOption: string;
+  priceRange: string;
+  deliveryTime: string;
 }
 
 const SearchPage = () => {
@@ -36,16 +38,32 @@ const SearchPage = () => {
     page: 1,
     selectedCuisines: [],
     sortOption: "bestMatch",
+    priceRange: "",
+    deliveryTime: "",
   })
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
+  const [compareList, setCompareList] = useState<string[]>([]);
+  const [showFilters, setShowFilters] = useState(false);
   
-  // Load search history from localStorage on component mount
+  // Load search history and favorites from localStorage on component mount
   useEffect(() => {
     const savedHistory = localStorage.getItem('searchHistory');
     if (savedHistory) {
       setSearchHistory(JSON.parse(savedHistory));
+    }
+    
+    const savedFavorites = localStorage.getItem('favorites');
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
+    }
+    
+    const savedCompareList = localStorage.getItem('compareList');
+    if (savedCompareList) {
+      setCompareList(JSON.parse(savedCompareList));
     }
   }, []);
 

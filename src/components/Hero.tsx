@@ -60,6 +60,8 @@ const Hero = () => {
         src={imgSrc}
         alt="Hero banner"
         onError={() => setImgSrc(hero)} // fallback to local image
+        loading="lazy"
+        decoding="async"
         className={`w-full h-[150px] xs:h-[200px] sm:h-[250px] md:h-[350px] lg:h-[450px] xl:h-[550px] 2xl:h-[600px] object-cover transition-all duration-1000 ${
           isLoaded ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
         }`}
@@ -83,7 +85,9 @@ const Hero = () => {
       </div>
 
       {/* Interactive floating icons */}
-      {floatingElements.map(renderFloatingElement)}
+      <div className="hidden sm:block">
+        {floatingElements.map(renderFloatingElement)}
+      </div>
 
       {/* Floating sparkles effect */}
       {showSparkles && (

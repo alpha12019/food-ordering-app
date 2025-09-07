@@ -378,7 +378,7 @@ const HomePage = () => {
         
         {/* Floating sparkles effect */}
         {showSparkles && (
-          <div className="absolute inset-0 pointer-events-none z-10">
+          <div className="absolute inset-0 pointer-events-none z-10 hidden sm:block">
             {[...Array(6)].map((_, i) => (
               <Sparkles
                 key={i}
@@ -396,7 +396,7 @@ const HomePage = () => {
 
         {/* Confetti effect */}
         {showConfetti && (
-          <div className="absolute inset-0 pointer-events-none z-10">
+          <div className="absolute inset-0 pointer-events-none z-10 hidden sm:block">
             {[...Array(20)].map((_, i) => (
               <div
                 key={i}
@@ -414,9 +414,9 @@ const HomePage = () => {
         )}
         
         {/* Morphing decorative elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-orange-400/20 rounded-full animate-morph z-10"></div>
-        <div className="absolute bottom-10 right-10 w-16 h-16 bg-red-400/20 rounded-full animate-morph z-10" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-400/20 rounded-full animate-morph z-10" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute top-10 left-10 w-20 h-20 bg-orange-400/20 rounded-full animate-morph z-10 hidden sm:block"></div>
+        <div className="absolute bottom-10 right-10 w-16 h-16 bg-red-400/20 rounded-full animate-morph z-10 hidden sm:block" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-yellow-400/20 rounded-full animate-morph z-10 hidden sm:block" style={{ animationDelay: '4s' }}></div>
 
         {/* Subtle scroll cue */}
         <button
@@ -446,7 +446,7 @@ const HomePage = () => {
         </div>
 
         {/* Floating food icons */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden hidden xs:block">
           {floatingIcons.map(icon => (
             <div
               key={icon.id}
@@ -463,19 +463,19 @@ const HomePage = () => {
           ))}
           
           {/* Additional static floating icons */}
-          <div className="absolute top-1/6 left-1/6 text-3xl animate-float opacity-20" style={{ animationDelay: '0.5s' }}>🍜</div>
+          <div className="absolute top-1/6 left-1/6 text-3xl animate-float opacity-20 hidden md:block" style={{ animationDelay: '0.5s' }}>🍜</div>
           <div className="absolute top-1/3 right-1/6 text-2xl animate-float opacity-20" style={{ animationDelay: '1.5s' }}>🍰</div>
           <div className="absolute bottom-1/4 left-1/3 text-3xl animate-float opacity-20" style={{ animationDelay: '2.5s' }}>🥘</div>
           <div className="absolute bottom-1/6 right-1/3 text-2xl animate-float opacity-20" style={{ animationDelay: '3.5s' }}>🍹</div>
           
           {/* Enhanced floating elements with different animations */}
-          <div className="absolute top-1/5 left-1/5 text-2xl animate-bounce opacity-20" style={{ animationDelay: '0.8s' }}>🎯</div>
+          <div className="absolute top-1/5 left-1/5 text-2xl animate-bounce opacity-20 hidden md:block" style={{ animationDelay: '0.8s' }}>🎯</div>
           <div className="absolute top-2/5 right-1/5 text-3xl animate-pulse opacity-20" style={{ animationDelay: '1.2s' }}>🌟</div>
           <div className="absolute bottom-1/5 left-2/5 text-2xl animate-spin opacity-25" style={{ animationDelay: '2.8s' }}>🎪</div>
           <div className="absolute bottom-2/5 right-2/5 text-3xl animate-ping opacity-20" style={{ animationDelay: '3.2s' }}>💫</div>
           
           {/* Additional interactive floating elements */}
-          <div className="absolute top-1/3 left-1/3 text-2xl animate-float-delayed opacity-20" style={{ animationDelay: '1.5s' }}>🍜</div>
+          <div className="absolute top-1/3 left-1/3 text-2xl animate-float-delayed opacity-20 hidden md:block" style={{ animationDelay: '1.5s' }}>🍜</div>
           <div className="absolute top-2/3 right-1/3 text-3xl animate-float opacity-20" style={{ animationDelay: '2.5s' }}>🍰</div>
           <div className="absolute bottom-1/3 left-1/3 text-2xl animate-rotate-3d opacity-20" style={{ animationDelay: '3.5s' }}>🥘</div>
           <div className="absolute bottom-2/3 right-1/3 text-3xl animate-bounce opacity-20" style={{ animationDelay: '4.5s' }}>🍹</div>
@@ -965,6 +965,8 @@ const HomePage = () => {
             src={landingImgSrc}
             alt="Landing visual"
             onError={() => setLandingImgSrc(landingImage)}
+            loading="lazy"
+            decoding="async"
             className="object-cover w-full h-full rounded-xl transition-transform duration-700 group-hover:scale-125 group-hover:rotate-1"
           />
           
@@ -1028,6 +1030,8 @@ const HomePage = () => {
               alt="App download illustration"
               className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded-lg shadow mt-4 sm:mt-6 animate-float hover:scale-110 transition-transform duration-500"
               onError={() => setAppDownloadImgSrc(appDownloadImage)}
+              loading="lazy"
+              decoding="async"
             />
             
             {/* Enhanced floating download indicator */}

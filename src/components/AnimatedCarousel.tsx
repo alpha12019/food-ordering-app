@@ -132,6 +132,8 @@ const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
                     <img
                       src={item.image}
                       alt={item.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
@@ -176,10 +178,10 @@ const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
                     </div>
                     
                     {/* Floating Elements */}
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden sm:block">
                       <div className="w-3 h-3 bg-orange-400 rounded-full animate-ping"></div>
                     </div>
-                    <div className="absolute top-1/4 left-1/4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute top-1/4 left-1/4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden sm:block">
                       <div className="w-2 h-2 bg-yellow-400 rounded-full animate-ping" style={{ animationDelay: '0.3s' }}></div>
                     </div>
                   </div>

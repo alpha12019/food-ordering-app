@@ -967,6 +967,7 @@ const HomePage = () => {
             onError={() => setLandingImgSrc(landingImage)}
             loading="lazy"
             decoding="async"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
             className="object-cover w-full h-full rounded-xl transition-transform duration-700 group-hover:scale-125 group-hover:rotate-1"
           />
           
@@ -1032,6 +1033,7 @@ const HomePage = () => {
               onError={() => setAppDownloadImgSrc(appDownloadImage)}
               loading="lazy"
               decoding="async"
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 40vw"
             />
             
             {/* Enhanced floating download indicator */}

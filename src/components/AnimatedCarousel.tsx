@@ -134,6 +134,7 @@ const AnimatedCarousel: React.FC<AnimatedCarouselProps> = ({
                       alt={item.title}
                       loading="lazy"
                       decoding="async"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;

@@ -32,6 +32,12 @@ const MovingBanner: React.FC<MovingBannerProps> = ({
     const bannerWidth = banner.offsetWidth;
 
     const animate = () => {
+      // Pause when tab hidden to save CPU
+      if (document.hidden) {
+        animationId = requestAnimationFrame(animate);
+        return;
+      }
+
       if (direction === 'left') {
         position -= speed / 60; // 60 FPS
         if (position <= -bannerWidth / 2) {
@@ -74,7 +80,7 @@ const MovingBanner: React.FC<MovingBannerProps> = ({
       >
         <div
           ref={bannerRef}
-          className="flex items-center space-x-8 whitespace-nowrap"
+          className="flex items-center space-x-8 whitespace-nowrap will-change-transform"
           style={{ width: 'max-content' }}
         >
           {duplicatedItems.map((item, index) => (
@@ -84,7 +90,7 @@ const MovingBanner: React.FC<MovingBannerProps> = ({
             >
               {showBadges && (
                 <Badge 
-                  className={`bg-gradient-to-r ${badgeColors[index % badgeColors.length]} text-white border-0 animate-pulse-glow group-hover:animate-bounce transition-all duration-300`}
+                  className={`bg-gradient-to-r ${badgeColors[index % badgeColors.length]} text-white border-0 animate-pulse-glow group-hover:animate-bounce transition-all duration-300 hidden xs:inline-flex`}
                 >
                   {index % 2 === 0 ? '🔥' : '⭐'}
                 </Badge>
@@ -93,7 +99,7 @@ const MovingBanner: React.FC<MovingBannerProps> = ({
                 {item}
               </span>
               {showBadges && (
-                <div className="w-2 h-2 bg-orange-400 rounded-full animate-ping opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="w-2 h-2 bg-orange-400 rounded-full animate-ping opacity-60 group-hover:opacity-100 transition-opacity duration-300 hidden xs:block"></div>
               )}
             </div>
           ))}

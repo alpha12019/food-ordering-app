@@ -21,6 +21,7 @@ import FloatingCards from "@/components/FloatingCards";
 import EnhancedAnimations from "@/components/EnhancedAnimations";
 import ScrollAnimations from "@/components/ScrollAnimations";
 import InteractiveCursor from "@/components/InteractiveCursor";
+import SpectacularLoader from "@/components/SpectacularLoader";
 import { Star, Clock, Users, Award, Truck, ArrowRight, Sparkles, Heart } from "lucide-react";
 
 const HomePage = () => {

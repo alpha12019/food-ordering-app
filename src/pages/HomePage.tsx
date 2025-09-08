@@ -490,7 +490,7 @@ const HomePage = () => {
         
         <div className={`space-y-3 sm:space-y-4 relative z-10 transition-all duration-500 ${bounceElements ? 'animate-pulse' : ''}`}>
           <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-orange-600 leading-tight transition-all duration-500 ${bounceElements ? 'animate-bounce' : 'animate-shimmer-text'}`}>
-            <span className="gradient-text animate-shimmer-text">
+            <span className="text-gradient-animated animate-neon-glow">
               Tuck into a takeaway today
             </span>
           </h2>
@@ -641,8 +641,8 @@ const HomePage = () => {
           {popularCuisines.map((cuisine, index) => (
             <Card
               key={cuisine.name}
-              className={`cursor-pointer hover:shadow-2xl transition-all duration-500 hover-scale border-2 hover:border-orange-300 animate-bounce-in hover-lift group relative overflow-hidden transform perspective-1000 ${
-                hoveredCuisine === cuisine.name ? 'ring-2 ring-orange-400 shadow-xl rotate-y-12' : ''
+              className={`cursor-pointer hover:shadow-2xl transition-all duration-500 hover-scale border-2 hover:border-orange-300 animate-bounce-in hover-lift group relative overflow-hidden transform perspective-1000 cursor-magnetic ${
+                hoveredCuisine === cuisine.name ? 'ring-2 ring-orange-400 shadow-xl rotate-y-12 hover-wiggle' : ''
               }`}
               style={{ 
                 animationDelay: `${index * 0.1}s`,
@@ -663,7 +663,7 @@ const HomePage = () => {
               </div>
               
               <CardContent className="p-3 sm:p-4 text-center relative z-10">
-                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2 animate-float group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
+                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2 animate-float group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 hover-rainbow">
                   {cuisine.icon}
                 </div>
                 <p className="font-semibold text-gray-800 text-xs sm:text-sm md:text-base group-hover:text-orange-600 transition-colors duration-300">

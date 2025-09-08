@@ -35,10 +35,16 @@ const HomePage = () => {
   const [floatingIcons, setFloatingIcons] = useState<Array<{id: number, x: number, y: number, icon: string, delay: number}>>([]);
   const [showConfetti, setShowConfetti] = useState(false);
   const [bounceElements, setBounceElements] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const searchSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
+    
+    // Show loading for spectacular entrance
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
     
     // Animate progress bar
     const timer = setTimeout(() => {

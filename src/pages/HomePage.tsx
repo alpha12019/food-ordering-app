@@ -97,6 +97,7 @@ const HomePage = () => {
     }, 5000);
 
     return () => {
+      clearTimeout(loadingTimer);
       clearTimeout(timer);
       clearInterval(sparkleTimer);
       clearInterval(particleTimer);
@@ -357,6 +358,20 @@ const HomePage = () => {
       />
     ));
   };
+
+  // Show spectacular loading screen initially
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 via-red-50 to-yellow-50">
+        <SpectacularLoader 
+          size="xl" 
+          color="rainbow" 
+          text="Preparing your delicious experience..." 
+          className="animate-zoom-in-rotate"
+        />
+      </div>
+    );
+  }
 
   return (
     <InteractiveCursor>

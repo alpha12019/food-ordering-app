@@ -18,6 +18,9 @@ import AnimatedCarousel from "@/components/AnimatedCarousel";
 import MovingBanner from "@/components/MovingBanner";
 import RotatingShowcase from "@/components/RotatingShowcase";
 import FloatingCards from "@/components/FloatingCards";
+import EnhancedAnimations from "@/components/EnhancedAnimations";
+import ScrollAnimations from "@/components/ScrollAnimations";
+import InteractiveCursor from "@/components/InteractiveCursor";
 import { Star, Clock, Users, Award, Truck, ArrowRight, Sparkles, Heart } from "lucide-react";
 
 const HomePage = () => {
@@ -349,7 +352,10 @@ const HomePage = () => {
   };
 
   return (
-    <div className={`flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <InteractiveCursor>
+      <div className={`flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        {/* Enhanced Background Animations */}
+        <EnhancedAnimations />
       {/* Enhanced Hero Section with Animated Carousel */}
       <div className="relative animate-fade-in overflow-hidden">
         <AnimatedCarousel 
@@ -1048,7 +1054,8 @@ const HomePage = () => {
           </div>
         </CardContent>
       </div>
-    </div>
+      </div>
+    </InteractiveCursor>
   );
 };
 

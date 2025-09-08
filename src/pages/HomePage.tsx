@@ -623,7 +623,8 @@ const HomePage = () => {
       </Card>
 
       {/* Enhanced Popular Cuisines Section */}
-      <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-white rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+      <ScrollAnimations animationType="scale" delay={300}>
+        <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-white rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-orange-200 to-red-200 rounded-full animate-morph"></div>
@@ -680,10 +681,12 @@ const HomePage = () => {
             </Card>
           ))}
         </div>
-      </Card>
+        </Card>
+      </ScrollAnimations>
 
       {/* Enhanced Featured Restaurants Section */}
-      <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-white rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
+      <ScrollAnimations animationType="fade-left" delay={400}>
+        <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-white rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-orange-200 to-yellow-200 rounded-full animate-morph"></div>

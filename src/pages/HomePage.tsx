@@ -778,10 +778,12 @@ const HomePage = () => {
             </Card>
           ))}
         </div>
-      </Card>
+        </Card>
+      </ScrollAnimations>
 
       {/* New Animated Quick Actions Section */}
-      <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-gradient-to-r from-green-50 to-teal-50 rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden mb-6 sm:mb-8">
+      <ScrollAnimations animationType="bounce" delay={500}>
+        <Card className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 bg-gradient-to-r from-green-50 to-teal-50 rounded-xl shadow-lg py-4 sm:py-6 md:py-8 px-3 sm:px-4 md:px-6 animate-slide-in-up hover-lift relative overflow-hidden mb-6 sm:mb-8">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-green-200 to-teal-200 rounded-full animate-morph"></div>
@@ -818,7 +820,8 @@ const HomePage = () => {
             </div>
           ))}
         </div>
-      </Card>
+        </Card>
+      </ScrollAnimations>
 
       {/* Additional Advertisement Banners */}
       <div className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 mb-6 sm:mb-8">

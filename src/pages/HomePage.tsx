@@ -436,11 +436,12 @@ const HomePage = () => {
       </div>
 
       {/* Enhanced Search Section with Interactive Animations */}
-      <Card 
-        ref={searchSectionRef}
-        id="search-section" 
-        className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-2xl py-4 sm:py-6 md:py-8 lg:py-10 xl:py-12 flex flex-col text-center gap-3 sm:gap-4 md:gap-6 -mt-2 sm:-mt-4 md:-mt-6 lg:-mt-8 xl:-mt-12 animate-slide-in-up hover-lift relative overflow-hidden"
-      >
+      <ScrollAnimations animationType="fade-up" delay={200}>
+        <Card 
+          ref={searchSectionRef}
+          id="search-section" 
+          className="mx-1 sm:mx-2 md:mx-4 lg:mx-8 xl:mx-16 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-2xl py-4 sm:py-6 md:py-8 lg:py-10 xl:py-12 flex flex-col text-center gap-3 sm:gap-4 md:gap-6 -mt-2 sm:-mt-4 md:-mt-6 lg:-mt-8 xl:-mt-12 animate-slide-in-up hover-lift relative overflow-hidden"
+        >
         {/* Enhanced background decoration with morphing shapes */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-4 left-4 w-20 h-20 bg-orange-200 rounded-full animate-morph"></div>
@@ -531,7 +532,8 @@ const HomePage = () => {
             </p>
           </div>
         </div>
-      </Card>
+        </Card>
+      </ScrollAnimations>
 
       {/* Moving Banner */}
       <MovingBanner 

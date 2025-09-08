@@ -496,17 +496,17 @@ const HomePage = () => {
           </h2>
           
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 my-2 sm:my-3 md:my-4">
-            <Badge className="text-xs sm:text-sm md:text-base bg-orange-100 text-orange-800 border-orange-200 px-2 sm:px-3 py-1 hover-scale transition-transform duration-300 group">
+            <Badge className="text-xs sm:text-sm md:text-base bg-orange-100 text-orange-800 border-orange-200 px-2 sm:px-3 py-1 hover-scale transition-transform duration-300 group hover-wiggle">
               <Truck className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float group-hover:animate-bounce" />
               <span className="hidden sm:inline">Fast Delivery</span>
               <span className="sm:hidden">Fast</span>
             </Badge>
-            <Badge variant="secondary" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover-scale transition-transform duration-300 group">
+            <Badge variant="secondary" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover-scale transition-transform duration-300 group hover-magnetic">
               <Award className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float group-hover:animate-bounce" />
               <span className="hidden sm:inline">Best Restaurants</span>
               <span className="sm:hidden">Best</span>
             </Badge>
-            <Badge variant="outline" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover-scale transition-transform duration-300 group">
+            <Badge variant="outline" className="text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 hover-scale transition-transform duration-300 group hover-shake">
               <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1 animate-float group-hover:animate-bounce" />
               <span className="hidden sm:inline">Easy Payments</span>
               <span className="sm:hidden">Easy</span>

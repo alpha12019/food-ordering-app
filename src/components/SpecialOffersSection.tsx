@@ -104,6 +104,12 @@ const SpecialOffersSection = () => {
   const formatTime = (time: { hours: number; minutes: number; seconds: number }) => {
     return `${time.hours.toString().padStart(2, '0')}:${time.minutes.toString().padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`;
   };
+  const formatTime = (time: { hours: number; minutes: number; seconds: number }) => {
+    return `${time.hours.toString().padStart(2, '0')}:${time.minutes.toString().padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`;
+  };
+  const formatTime = (time: { hours: number; minutes: number; seconds: number }) => {
+    return `${time.hours.toString().padStart(2, '0')}:${time.minutes.toString().padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`;
+  };
 
   // Interactive handlers
   const handleLike = (offerId: number) => {

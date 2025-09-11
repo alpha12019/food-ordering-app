@@ -150,16 +150,6 @@ const SpecialOffersSection = () => {
     setExpandedOffers(newExpandedOffers);
     setClickCounts(prev => ({ ...prev, [offerId]: (prev[offerId] || 0) + 1 }));
   };
-  const handleExpand = (offerId: number) => {
-    const newExpandedOffers = new Set(expandedOffers);
-    if (newExpandedOffers.has(offerId)) {
-      newExpandedOffers.delete(offerId);
-    } else {
-      newExpandedOffers.add(offerId);
-    }
-    setExpandedOffers(newExpandedOffers);
-    setClickCounts(prev => ({ ...prev, [offerId]: (prev[offerId] || 0) + 1 }));
-  };
 
   const handleClaimOffer = (offer: Offer) => {
     toast({

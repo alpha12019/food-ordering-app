@@ -32,6 +32,15 @@ const CheckOutButton = ({ onCheckout, disabled, isLoading }: Props) => {
         Login to check out
       </Button>
     )
+  if (!isAuthenticated) {
+    return (
+      <Button
+        className="bg-orange-500 hover:bg-orange-600 flex-1 text-sm sm:text-base md:text-lg px-4 sm:px-6 py-2 sm:py-3 transition-all duration-300 hover:scale-105"
+        onClick={onLogin}
+      >
+        Login to check out
+      </Button>
+    )
   }
   if (isAuthLoading || !currentUser || isLoading) {
     return <LoadingButton></LoadingButton>

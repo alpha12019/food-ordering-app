@@ -23,6 +23,12 @@ type Props = {
     placeholder: string;
     onReset?: () => void;
 }
+type Props = {
+    searchQuery?: string;
+    onSubmit: (FormData: SearchForm) => void;
+    placeholder: string;
+    onReset?: () => void;
+}
 
 const SearchBar = ({ searchQuery, onSubmit, placeholder, onReset }: Props) => {
     const form = useForm<SearchForm>({

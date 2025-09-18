@@ -17,7 +17,6 @@ const SearchResultSkeleton = () => {
             <div className="h-4 bg-gray-200 rounded w-16"></div>
             <div className="h-4 bg-gray-200 rounded w-20"></div>
             <div className="h-4 bg-gray-200 rounded w-14"></div>
-            <div className="h-4 bg-gray-200 rounded w-14"></div>
           </div>
 
           {/* Info skeleton */}

@@ -6,7 +6,6 @@ const SearchResultSkeleton = () => {
       <div className="grid grid-cols-1 sm:grid-cols-[1fr_2fr] lg:grid-cols-[2fr_3fr] gap-3 sm:gap-4 lg:gap-5 rounded-lg p-2 sm:p-3">
         {/* Image skeleton */}
         <div className="bg-gray-200 rounded-md h-32 sm:h-40 lg:h-48"></div>
-        <div className="bg-gray-200 rounded-md h-32 sm:h-40 lg:h-48"></div>
 
         {/* Content skeleton */}
         <div className="flex flex-col justify-between p-2 sm:p-3 space-y-3">
